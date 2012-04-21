@@ -32,6 +32,7 @@ public class EventManagerTest extends TestCase {
     @Before
     public void setUp() {
         evm = EventManager.getInstance();
+        evm.clear();
         dummyEvent = new DummyEvent();
     }
     

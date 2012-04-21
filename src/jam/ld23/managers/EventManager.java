@@ -27,6 +27,10 @@ public class EventManager {
         return events;
     }
 
+    public void clear() {
+        events.clear();
+    }
+    
     public void addEvent(String name, Event event) {
         events.put(name, event);
     }

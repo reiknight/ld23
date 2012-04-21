@@ -23,7 +23,6 @@ public class TextureManager {
         return instance;
     }
     
-    
     public void addTexture(String name, String textureFileName) throws SlickException {
         textures.put(name, new Image(textureFileName));
     }

@@ -31,6 +31,10 @@ public class EntityManager {
         return entities;
     }
 
+    public void clear() {
+        entities.clear();
+    }
+    
     public void addEntity(String name, Entity entity) {
         entities.put(name, entity);
     }
