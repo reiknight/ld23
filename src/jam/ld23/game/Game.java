@@ -4,10 +4,7 @@ import jam.ld23.entity.Player;
 import jam.ld23.entity.interfaces.EntityConstantSheet;
 import jam.ld23.events.EventConstantSheet;
 import jam.ld23.events.InputEvent;
-import jam.ld23.managers.EntityManager;
-import jam.ld23.managers.EventManager;
-import jam.ld23.managers.PhysicsManager;
-import jam.ld23.managers.TextureManager;
+import jam.ld23.managers.*;
 import org.newdawn.slick.*;
  
 public class Game extends BasicGame implements EntityConstantSheet,EventConstantSheet {
@@ -19,6 +16,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
     private PhysicsManager pm;
     private EventManager evm;
     private TextureManager tm;
+    private SoundManager sm;
     private Player player;
     
     public Game()
@@ -28,6 +26,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         pm = PhysicsManager.getInstance();        
         evm = EventManager.getInstance();
         tm = TextureManager.getInstance();
+        sm = SoundManager.getInstance();
     }
  
     @Override
@@ -47,6 +46,12 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
 //        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
 //        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
 //        tm.addTexture(FOOD_BIG, FOOD_BIG_RESOURCE);
+        
+        //Add music and sounds
+        sm.addMusic("main_theme", "resources/music.ogg");
+        sm.addSound("fire", "resources/fire.wav");
+        //Play main theme by default
+        //sm.playMusic("main_theme");
         
         //Add entities
         player = new Player();
