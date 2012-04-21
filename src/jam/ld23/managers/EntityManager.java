@@ -10,10 +10,21 @@ import org.newdawn.slick.Graphics;
 
 public class EntityManager {
 
+    //Static instance from EntityManager
+    private static EntityManager em;
+    
     private HashMap<String,Entity> entities;
     
-    public EntityManager() {
+    private EntityManager() {
         entities = new HashMap<String,Entity>() {};
+    }
+    
+    //Getter of the instance
+    public static EntityManager getInstance() {
+        if(em == null) {
+            em = new EntityManager();
+        }
+        return em;
     }
     
     public Map<String,Entity> getEntities() {

@@ -6,11 +6,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import jam.ld23.managers.EntityManager;
 
-/**
- *
- * @author David
- */
-
 public class EntityManagerTest extends TestCase  {
     public static class DummyEntity extends Entity {
 
@@ -42,7 +37,7 @@ public class EntityManagerTest extends TestCase  {
     
     @Before
     public void setUp() {
-        em = new EntityManager();
+        em = EntityManager.getInstance();
         dummyEntity = new DummyEntity();
     }
     

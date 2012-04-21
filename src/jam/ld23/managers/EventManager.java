@@ -1,17 +1,28 @@
 package jam.ld23.managers;
 
-import jam.ld23.entity.Entity;
 import jam.ld23.events.Event;
 import java.util.HashMap;
 import org.newdawn.slick.GameContainer;
 
 public class EventManager {
+    
+    //Static instance from EventManager
+    private static EventManager evm;
+    
     private HashMap<String,Event> events;
     
-    public EventManager() {
+    private EventManager() {
       events = new HashMap<String,Event>() {};
     }
-      
+    
+    //Getter of the instance
+    public static EventManager getInstance() {
+        if(evm == null) {
+            evm = new EventManager();
+        }
+        return evm;
+    }
+            
     public HashMap<String,Event> getEvents() {
         return events;
     }

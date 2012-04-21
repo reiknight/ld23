@@ -5,10 +5,6 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.newdawn.slick.GameContainer;
 
-/**
- *
- * @author David
- */
 public class EventManagerTest extends TestCase {
     public class DummyEvent extends Event {
 
@@ -19,7 +15,7 @@ public class EventManagerTest extends TestCase {
     
     }
     
-    private static EventManager vm;
+    private static EventManager evm;
     private static DummyEvent dummyEvent;
     
     public EventManagerTest() {
@@ -35,7 +31,7 @@ public class EventManagerTest extends TestCase {
     
     @Before
     public void setUp() {
-        vm = new EventManager();
+        evm = EventManager.getInstance();
         dummyEvent = new DummyEvent();
     }
     
@@ -44,21 +40,21 @@ public class EventManagerTest extends TestCase {
     }
 
     public void testGetEvents() {
-        assertEquals(vm.getEvents().size(), 0);
+        assertEquals(evm.getEvents().size(), 0);
     }
    
     public void testAddEvent() { 
-        vm.addEvent("dummy", dummyEvent);
-        assertEquals(vm.getEvents().size(), 1);
+        evm.addEvent("dummy", dummyEvent);
+        assertEquals(evm.getEvents().size(), 1);
     }
     
     public void testRemoveEventWithExistingKey() {
-        vm.addEvent("dummy", dummyEvent);
-        vm.removeEvent("dummy");
-        assertEquals(vm.getEvents().size(), 0);
+        evm.addEvent("dummy", dummyEvent);
+        evm.removeEvent("dummy");
+        assertEquals(evm.getEvents().size(), 0);
     }
     
     public void testRemoveEventWithNonExistingKey() {
-        assertFalse(vm.removeEvent("dummy"));
+        assertFalse(evm.removeEvent("dummy"));
     }
 }

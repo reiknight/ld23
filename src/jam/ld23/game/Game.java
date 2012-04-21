@@ -16,7 +16,7 @@ public class Game extends BasicGame {
     private float scale = 1.0f;
     private EntityManager em;
     private PhysicsManager pm;
-    private EventManager vm;
+    private EventManager evm;
     
     public Game()
     {
@@ -24,13 +24,13 @@ public class Game extends BasicGame {
         //TODO: esto pueden ser singletons todos si lo crees necesario
         //yo creo que es lo mejor también, así en las clases de Entity
         //podemos llamar a EventManager por ejemplo pa las teclas.
-        em = new EntityManager();
+        em = EntityManager.getInstance();
         pm = PhysicsManager.getInstance();        
-        vm = new EventManager();
-        vm.addEvent("close_window", new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
-        vm.addEvent("move_left", new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
-        vm.addEvent("move_right", new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
-        vm.addEvent("move_forward", new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
+        evm = EventManager.getInstance();
+        evm.addEvent("close_window", new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
+        evm.addEvent("move_left", new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
+        evm.addEvent("move_right", new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
+        evm.addEvent("move_forward", new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
     }
  
     @Override
@@ -44,17 +44,17 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
-        if(vm.isHappening(("move_left"), gc))
+        if(evm.isHappening(("move_left"), gc))
         {
             plane.rotate(-0.2f * delta);
         }
  
-        if(vm.isHappening(("move_right"), gc))
+        if(evm.isHappening(("move_right"), gc))
         {
             plane.rotate(0.2f * delta);
         }
  
-        if(vm.isHappening(("move_forward"), gc))
+        if(evm.isHappening(("move_forward"), gc))
         {
             float hip = 0.4f * delta;
  
@@ -64,7 +64,7 @@ public class Game extends BasicGame {
             y-= hip * Math.cos(Math.toRadians(rotation));
         }
     
-        if(vm.isHappening(("close_window"), gc)) {
+        if(evm.isHappening(("close_window"), gc)) {
             gc.exit();
         }
     }

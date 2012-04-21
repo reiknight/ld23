@@ -6,10 +6,6 @@ import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-/**
- *
- * @author David
- */
 public class GameTestSuite {
 
     public static TestSuite suite() {
