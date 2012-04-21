@@ -5,8 +5,8 @@ import jam.ld23.entity.Entity;
 //Singleton
 public class PhysicsManager {
     
-    //Instance from PhsysicsManager
-    static PhysicsManager pm;
+    //Static instance from PhsysicsManager
+    private static PhysicsManager pm;
     
     //Private constructor
     private PhysicsManager() {
@@ -14,7 +14,7 @@ public class PhysicsManager {
     }
     
     //Getter
-    public final static PhysicsManager getInstance() {
+    public static PhysicsManager getInstance() {
         if(pm == null) {
             pm = new PhysicsManager();
         }
