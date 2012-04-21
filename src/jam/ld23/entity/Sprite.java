@@ -23,7 +23,7 @@ public class Sprite extends Entity {
     
     @Override
     public void render(GameContainer gc, Graphics g) {
-        image.draw(0, 0);
+        image.draw(x, y);
     }
     
 }
