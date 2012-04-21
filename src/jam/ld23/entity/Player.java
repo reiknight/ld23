@@ -1,6 +1,9 @@
 package jam.ld23.entity;
 
 import jam.ld23.entity.interfaces.GameMode;
+import jam.ld23.managers.EventManager;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -11,9 +14,13 @@ public class Player extends Sprite {
     private int bombs;
     private int continues;
     
+    //Player speed
+    private float speed = 1;
+    
     //Constructor with a Game Mode
     public Player(GameMode g) throws SlickException {
-        super("resources/player.png");
+        super("player");
+        
         //Characteristics taken from the game mode
         this.life = g.getLife();
         this.bombs = g.getBombs();
@@ -28,6 +35,26 @@ public class Player extends Sprite {
         this(GameMode.NORMAL_MODE);
     }
     
-    
-    
+    @Override
+    public void update(GameContainer gc, int delta) {
+        EventManager em = EventManager.getInstance();
+        
+        if(em.isHappening("move_left", gc)) {
+            x -= speed * delta;
+        }
+        
+        if(em.isHappening("move_right", gc)) {
+            x += speed * delta;
+        }
+        
+        if(em.isHappening("move_up", gc)) {
+            y -= speed * delta;
+        }
+        
+        if(em.isHappening("move_down", gc)) {
+            y += speed * delta;
+        }
+            
+        super.update(gc, delta);
+    }    
 }
