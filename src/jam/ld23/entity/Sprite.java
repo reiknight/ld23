@@ -4,10 +4,11 @@ import jam.ld23.managers.TextureManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public class Sprite extends Entity {
     private Image image;
+    
+    public Sprite() { }
     
     public Sprite(String name) {
         image = TextureManager.getInstance().getTexture(name);

@@ -16,7 +16,7 @@ public class EntityManager {
     private HashMap<String,Entity> entities;
     
     private EntityManager() {
-        entities = new HashMap<String,Entity>() {};
+        entities = new HashMap<String,Entity>();
     }
     
     //Getter of the instance

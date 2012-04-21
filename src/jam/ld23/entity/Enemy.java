@@ -4,6 +4,6 @@ import org.newdawn.slick.SlickException;
 
 public class Enemy extends Sprite {
     public Enemy() throws SlickException {
-        super("resources/player.png");
+        super("resources/enemy.png");
     }
 }
