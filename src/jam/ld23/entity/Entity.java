@@ -18,9 +18,7 @@ public abstract class Entity {
         return r;
     }
 
-    public void render(GameContainer gc, Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public abstract void render(GameContainer gc, Graphics g);
 
     public void update(GameContainer gc, int delta) {
         //Updating the Rectangle

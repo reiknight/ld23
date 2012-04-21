@@ -22,9 +22,10 @@ public class Game extends BasicGame {
     {
         super("Slick2DPath2Glory - SimpleGame");
         //TODO: esto pueden ser singletons todos si lo crees necesario
+        //yo creo que es lo mejor también, así en las clases de Entity
+        //podemos llamar a EventManager por ejemplo pa las teclas.
         em = new EntityManager();
-        pm = PhysicsManager.getInstance();
-        
+        pm = PhysicsManager.getInstance();        
         vm = new EventManager();
         vm.addEvent("close_window", new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
         vm.addEvent("move_left", new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
