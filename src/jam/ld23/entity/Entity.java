@@ -30,8 +30,7 @@ public abstract class Entity implements Updatable {
         //Updating the Rectangle
         r.setLocation(x,y);
     }
-
-    
+   
     //Getters and Setters for the Position Variables
     public float getX() {
         return x;
