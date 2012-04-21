@@ -1,0 +1,37 @@
+package jam.ld23.events;
+
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
+
+/**
+ *
+ * @author David
+ */
+public class InputEvent extends Event {
+
+    static final int KEYBOARD = 0;
+    static final int MOUSE = 1;
+    
+    private int type;
+    private int code;
+    
+    public InputEvent(int type, int code) {
+        this.type = type;
+        this.code = code;
+    }
+    
+    @Override
+    public boolean isHappening(GameContainer gc) {
+        Input input = gc.getInput();
+        
+        switch(type) {
+            case KEYBOARD:
+                return input.isKeyDown(code);
+            case MOUSE:
+                throw new UnsupportedOperationException("Not supported yet.");
+            default:
+                throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+    
+}

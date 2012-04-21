@@ -3,6 +3,7 @@ package jam.ld23.managers;
 import jam.ld23.entity.Entity;
 import jam.ld23.events.Event;
 import java.util.HashMap;
+import org.newdawn.slick.GameContainer;
 
 /**
  *
@@ -29,5 +30,9 @@ public class EventManager {
             return true;
         }
         return false;
+    }
+    
+    public boolean isHappening(String name, GameContainer gc) {
+        return events.get(name).isHappening(gc);
     }
 }

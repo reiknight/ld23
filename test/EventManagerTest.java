@@ -8,6 +8,7 @@ import jam.ld23.managers.EventManager;
 import junit.framework.TestCase;
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.newdawn.slick.GameContainer;
 
 /**
  *
@@ -15,6 +16,11 @@ import static org.junit.Assert.*;
  */
 public class EventManagerTest extends TestCase {
     public class DummyEvent extends Event {
+
+        @Override
+        public boolean isHappening(GameContainer gc) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     
     }
     
