@@ -3,7 +3,6 @@ package jam.ld23.entity;
 import jam.ld23.entity.interfaces.GameMode;
 import jam.ld23.managers.EventManager;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 

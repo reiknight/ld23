@@ -1,6 +1,7 @@
 package jam.ld23.game;
  
 import jam.ld23.entity.Player;
+import jam.ld23.entity.interfaces.Size;
 import jam.ld23.events.InputEvent;
 import jam.ld23.managers.EntityManager;
 import jam.ld23.managers.EventManager;
@@ -41,6 +42,10 @@ public class Game extends BasicGame {
         
         //Add textures
         tm.addTexture("player", "resources/player.png");
+        tm.addTexture("enemy", "resources/enemy.png");
+        tm.addTexture("food" + Size.SMALL, "resources/food" + Size.SMALL + ".png");
+        tm.addTexture("food" + Size.NORMAL, "resources/food" + Size.NORMAL + ".png");
+        tm.addTexture("food" + Size.BIG, "resources/food" + Size.BIG + ".png");
         
         //Add entities
         player = new Player();

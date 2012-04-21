@@ -8,13 +8,13 @@ public class Food extends Sprite {
     private Size size;
     
     public Food() throws SlickException {
-        super("resources/food" + Size.NORMAL + ".png");
+        super("food" + Size.NORMAL);
         size = Size.NORMAL;
     }
     
     public Food(Size size) throws SlickException {
         //Must be foodSmall.png, foodNormal.png or foodBig.png
-        super("resources/food" + size + ".png");
+        super("food" + size);
         this.size = size;
     }
 
