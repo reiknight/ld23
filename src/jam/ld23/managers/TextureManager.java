@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 public class TextureManager {
     private HashMap<String,Image> textures;
     
-    //Static instance from PhsysicsManager
+    //Static instance from TextureManager
     private static TextureManager instance;
     
     //Private constructor
