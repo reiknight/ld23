@@ -2,7 +2,7 @@ package jam.ld23.game;
  
 import jam.ld23.entity.Player;
 import jam.ld23.entity.interfaces.EntityConstantSheet;
-import jam.ld23.entity.interfaces.Size;
+import jam.ld23.events.EventConstantSheet;
 import jam.ld23.events.InputEvent;
 import jam.ld23.managers.EntityManager;
 import jam.ld23.managers.EventManager;
@@ -10,7 +10,7 @@ import jam.ld23.managers.PhysicsManager;
 import jam.ld23.managers.TextureManager;
 import org.newdawn.slick.*;
  
-public class Game extends BasicGame implements EntityConstantSheet {
+public class Game extends BasicGame implements EntityConstantSheet,EventConstantSheet {
     
     private float x = 400;
     private float y = 300;
@@ -34,19 +34,19 @@ public class Game extends BasicGame implements EntityConstantSheet {
     public void init(GameContainer gc) throws SlickException {
         //Register input events
         //Close window
-        evm.addEvent("close_window", new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
+        evm.addEvent(CLOSE_WINDOW, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
         //Player movement
-        evm.addEvent("move_left", new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
-        evm.addEvent("move_right", new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
-        evm.addEvent("move_up", new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
-        evm.addEvent("move_down", new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
+        evm.addEvent(MOVE_LEFT, new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
+        evm.addEvent(MOVE_RIGHT, new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
+        evm.addEvent(MOVE_UP, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
+        evm.addEvent(MOVE_DOWN, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         
         //Add textures
         tm.addTexture(PLAYER, PLAYER_RESOURCE);
-        tm.addTexture(ENEMY, ENEMY_RESOURCE);
-        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
-        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
-        tm.addTexture(FOOD_BIG, FOOD_BIG_RESOURCE);
+//        tm.addTexture(ENEMY, ENEMY_RESOURCE);
+//        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
+//        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
+//        tm.addTexture(FOOD_BIG, FOOD_BIG_RESOURCE);
         
         //Add entities
         player = new Player();
