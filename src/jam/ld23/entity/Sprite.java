@@ -1,5 +1,6 @@
 package jam.ld23.entity;
 
+import jam.ld23.managers.TextureManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -8,8 +9,8 @@ import org.newdawn.slick.SlickException;
 public class Sprite extends Entity {
     private Image image;
     
-    public Sprite(String name) throws SlickException {
-        image = new Image(name);
+    public Sprite(String name) {
+        image = TextureManager.getInstance().getTexture(name);
     }
     
     @Override
