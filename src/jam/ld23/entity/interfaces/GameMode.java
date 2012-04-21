@@ -13,5 +13,17 @@ public enum GameMode {
         this.bombs = bombs;
         this.continues = continues;
     }
+
+    public int getBombs() {
+        return bombs;
+    }
+
+    public int getContinues() {
+        return continues;
+    }
+
+    public int getLife() {
+        return life;
+    }
     
 }

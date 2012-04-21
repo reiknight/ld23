@@ -2,7 +2,6 @@ package jam.ld23.entity;
 
 import jam.ld23.entity.interfaces.GameMode;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.tests.xml.Entity;
 
 public class Player extends Entity {
 
@@ -11,22 +10,23 @@ public class Player extends Entity {
     private int bombs;
     private int continues;
     
-    //Position
-    private float x;
-    private float y;
-    
+    //Constructor with a Game Mode
     public Player(GameMode g) {
+        
+        //Characteristics taken from the game mode
         this.life = g.getLife();
         this.bombs = g.getBombs();
         this.continues = g.getContinues();
+        
+        //Rectangle for the 
+        this.r = new Rectangle(x-10,y-10,20,20);
     }
     
+    //Default constructor with Normal Mode
     public Player() {
         this(GameMode.NORMAL_MODE);
     }
     
-    public Rectangle getRectangle() {
-        return new Rectangle(x-10, y-10, 20, 20);
-    }
+    
     
 }

@@ -1,0 +1,52 @@
+package jam.ld23.entity;
+
+import jam.ld23.entity.interfaces.Updatable;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Rectangle;
+
+public abstract class Entity implements Updatable {
+
+    //Rectangle for collision
+    Rectangle r;
+    
+    //Position
+    protected float x;
+    protected float y;
+    
+    //Getter, return the rectangle for testing collisions
+    public Rectangle getR() {
+        return r;
+    }
+
+    @Override
+    public void render(GameContainer gc, Graphics g) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void update(GameContainer gc, int delta) {
+        
+        //Updating the Rectangle
+        r.setLocation(x,y);
+    }
+
+    
+    //Getters and Setters for the Position Variables
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+    
+}
