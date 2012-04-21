@@ -23,11 +23,7 @@ public class PhysicsManager {
     
     //TestCollisions
     public boolean testCollisionsEntity(Entity x, Entity y) {
-        if(x.getR().intersects(y.getR())) {
-            return true;
-        } else {
-            return false;
-        }
+        return x.getR().intersects(y.getR());
     }
     
 }
