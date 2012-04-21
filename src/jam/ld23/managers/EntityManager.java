@@ -1,10 +1,7 @@
 package jam.ld23.managers;
 
 import jam.ld23.entity.Entity;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
@@ -65,5 +62,20 @@ public class EntityManager {
         while(itr.hasNext()) {
             ((Entity) itr.next()).update(gc, delta);
         }
+    }
+
+    public ArrayList<Entity> getEntityGroup(String name) {
+        ArrayList<Entity> result = new ArrayList<>();
+        
+        Collection c = entities.values();
+        Iterator itr = c.iterator();
+        while(itr.hasNext()) {
+            Entity entity = (Entity) itr.next();
+            if(entity.getGroup() == name) {
+                result.add(entity);
+            }
+        }
+        
+        return result;
     }
 }

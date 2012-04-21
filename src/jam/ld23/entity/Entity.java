@@ -13,6 +13,9 @@ public abstract class Entity {
     protected float x;
     protected float y;
     
+    //Group
+    protected String group;
+    
     //Getter, return the rectangle for testing collisions
     public Rectangle getR() {
         return r;
@@ -42,4 +45,11 @@ public abstract class Entity {
         this.y = y;
     }
     
+    public String getGroup() {
+        return group;
+    }
+    
+    public void setGroup(String group) {
+        this.group = group;
+    }
 }
