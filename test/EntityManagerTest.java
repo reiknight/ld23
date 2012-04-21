@@ -1,20 +1,18 @@
+import jam.ld23.entity.Entity;
 import junit.framework.TestCase;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import project1.Entity;
-import project1.EntityManager;
+import jam.ld23.game.EntityManager;
 
 /**
  *
  * @author David
  */
 
-
-
 public class EntityManagerTest extends TestCase  {
-    public static class DummyEntity implements Entity {
+    public static class DummyEntity extends Entity {
 
         @Override
         public void update(GameContainer gc, int delta) {

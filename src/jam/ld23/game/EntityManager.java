@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package project1;
+package jam.ld23.game;
 
+import jam.ld23.entity.Entity;
 import java.util.HashMap;
 import java.util.Map;
 

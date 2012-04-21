@@ -1,4 +1,4 @@
-package project1;
+package jam.ld23.game;
  
 import org.newdawn.slick.*;
  
@@ -9,10 +9,12 @@ public class Game extends BasicGame {
     private float x = 400;
     private float y = 300;
     private float scale = 1.0f;
+    private EntityManager em;
     
     public Game()
     {
         super("Slick2DPath2Glory - SimpleGame");
+        em = new EntityManager();
     }
  
     @Override
