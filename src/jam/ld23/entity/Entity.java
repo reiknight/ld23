@@ -1,6 +1,5 @@
 package jam.ld23.entity;
 
-import jam.ld23.utils.IDGenerator;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
@@ -13,12 +12,6 @@ public abstract class Entity {
     //Position
     protected float x;
     protected float y;
-    
-    protected int id;
-    
-    public Entity() {
-        id = IDGenerator.getInstance().nextID();
-    }
     
     //Getter, return the rectangle for testing collisions
     public Rectangle getR() {

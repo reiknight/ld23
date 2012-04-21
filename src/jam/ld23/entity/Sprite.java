@@ -10,7 +10,6 @@ public class Sprite extends Entity {
     private Image image;
     
     public Sprite(String name) {
-        super();
         image = TextureManager.getInstance().getTexture(name);
     }
     
