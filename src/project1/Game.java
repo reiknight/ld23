@@ -2,7 +2,7 @@ package project1;
  
 import org.newdawn.slick.*;
  
-public class Game extends BasicGame{
+public class Game extends BasicGame {
  
     private Image land = null;
     private Image plane = null;
