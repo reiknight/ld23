@@ -1,6 +1,7 @@
 package jam.ld23.game;
  
 import jam.ld23.entity.Player;
+import jam.ld23.entity.interfaces.EntityConstantSheet;
 import jam.ld23.entity.interfaces.Size;
 import jam.ld23.events.InputEvent;
 import jam.ld23.managers.EntityManager;
@@ -9,7 +10,7 @@ import jam.ld23.managers.PhysicsManager;
 import jam.ld23.managers.TextureManager;
 import org.newdawn.slick.*;
  
-public class Game extends BasicGame {
+public class Game extends BasicGame implements EntityConstantSheet {
     
     private float x = 400;
     private float y = 300;
@@ -41,11 +42,11 @@ public class Game extends BasicGame {
         evm.addEvent("move_down", new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         
         //Add textures
-        tm.addTexture("player", "resources/player.png");
-        tm.addTexture("enemy", "resources/enemy.png");
-        tm.addTexture("food" + Size.SMALL, "resources/food" + Size.SMALL + ".png");
-        tm.addTexture("food" + Size.NORMAL, "resources/food" + Size.NORMAL + ".png");
-        tm.addTexture("food" + Size.BIG, "resources/food" + Size.BIG + ".png");
+        tm.addTexture(PLAYER, PLAYER_RESOURCE);
+        tm.addTexture(ENEMY, ENEMY_RESOURCE);
+        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
+        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
+        tm.addTexture(FOOD_BIG, FOOD_BIG_RESOURCE);
         
         //Add entities
         player = new Player();

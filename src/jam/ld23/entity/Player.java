@@ -1,5 +1,6 @@
 package jam.ld23.entity;
 
+import jam.ld23.entity.interfaces.EntityConstantSheet;
 import jam.ld23.entity.interfaces.GameMode;
 import jam.ld23.managers.EventManager;
 import org.newdawn.slick.GameContainer;
@@ -18,7 +19,7 @@ public class Player extends Sprite {
     
     //Constructor with a Game Mode
     public Player(GameMode g) throws SlickException {
-        super("player");
+        super(EntityConstantSheet.PLAYER);
         
         //Characteristics taken from the game mode
         this.life = g.getLife();
