@@ -3,6 +3,7 @@ package jam.ld23.entity;
 import jam.ld23.entity.interfaces.EntityConstantSheet;
 import jam.ld23.entity.interfaces.GameMode;
 import jam.ld23.managers.EventManager;
+import jam.ld23.managers.SoundManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
@@ -38,21 +39,25 @@ public class Player extends Sprite {
     @Override
     public void update(GameContainer gc, int delta) {
         EventManager em = EventManager.getInstance();
+        SoundManager sm = SoundManager.getInstance();
         
+        //Player movement
         if(em.isHappening("move_left", gc)) {
             x -= speed * delta;
         }
-        
         if(em.isHappening("move_right", gc)) {
             x += speed * delta;
         }
-        
         if(em.isHappening("move_up", gc)) {
             y -= speed * delta;
         }
-        
         if(em.isHappening("move_down", gc)) {
             y += speed * delta;
+        }
+        
+        //Player actions
+        if(em.isHappening("fire", gc)) {
+            sm.playSound("fire");
         }
             
         super.update(gc, delta);

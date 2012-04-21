@@ -39,6 +39,8 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         evm.addEvent(MOVE_RIGHT, new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
         evm.addEvent(MOVE_UP, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
         evm.addEvent(MOVE_DOWN, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
+        //Player actions
+        evm.addEvent("fire", new InputEvent(InputEvent.MOUSE, Input.MOUSE_LEFT_BUTTON));
         
         //Add textures
         tm.addTexture(PLAYER, PLAYER_RESOURCE);

@@ -24,7 +24,7 @@ public class InputEvent extends Event {
             case KEYBOARD:
                 return input.isKeyDown(code);
             case MOUSE:
-                throw new UnsupportedOperationException("Not supported yet.");
+                return input.isMouseButtonDown(code);
             default:
                 throw new UnsupportedOperationException("Not supported yet.");
         }
