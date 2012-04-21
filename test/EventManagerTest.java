@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import jam.ld23.events.Event;
 import jam.ld23.managers.EventManager;
 import junit.framework.TestCase;
@@ -12,7 +7,7 @@ import org.newdawn.slick.GameContainer;
 
 /**
  *
- * @author Héctor
+ * @author David
  */
 public class EventManagerTest extends TestCase {
     public class DummyEvent extends Event {

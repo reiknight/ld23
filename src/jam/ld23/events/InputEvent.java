@@ -9,8 +9,8 @@ import org.newdawn.slick.Input;
  */
 public class InputEvent extends Event {
 
-    static final int KEYBOARD = 0;
-    static final int MOUSE = 1;
+    public static final int KEYBOARD = 0;
+    public static final int MOUSE = 1;
     
     private int type;
     private int code;

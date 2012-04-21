@@ -1,5 +1,6 @@
 package jam.ld23.game;
  
+import jam.ld23.events.InputEvent;
 import jam.ld23.managers.EntityManager;
 import jam.ld23.managers.EventManager;
 import jam.ld23.managers.PhysicsManager;
@@ -22,8 +23,13 @@ public class Game extends BasicGame {
         super("Slick2DPath2Glory - SimpleGame");
         //TODO: esto pueden ser singletons todos si lo crees necesario
         em = new EntityManager();
+        pm = PhysicsManager.getInstance();
+        
         vm = new EventManager();
-        //pm = blah blah
+        vm.addEvent("close_window", new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
+        vm.addEvent("move_left", new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
+        vm.addEvent("move_right", new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
+        vm.addEvent("move_forward", new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));;
     }
  
     @Override
@@ -37,19 +43,17 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
-        Input input = gc.getInput();
- 
-        if(input.isKeyDown(Input.KEY_A))
+        if(vm.isHappening(("move_left"), gc))
         {
             plane.rotate(-0.2f * delta);
         }
  
-        if(input.isKeyDown(Input.KEY_D))
+        if(vm.isHappening(("move_right"), gc))
         {
             plane.rotate(0.2f * delta);
         }
  
-        if(input.isKeyDown(Input.KEY_W))
+        if(vm.isHappening(("move_forward"), gc))
         {
             float hip = 0.4f * delta;
  
@@ -58,20 +62,8 @@ public class Game extends BasicGame {
             x+= hip * Math.sin(Math.toRadians(rotation));
             y-= hip * Math.cos(Math.toRadians(rotation));
         }
- 
-        if(input.isKeyDown(Input.KEY_2))
-        {
-            scale += (scale >= 5.0f) ? 0 : 0.1f;
-            plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
-        }
-        if(input.isKeyDown(Input.KEY_1))
-        {
-            scale -= (scale <= 1.0f) ? 0 : 0.1f;
-            plane.setCenterOfRotation(plane.getWidth()/2.0f*scale, plane.getHeight()/2.0f*scale);
-        }
-        
-        // close window with esc
-        if(input.isKeyDown(Input.KEY_ESCAPE)) {
+    
+        if(vm.isHappening(("close_window"), gc)) {
             gc.exit();
         }
     }
