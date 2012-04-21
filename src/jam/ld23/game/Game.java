@@ -1,6 +1,9 @@
 package jam.ld23.game;
  
+import jam.ld23.managers.EntityManager;
+import jam.ld23.managers.PhysicsManager;
 import org.newdawn.slick.*;
+import sun.font.PhysicalFont;
  
 public class Game extends BasicGame {
  
@@ -10,11 +13,13 @@ public class Game extends BasicGame {
     private float y = 300;
     private float scale = 1.0f;
     private EntityManager em;
+    private PhysicsManager pm;
     
     public Game()
     {
         super("Slick2DPath2Glory - SimpleGame");
         em = new EntityManager();
+        //pm = blah blah
     }
  
     @Override

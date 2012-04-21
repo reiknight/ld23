@@ -4,7 +4,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import jam.ld23.game.EntityManager;
+import jam.ld23.managers.EntityManager;
 
 /**
  *
