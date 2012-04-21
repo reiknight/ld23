@@ -30,7 +30,7 @@ public class Game extends BasicGame {
         vm.addEvent("close_window", new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
         vm.addEvent("move_left", new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
         vm.addEvent("move_right", new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
-        vm.addEvent("move_forward", new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));;
+        vm.addEvent("move_forward", new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
     }
  
     @Override
@@ -69,6 +69,7 @@ public class Game extends BasicGame {
         }
     }
  
+    @Override
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {

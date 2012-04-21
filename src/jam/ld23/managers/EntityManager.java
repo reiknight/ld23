@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jam.ld23.managers;
 
 import jam.ld23.entity.Entity;
@@ -12,10 +8,6 @@ import java.util.Map;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
-/**
- *
- * @author David
- */
 public class EntityManager {
 
     private HashMap<String,Entity> entities;

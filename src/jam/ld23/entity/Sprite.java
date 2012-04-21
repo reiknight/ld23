@@ -5,10 +5,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-/**
- *
- * @author David
- */
 public class Sprite extends Entity {
     private Image image;
     

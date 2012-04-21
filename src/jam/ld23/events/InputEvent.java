@@ -3,10 +3,6 @@ package jam.ld23.events;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
-/**
- *
- * @author David
- */
 public class InputEvent extends Event {
 
     public static final int KEYBOARD = 0;

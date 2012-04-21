@@ -5,10 +5,6 @@ import jam.ld23.events.Event;
 import java.util.HashMap;
 import org.newdawn.slick.GameContainer;
 
-/**
- *
- * @author David
- */
 public class EventManager {
     private HashMap<String,Event> events;
     

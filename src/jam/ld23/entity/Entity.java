@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Rectangle;
 public abstract class Entity {
 
     //Rectangle for collision
-    Rectangle r;
+    protected Rectangle r;
     
     //Position
     protected float x;
