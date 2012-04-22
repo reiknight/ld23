@@ -1,10 +1,9 @@
 package jam.ld23.entities;
 
-import jam.ld23.entities.EntityConstantSheet;
-import org.newdawn.slick.SlickException;
+import jam.ld23.game.C;
 
 public class Enemy extends Sprite {
     public Enemy() {
-        super(EntityConstantSheet.ENEMY);
+        super(C.Textures.ENEMY.name);
     }
 }

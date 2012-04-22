@@ -1,11 +1,11 @@
 package jam.ld23.entities;
 
-import jam.ld23.entities.EntityConstantSheet;
+import jam.ld23.game.C;
 
 public class Mouthwash extends Sprite{
 
     public Mouthwash() {
-        super(EntityConstantSheet.MOUTHWASH);
+        super(C.Textures.MOUTHWASH.name);
     }
     
 }

@@ -32,6 +32,7 @@ public class InputEvent extends Event {
  
     @Override
     public boolean isHappening(GameContainer gc) {
+        //Check if is a timed event and timer is triggered
         boolean timed = (this.time == 0 || this.timer > this.time);
         
         this.input = gc.getInput();

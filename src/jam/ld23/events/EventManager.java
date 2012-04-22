@@ -1,7 +1,5 @@
 package jam.ld23.events;
 
-import jam.ld23.entities.Entity;
-import jam.ld23.events.Event;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;

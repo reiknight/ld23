@@ -1,7 +1,7 @@
 package jam.ld23.entities;
 
-import jam.ld23.events.EventConstantSheet;
 import jam.ld23.events.EventManager;
+import jam.ld23.game.C;
 import jam.ld23.game.GameMode;
 import jam.ld23.sounds.SoundManager;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
-public class Player extends Sprite implements Serializable, EntityConstantSheet,EventConstantSheet {
+public class Player extends Sprite implements Serializable {
 
     //Characteristics
     private int life;
@@ -22,7 +22,7 @@ public class Player extends Sprite implements Serializable, EntityConstantSheet,
     
     //Constructor with a Game Mode
     public Player(GameMode g) throws SlickException {
-        super(EntityConstantSheet.PLAYER);
+        super(C.Textures.PLAYER.name);
         
         //Characteristics taken from the game mode
         this.life = g.getLife();
@@ -53,23 +53,24 @@ public class Player extends Sprite implements Serializable, EntityConstantSheet,
         SoundManager sm = SoundManager.getInstance();
         
         //Player movement
-        if(evm.isHappening(MOVE_LEFT, gc)) {
+        if(evm.isHappening(C.Events.MOVE_LEFT.name, gc)) {
             x -= speed * delta;
         }
-        if(evm.isHappening(MOVE_RIGHT, gc)) {
+        if(evm.isHappening(C.Events.MOVE_RIGHT.name, gc)) {
             x += speed * delta;
         }
-        if(evm.isHappening(MOVE_UP, gc)) {
+        if(evm.isHappening(C.Events.MOVE_UP.name, gc)) {
             y -= speed * delta;
         }
-        if(evm.isHappening(MOVE_DOWN, gc)) {
+        if(evm.isHappening(C.Events.MOVE_DOWN.name, gc)) {
             y += speed * delta;
         }
         
         //Player actions
-        if(evm.isHappening(FIRE, gc)) {
-            //sm.playSound("fire");
-            CrossHair crosshair = (CrossHair)em.getEntity("crosshair");
+        if(evm.isHappening(C.Events.FIRE.name, gc)) {
+            //TODO: Play sound
+            //sm.playSound(C.Sounds.FIRE.name);
+            CrossHair crosshair = (CrossHair)em.getEntity(C.Entities.CROSSHAIR.name);
             //Shot a bullet from player center to croosshair direction
             Bullet bullet = new Bullet(new Vector2f(x + w/2, y + h/2),
                     new Vector2f((crosshair.x  + (crosshair.w / 2)) - (x + (w / 2)), 

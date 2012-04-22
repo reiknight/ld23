@@ -1,10 +1,8 @@
 package jam.ld23.game;
  
 import jam.ld23.entities.CrossHair;
-import jam.ld23.entities.EntityConstantSheet;
 import jam.ld23.entities.EntityManager;
 import jam.ld23.entities.Player;
-import jam.ld23.events.EventConstantSheet;
 import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
 import jam.ld23.physics.PhysicsManager;
@@ -13,7 +11,7 @@ import jam.ld23.textures.TextureManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
  
-public class Game extends BasicGame implements EntityConstantSheet,EventConstantSheet {
+public class Game extends BasicGame {
     private EntityManager em;
     private PhysicsManager pm;
     private EventManager evm;
@@ -39,54 +37,54 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
     public void init(GameContainer gc) throws SlickException {
         //Register input events
         //Close window
-        evm.addEvent(CLOSE_WINDOW, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
+        evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
         //Player movement
-        evm.addEvent(MOVE_LEFT, new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
-        evm.addEvent(MOVE_RIGHT, new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
-        evm.addEvent(MOVE_UP, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
-        evm.addEvent(MOVE_DOWN, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
+        evm.addEvent(C.Events.MOVE_LEFT.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
+        evm.addEvent(C.Events.MOVE_RIGHT.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
+        evm.addEvent(C.Events.MOVE_UP.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
+        evm.addEvent(C.Events.MOVE_DOWN.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         //Player actions
-        evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON, 500));
-        evm.addEvent(CROSSHAIR_MOVED, new InputEvent(InputEvent.MOUSE_MOVE, new Rectangle(0, 0, 800, 600)));
-        evm.addEvent(SAVE_GAME, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
-        evm.addEvent(LOAD_GAME, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
+        evm.addEvent(C.Events.FIRE.name, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON, 500));
+        evm.addEvent(C.Events.CROSSHAIR_MOVED.name, new InputEvent(InputEvent.MOUSE_MOVE, new Rectangle(0, 0, 800, 600)));
+        evm.addEvent(C.Events.SAVE_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
+        evm.addEvent(C.Events.LOAD_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
         
         //Add textures
-        tm.addTexture(PLAYER, PLAYER_RESOURCE);
-        tm.addTexture("mouth", "resources/mouth.jpg");
-        tm.addTexture("crosshair", "resources/crosshair.png");
-        tm.addTexture("bullet", "resources/bullet.png");
-//        tm.addTexture(ENEMY, ENEMY_RESOURCE);
-//        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
-//        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
-//        tm.addTexture(FOOD_BIG, FOOD_BIG_RESOURCE);
-//        tm.addTexture(MOUTHWASH,MOUTHWASH_RESOURCE);
+        tm.addTexture(C.Textures.PLAYER.name, C.Textures.PLAYER.path);
+        tm.addTexture(C.Textures.MOUTH.name, C.Textures.MOUTH.path);
+        tm.addTexture(C.Textures.CROSSHAIR.name, C.Textures.CROSSHAIR.path);
+        tm.addTexture(C.Textures.BULLET.name, C.Textures.BULLET.path);
+        tm.addTexture(C.Textures.ENEMY.name, C.Textures.ENEMY.path);
+        tm.addTexture(C.Textures.FOOD_SMALL.name, C.Textures.FOOD_SMALL.path);
+        tm.addTexture(C.Textures.FOOD_NORMAL.name, C.Textures.FOOD_NORMAL.path);
+        tm.addTexture(C.Textures.FOOD_BIG.name, C.Textures.FOOD_BIG.path);
+        tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
         
         //Add music and sounds
-        sm.addMusic("main_theme", "resources/music.ogg");
-        sm.addSound("fire", "resources/fire.wav");
+        sm.addMusic(C.Sounds.MUSIC.name, C.Sounds.MUSIC.path);
+        sm.addMusic(C.Sounds.FIRE.name, C.Sounds.FIRE.path);
         //Play main theme by default
         //sm.playMusic("main_theme");
         
         //Add background
-        mouth = tm.getTexture("mouth");
+        mouth = tm.getTexture(C.Textures.MOUTH.name);
         
         //Add entities
-        em.addEntity("player", new Player());
-        em.addEntity("crosshair", new CrossHair());
+        em.addEntity(C.Entities.PLAYER.name, new Player());
+        em.addEntity(C.Entities.CROSSHAIR.name, new CrossHair());
     }
  
     @Override
     public void update(GameContainer gc, int delta)
     {
-        if(evm.isHappening(("close_window"), gc)) {
+        if(evm.isHappening(C.Events.CLOSE_WINDOW.name, gc)) {
             gc.exit();
         }
-        if(evm.isHappening(SAVE_GAME, gc)) {
-            svm.saveGame(go,(Player)em.getEntity(PLAYER));
+        if(evm.isHappening(C.Events.SAVE_GAME.name, gc)) {
+            svm.saveGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
         }
-        if(evm.isHappening(LOAD_GAME,gc)) {
-            svm.loadGame(go,(Player)em.getEntity(PLAYER));
+        if(evm.isHappening(C.Events.LOAD_GAME.name,gc)) {
+            svm.loadGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
         }
         
         //Updates all entities

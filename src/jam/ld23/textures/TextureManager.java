@@ -1,6 +1,8 @@
 package jam.ld23.textures;
 
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -23,8 +25,12 @@ public class TextureManager {
         return instance;
     }
     
-    public void addTexture(String name, String textureFileName) throws SlickException {
-        textures.put(name, new Image(textureFileName));
+    public void addTexture(String name, String textureFileName) {
+        try {
+            textures.put(name, new Image(textureFileName));
+        } catch (Exception ex) {
+            Logger.getLogger(TextureManager.class.getName()).log(Level.SEVERE, "Texture not found: " + textureFileName);
+        }
     }
     
     public void addSubTexture(String parentName, String name, int x, int y, int w, int h) throws SlickException {
