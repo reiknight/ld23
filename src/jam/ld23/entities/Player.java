@@ -72,6 +72,8 @@ public class Player extends Sprite implements Serializable {
         PhysicsManager pm = PhysicsManager.getInstance();
         float x = getX();
         float y = getY();
+        float oldX = x;
+        float oldY = y;
         
         //Check if we received a bullet
         ArrayList<Entity> bullets = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
@@ -103,6 +105,17 @@ public class Player extends Sprite implements Serializable {
             y += speed * delta;
         }
         
+        //Check if player is swallowed
+        if(x < -getWidth()){
+            gc.exit();
+        }
+        
+        //Check if player is inside bounds
+        if(y < C.Positions.PLAYER_LIMIT_TOP.position.y || y > C.Positions.PLAYER_LIMIT_BOTTOM.position.y) {
+            //Restore y position
+            y = oldY;
+        }
+
         setPosition(new Vector2f(x, y));
         
         //Player actions
@@ -120,5 +133,5 @@ public class Player extends Sprite implements Serializable {
         if(direction.y < 0)  {
             rotation = -rotation;
         }
-    }    
+    }
 }
