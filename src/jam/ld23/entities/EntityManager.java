@@ -11,6 +11,7 @@ public class EntityManager {
     
     private HashMap<String,Entity> entities;
     private HashMap<String,Entity> entitiesToAdd;
+    private HashMap<String,Entity> entitiesToRemove;
     
     private EntityManager() {
         entities = new HashMap<String,Entity>();

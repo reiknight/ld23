@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class Bullet extends Sprite {
     private static int id = 0;
     private Vector2f direction;
-    private float speed = (float) 0.1;
+    private float speed = (float) 0.5;
     
     public Bullet(Vector2f position, Vector2f direction) {
         super(C.Textures.BULLET.name);

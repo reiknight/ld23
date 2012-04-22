@@ -50,8 +50,17 @@ public class Tooth extends Sprite {
         for(int i = 0; i < bullets.size(); i++) {
             Bullet bullet = (Bullet) bullets.get(i);
             if(pm.testCollisionsEntity(this, bullet)) {
+                //TODO: esto solo es para hacer pruebas
                 decayed = true;
             }
+        }
+        
+        Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
+        
+        //If tooth is decayed it should shoot bullets to player
+        if(decayed) {
+            Bullet bullet = new Bullet(getCenter(), player.getCenter().sub(getCenter()).normalise());
+            em.addFutureEntity(bullet.name, bullet);
         }
     }
 }

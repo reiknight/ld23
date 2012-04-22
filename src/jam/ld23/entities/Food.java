@@ -5,6 +5,7 @@ import jam.ld23.game.C;
 import jam.ld23.sounds.SoundManager;
 import java.util.Random;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Food extends Sprite {
     
@@ -20,8 +21,7 @@ public class Food extends Sprite {
     {
         rand = new Random();
         rotatingSpeed = (rand.nextInt(20)-10) * .01F;
-        this.x = C.SCREEN_WIDTH;
-        this.y = rand.nextFloat()*C.SCREEN_HEIGHT;
+        setPosition(new Vector2f(C.SCREEN_WIDTH, rand.nextFloat()*C.SCREEN_HEIGHT));
         group = C.Groups.FOOD.name;
     }
     
@@ -59,7 +59,11 @@ public class Food extends Sprite {
         SoundManager sm = SoundManager.getInstance();
         
         //Food movement
+        float x = getX();
+        float y = getY();
         x -= speed * delta;
+        setPosition(new Vector2f(x, y));
+        
         image.rotate(rotatingSpeed);
     }
     
