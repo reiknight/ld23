@@ -73,6 +73,7 @@ public class Tooth extends Sprite {
         if(decayed && reload_timer > reload_time) {
             Bullet bullet = new Bullet(getCenter(), player.getCenter().sub(getCenter()).normalise());
             bullet.setGroup(C.Groups.ENEMY_BULLETS.name);
+            bullet.setTexture(C.Textures.ENEMY_BULLET.name);
             em.addFutureEntity(bullet.name, bullet);
             reload_timer = 0;
         }

@@ -57,6 +57,7 @@ public class Game extends BasicGame {
         tm.addTexture(C.Textures.MOUTH.name, C.Textures.MOUTH.path);
         tm.addTexture(C.Textures.CROSSHAIR.name, C.Textures.CROSSHAIR.path);
         tm.addTexture(C.Textures.BULLET.name, C.Textures.BULLET.path);
+        tm.addTexture(C.Textures.ENEMY_BULLET.name, C.Textures.ENEMY_BULLET.path);
         tm.addTexture(C.Textures.ENEMY.name, C.Textures.ENEMY.path);
         tm.addTexture(C.Textures.FOOD_SMALL_0.name, C.Textures.FOOD_SMALL_0.path);
         tm.addTexture(C.Textures.FOOD_NORMAL_0.name, C.Textures.FOOD_NORMAL_0.path);

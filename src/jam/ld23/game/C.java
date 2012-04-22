@@ -41,6 +41,7 @@ public class C {
         MOUTHWASH("mouthwash", "resources/mouthwash.png"),
         CROSSHAIR("crosshair", "resources/crosshair.png"),
         BULLET("bullet", "resources/bullet.png"),
+        ENEMY_BULLET("enemy_bullet", "resources/enemy_bullet.png"),
         MOUTH("mouth", "resources/mouth.jpg"),
         TEETH("teeth", "resources/teeth.png"),
         TOOTH_DECAY("tooth_decay", "resources/tooth_decay.png");
