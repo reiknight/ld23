@@ -83,12 +83,6 @@ public class EntityManagerTest extends TestCase  {
         assertEquals("enemies", enemies.get(0).getGroup());
     }
     
-    public void testRemoveEntityWithExistingEntity() {
-        em.addEntity("dummy", dummyEntity);
-        em.removeEntity("dummy");
-        assertEquals(0, em.getEntities().size());
-    }
-    
     public void testRemoveEntityWithNonExistingKey() {
         assertFalse(em.removeEntity("dummy"));
     }
