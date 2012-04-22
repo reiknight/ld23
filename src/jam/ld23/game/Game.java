@@ -1,11 +1,15 @@
 package jam.ld23.game;
  
-import jam.ld23.entity.CrossHair;
-import jam.ld23.entity.Player;
-import jam.ld23.entity.interfaces.EntityConstantSheet;
+import jam.ld23.entities.CrossHair;
+import jam.ld23.entities.EntityConstantSheet;
+import jam.ld23.entities.EntityManager;
+import jam.ld23.entities.Player;
 import jam.ld23.events.EventConstantSheet;
+import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
-import jam.ld23.managers.*;
+import jam.ld23.physics.PhysicsManager;
+import jam.ld23.sounds.SoundManager;
+import jam.ld23.textures.TextureManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
  

@@ -1,6 +1,4 @@
-package jam.ld23.entity;
-
-import jam.ld23.entity.interfaces.ItemType;
+package jam.ld23.entities;
 
 public class Item extends Sprite {
     

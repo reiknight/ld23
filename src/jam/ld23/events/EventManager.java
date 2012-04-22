@@ -1,9 +1,8 @@
-package jam.ld23.managers;
+package jam.ld23.events;
 
 import jam.ld23.events.Event;
 import java.util.HashMap;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
 
 public class EventManager {
     

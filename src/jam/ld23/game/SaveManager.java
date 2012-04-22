@@ -1,6 +1,6 @@
-package jam.ld23.managers;
+package jam.ld23.game;
 
-import jam.ld23.entity.Player;
+import jam.ld23.entities.Player;
 import jam.ld23.game.GameMode;
 import jam.ld23.game.GameOptions;
 import java.io.*;

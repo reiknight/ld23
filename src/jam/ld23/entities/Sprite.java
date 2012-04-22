@@ -1,6 +1,6 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
-import jam.ld23.managers.TextureManager;
+import jam.ld23.textures.TextureManager;
 import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

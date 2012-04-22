@@ -1,3 +1,5 @@
+package jam.ld23.tests;
+
 import junit.framework.TestSuite;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -1,6 +1,6 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
-import jam.ld23.entity.interfaces.EntityConstantSheet;
+import jam.ld23.entities.EntityConstantSheet;
 
 public class Mouthwash extends Sprite{
 

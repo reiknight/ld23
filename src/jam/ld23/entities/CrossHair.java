@@ -1,11 +1,10 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
 import jam.ld23.events.EventConstantSheet;
+import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
-import jam.ld23.managers.EventManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
 
 public class CrossHair extends Sprite implements EventConstantSheet {
     public CrossHair() {

@@ -1,6 +1,5 @@
-package jam.ld23.managers;
+package jam.ld23.entities;
 
-import jam.ld23.entity.Entity;
 import java.util.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

@@ -1,10 +1,9 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
-import jam.ld23.entity.interfaces.EntityConstantSheet;
-import jam.ld23.game.GameMode;
 import jam.ld23.events.EventConstantSheet;
-import jam.ld23.managers.EventManager;
-import jam.ld23.managers.SoundManager;
+import jam.ld23.events.EventManager;
+import jam.ld23.game.GameMode;
+import jam.ld23.sounds.SoundManager;
 import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;

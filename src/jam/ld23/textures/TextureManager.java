@@ -1,4 +1,4 @@
-package jam.ld23.managers;
+package jam.ld23.textures;
 
 import java.util.HashMap;
 import org.newdawn.slick.Image;

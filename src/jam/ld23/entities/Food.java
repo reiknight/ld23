@@ -1,6 +1,5 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
-import jam.ld23.entity.interfaces.Size;
 import org.newdawn.slick.SlickException;
 
 public class Food extends Sprite {

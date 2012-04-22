@@ -1,10 +1,14 @@
-import jam.ld23.entity.Entity;
+package jam.ld23.tests;
+
+import jam.ld23.entities.Entity;
+import jam.ld23.entities.EntityManager;
 import junit.framework.TestCase;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import jam.ld23.managers.EntityManager;
 
 public class EntityManagerTest extends TestCase  {
     public static class DummyEntity extends Entity {

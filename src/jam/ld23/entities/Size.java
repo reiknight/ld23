@@ -1,4 +1,4 @@
-package jam.ld23.entity.interfaces;
+package jam.ld23.entities;
 
 public enum Size {
     

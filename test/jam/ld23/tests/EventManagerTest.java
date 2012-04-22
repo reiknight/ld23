@@ -1,8 +1,12 @@
+package jam.ld23.tests;
+
 import jam.ld23.events.Event;
-import jam.ld23.managers.EventManager;
+import jam.ld23.events.EventManager;
 import junit.framework.TestCase;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.newdawn.slick.GameContainer;
 
 public class EventManagerTest extends TestCase {

@@ -1,4 +1,4 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
 public class Tooth extends Sprite {
     

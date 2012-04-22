@@ -1,4 +1,4 @@
-package jam.ld23.managers;
+package jam.ld23.sounds;
 
 import java.util.HashMap;
 import org.newdawn.slick.Music;

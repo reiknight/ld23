@@ -1,4 +1,4 @@
-package jam.ld23.entity;
+package jam.ld23.entities;
 
 import java.io.Serializable;
 import org.newdawn.slick.GameContainer;

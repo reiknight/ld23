@@ -1,6 +1,6 @@
-package jam.ld23.managers;
+package jam.ld23.physics;
 
-import jam.ld23.entity.Entity;
+import jam.ld23.entities.Entity;
 
 //Singleton
 public class PhysicsManager {
