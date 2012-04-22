@@ -149,6 +149,9 @@ public class Game extends BasicGame {
             Tooth tooth = (Tooth)teeth.get(i);
             tooth.render(gc, g);
         }
+        //Draw crosshair over all entities
+        Entity crosshair = em.getEntity(C.Entities.CROSSHAIR.name);
+        crosshair.render(gc, g);
     }
  
     public static void main(String[] args) throws SlickException 

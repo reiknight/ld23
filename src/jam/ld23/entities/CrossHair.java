@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class CrossHair extends Sprite {
     public CrossHair() {
         super(C.Textures.CROSSHAIR.name);
+        autoRender = false;
     }
     
     public void update(GameContainer gc, int delta) {
