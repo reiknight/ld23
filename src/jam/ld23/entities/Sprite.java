@@ -13,7 +13,11 @@ public class Sprite extends Entity implements Serializable {
     }
     
     public Sprite(String name) {
-        image = TextureManager.getInstance().getTexture(name);
+        this.setTexture(name);
+    }
+    
+    public void setTexture(String name) {
+        this.image = TextureManager.getInstance().getTexture(name);
         
         // Grab image size
         w = image.getWidth();
@@ -28,7 +32,9 @@ public class Sprite extends Entity implements Serializable {
     @Override
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
-        image.draw(x, y);
+        if(image != null) {
+            image.draw(x, y);
+        }
     }
     
 }

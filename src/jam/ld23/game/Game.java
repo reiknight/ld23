@@ -1,8 +1,6 @@
 package jam.ld23.game;
  
-import jam.ld23.entities.CrossHair;
-import jam.ld23.entities.EntityManager;
-import jam.ld23.entities.Player;
+import jam.ld23.entities.*;
 import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
 import jam.ld23.physics.PhysicsManager;
@@ -20,6 +18,7 @@ public class Game extends BasicGame {
     private SaveManager svm;
     private GameOptions go;
     private Image mouth;
+    private Image teeth;
     
     public Game()
     {
@@ -59,6 +58,7 @@ public class Game extends BasicGame {
         tm.addTexture(C.Textures.FOOD_NORMAL.name, C.Textures.FOOD_NORMAL.path);
         tm.addTexture(C.Textures.FOOD_BIG.name, C.Textures.FOOD_BIG.path);
         tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
+        tm.addTexture(C.Textures.TEETH.name, C.Textures.TEETH.path);
         
         //Add music and sounds
         sm.addMusic(C.Sounds.MUSIC.name, C.Sounds.MUSIC.path);
@@ -69,9 +69,18 @@ public class Game extends BasicGame {
         //Add background
         mouth = tm.getTexture(C.Textures.MOUTH.name);
         
+        //Add deep effect
+        teeth = tm.getTexture(C.Textures.TEETH.name);
+        
         //Add entities
         em.addEntity(C.Entities.PLAYER.name, new Player());
         em.addEntity(C.Entities.CROSSHAIR.name, new CrossHair());
+        Food f1,f2,f3,f4;
+        em.addEntity((f1 = new Food(Size.BIG)).getName(), f1);
+        em.addEntity((f2 = new Food(Size.SMALL)).getName(), f2);
+        em.addEntity((f3 = new Food(Size.NORMAL)).getName(), f3);
+        em.addEntity((f4 = new Food(Size.SMALL)).getName(), f4);
+        
     }
  
     @Override
@@ -98,12 +107,13 @@ public class Game extends BasicGame {
     {
         mouth.draw(0, 0);
         em.render(gc, g);
+        teeth.draw(0, 0);
     }
  
     public static void main(String[] args) throws SlickException 
     {
          AppGameContainer app = new AppGameContainer(new Game());
-         app.setDisplayMode(800, 600, false);
+         app.setDisplayMode(C.SCREEN_WIDTH, C.SCREEN_HEIGHT, false);
          app.setMouseGrabbed(true);
          app.start();
     }

@@ -3,6 +3,10 @@ package jam.ld23.game;
 import jam.ld23.entities.Size;
 
 public class C {
+    
+    public static final int SCREEN_HEIGHT = 600;
+    public static final int SCREEN_WIDTH = 800;
+    
     public static enum Events {
         CLOSE_WINDOW("close_window"),
         MOVE_LEFT("move_left"),
@@ -30,7 +34,8 @@ public class C {
         MOUTHWASH("mouthwash", "resources/mouthwash.png"),
         CROSSHAIR("crosshair", "resources/crosshair.png"),
         BULLET("bullet", "resources/bullet.png"),
-        MOUTH("mouth", "resources/mouth.jpg");
+        MOUTH("mouth", "resources/mouth.jpg"),
+        TEETH("teeth", "resources/teeth.png");
 
         public String name;
         public String path;
@@ -49,7 +54,8 @@ public class C {
         FOOD_BIG("food" + Size.BIG),
         MOUTHWASH("mouthwash"),              
         CROSSHAIR("crosshair"),
-        BULLET("bullet");
+        BULLET("bullet"),
+        TEETH("teeth");
         
         public String name;
 
@@ -59,7 +65,8 @@ public class C {
     }
     
     public static enum Groups {
-        BULLETS("bullets");
+        BULLETS("bullets"),
+        FOOD("food");
         
         public String name;
 
@@ -80,4 +87,5 @@ public class C {
             this.path = path;
         }
     }
+
 }
