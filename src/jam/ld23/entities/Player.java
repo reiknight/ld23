@@ -25,15 +25,13 @@ public class Player extends Sprite implements Serializable {
     private float speed = (float) C.Logic.PLAYER_SPEED.data;
     
     private int rotation = 0;
-    private Image originalImage;
-    private Vector2f originalSize;
+    private transient Image originalImage;
     
     //Constructor with a Game Mode
     public Player(GameMode gm) throws SlickException {
         super(C.Textures.PLAYER.name);
         
         originalImage = image.copy();
-        originalSize = new Vector2f(getWidth(), getHeight());
         
         //Characteristics taken from the game mode
         this.gm = gm;
@@ -87,7 +85,8 @@ public class Player extends Sprite implements Serializable {
                 }
                 float scale = (float)life / (float)gm.getLife();
                 image = originalImage.getScaledCopy(scale);
-                setSize(originalSize.scale(scale));
+                setWidth(image.getWidth());
+                setHeight(image.getHeight());
                 em.removeEntity(bullet.getName());
             }
         }
