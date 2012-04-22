@@ -8,6 +8,7 @@ import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Player extends Sprite implements Serializable, EntityConstantSheet,EventConstantSheet {
 
@@ -47,27 +48,33 @@ public class Player extends Sprite implements Serializable, EntityConstantSheet,
     
     @Override
     public void update(GameContainer gc, int delta) {
-        EventManager em = EventManager.getInstance();
+        EntityManager em = EntityManager.getInstance();
+        EventManager evm = EventManager.getInstance();
         SoundManager sm = SoundManager.getInstance();
         
         //Player movement
-        if(em.isHappening(MOVE_LEFT, gc)) {
+        if(evm.isHappening(MOVE_LEFT, gc)) {
             x -= speed * delta;
         }
-        if(em.isHappening(MOVE_RIGHT, gc)) {
+        if(evm.isHappening(MOVE_RIGHT, gc)) {
             x += speed * delta;
         }
-        if(em.isHappening(MOVE_UP, gc)) {
+        if(evm.isHappening(MOVE_UP, gc)) {
             y -= speed * delta;
         }
-        if(em.isHappening(MOVE_DOWN, gc)) {
+        if(evm.isHappening(MOVE_DOWN, gc)) {
             y += speed * delta;
         }
         
         //Player actions
-        if(em.isHappening(FIRE, gc)) {
+        if(evm.isHappening(FIRE, gc)) {
             //sm.playSound("fire");
-            //TODO: Create bullet
+            CrossHair crosshair = (CrossHair)em.getEntity("crosshair");
+            //Shot a bullet from player center to croosshair direction
+            Bullet bullet = new Bullet(new Vector2f(x + w/2, y + h/2),
+                    new Vector2f((crosshair.x  + (crosshair.w / 2)) - (x + (w / 2)), 
+                    (crosshair.y + (crosshair.h / 2)) - (y + (h / 2))).normalise());
+            em.addEntity(bullet.name, bullet);
         }
             
         super.update(gc, delta);

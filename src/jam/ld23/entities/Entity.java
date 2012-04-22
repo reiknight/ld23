@@ -18,6 +18,8 @@ public abstract class Entity implements Serializable {
     protected float w;
     protected float h;
     
+    //Name
+    protected String name;
     //Group
     protected String group;
     

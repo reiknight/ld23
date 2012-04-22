@@ -10,9 +10,11 @@ public class EntityManager {
     private static EntityManager em;
     
     private HashMap<String,Entity> entities;
+    private HashMap<String,Entity> entitiesToAdd;
     
     private EntityManager() {
         entities = new HashMap<String,Entity>();
+        entitiesToAdd = new HashMap<String,Entity>();
     }
     
     //Getter of the instance
@@ -32,7 +34,7 @@ public class EntityManager {
     }
     
     public void addEntity(String name, Entity entity) {
-        entities.put(name, entity);
+        entitiesToAdd.put(name, entity);
     }
 
     public Entity getEntity(String name) {
@@ -56,11 +58,16 @@ public class EntityManager {
     }
 
     public void update(GameContainer gc, int delta) {
+        // Call update for each method
         Collection c = entities.values();
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
             ((Entity) itr.next()).update(gc, delta);
         }
+        
+        // Add new entities
+        entities.putAll(entitiesToAdd);
+        entitiesToAdd.clear();
     }
 
     public ArrayList<Entity> getEntityGroup(String name) {

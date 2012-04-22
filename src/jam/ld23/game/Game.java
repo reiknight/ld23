@@ -46,7 +46,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         evm.addEvent(MOVE_UP, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
         evm.addEvent(MOVE_DOWN, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         //Player actions
-        evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON));
+        evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON, 500));
         evm.addEvent(CROSSHAIR_MOVED, new InputEvent(InputEvent.MOUSE_MOVE, new Rectangle(0, 0, 800, 600)));
         evm.addEvent(SAVE_GAME, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
         evm.addEvent(LOAD_GAME, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
@@ -55,6 +55,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         tm.addTexture(PLAYER, PLAYER_RESOURCE);
         tm.addTexture("mouth", "resources/mouth.jpg");
         tm.addTexture("crosshair", "resources/crosshair.png");
+        tm.addTexture("bullet", "resources/bullet.png");
 //        tm.addTexture(ENEMY, ENEMY_RESOURCE);
 //        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
 //        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
@@ -87,7 +88,11 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         if(evm.isHappening(LOAD_GAME,gc)) {
             svm.loadGame(go,(Player)em.getEntity(PLAYER));
         }
+        
+        //Updates all entities
         em.update(gc, delta);
+        //Updates all events
+        evm.update(gc, delta);
     }
  
     @Override

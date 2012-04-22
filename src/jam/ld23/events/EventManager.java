@@ -1,7 +1,10 @@
 package jam.ld23.events;
 
+import jam.ld23.entities.Entity;
 import jam.ld23.events.Event;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import org.newdawn.slick.GameContainer;
 
 public class EventManager {
@@ -49,5 +52,13 @@ public class EventManager {
     
     public boolean isHappening(String name, GameContainer gc) {
         return events.get(name).isHappening(gc);
+    }
+    
+    public void update(GameContainer gc, int delta) {
+        Collection c = events.values();
+        Iterator itr = c.iterator();
+        while(itr.hasNext()) {
+            ((Event) itr.next()).update(gc, delta);
+        }
     }
 }
