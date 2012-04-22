@@ -19,10 +19,8 @@ public class Tooth extends Sprite {
     
     public Tooth(Vector2f position, Vector2f size) {
         super();
-        x = position.x;
-        y = position.y;
-        w = size.x;
-        h = size.y;
+        setPosition(position);
+        setSize(size);
         toothDecay = TextureManager.getInstance().getTexture(C.Textures.TOOTH_DECAY.name);
         
         group = C.Groups.TEETH.name;
@@ -39,9 +37,8 @@ public class Tooth extends Sprite {
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
         if(decayed) {
-            toothDecay.draw(x, y);
+            toothDecay.draw(getX(), getY());
         }
-        g.drawString("Tooth position: " + x + "," + y, 100, 180);
     }
 
     public void update(GameContainer gc, int delta) {
@@ -53,7 +50,6 @@ public class Tooth extends Sprite {
         for(int i = 0; i < bullets.size(); i++) {
             Bullet bullet = (Bullet) bullets.get(i);
             if(pm.testCollisionsEntity(this, bullet)) {
-                System.out.println("COLISION!!!!");
                 decayed = true;
             }
         }

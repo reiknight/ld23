@@ -22,8 +22,8 @@ public class Sprite extends Entity implements Serializable {
         this.image = TextureManager.getInstance().getTexture(name);
         image = TextureManager.getInstance().getTexture(name);
         // Grab image size
-        w = image.getWidth();
-        h = image.getHeight();
+        setWidth(image.getWidth());
+        setHeight(image.getHeight());
     }
     
     @Override
@@ -35,7 +35,7 @@ public class Sprite extends Entity implements Serializable {
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
         if(image != null) {
-            image.draw(x, y);
+            image.draw(getX(), getY());
         }
     }
     

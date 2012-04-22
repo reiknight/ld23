@@ -38,11 +38,7 @@ public class SaveManager {
             oos = new ObjectOutputStream(fos);
             
             oos.writeObject(gm);
-            oos.writeObject(pc);
-            
-            System.out.println(pc.getX());
-            System.out.println(pc.getY());
-            
+            oos.writeObject(pc);            
         } catch(FileNotFoundException fnfe) {
             System.out.println(fnfe.getMessage());
         } catch(IOException ioe) {

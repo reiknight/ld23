@@ -28,9 +28,6 @@ public class Player extends Sprite implements Serializable {
         this.life = g.getLife();
         this.bombs = g.getBombs();
         this.continues = g.getContinues();
-        
-        //Rectangle for the 
-        this.r = new Rectangle(x-10,y-10,20,20);
     }
     
     //Default constructor with Normal Mode
@@ -42,8 +39,8 @@ public class Player extends Sprite implements Serializable {
         this.bombs = pc.bombs;
         this.continues = pc.continues;
         this.life = pc.life;
-        this.x = pc.x;
-        this.y = pc.y;
+        setX(pc.getX());
+        setY(pc.getY());
     }
     
     @Override
@@ -51,6 +48,8 @@ public class Player extends Sprite implements Serializable {
         EntityManager em = EntityManager.getInstance();
         EventManager evm = EventManager.getInstance();
         SoundManager sm = SoundManager.getInstance();
+        float x = getX();
+        float y = getY();
         
         //Player movement
         if(evm.isHappening(C.Events.MOVE_LEFT.name, gc)) {
@@ -66,15 +65,15 @@ public class Player extends Sprite implements Serializable {
             y += speed * delta;
         }
         
+        setPosition(new Vector2f(x, y));
+        
         //Player actions
         if(evm.isHappening(C.Events.FIRE.name, gc)) {
             //TODO: Play sound
             //sm.playSound(C.Sounds.FIRE.name);
             CrossHair crosshair = (CrossHair)em.getEntity(C.Entities.CROSSHAIR.name);
             //Shot a bullet from player center to croosshair direction
-            Bullet bullet = new Bullet(new Vector2f(x + w/2, y + h/2),
-                    new Vector2f((crosshair.x  + (crosshair.w / 2)) - (x + (w / 2)), 
-                    (crosshair.y + (crosshair.h / 2)) - (y + (h / 2))).normalise());
+            Bullet bullet = new Bullet(getCenter(), crosshair.getCenter().sub(getCenter()).normalise());
             em.addFutureEntity(bullet.name, bullet);
         }
             

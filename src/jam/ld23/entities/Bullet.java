@@ -15,19 +15,16 @@ public class Bullet extends Sprite {
         name = C.Entities.BULLET.name + id++;
         group = C.Groups.BULLETS.name;
         
-        x = position.x;
-        y = position.y;
+        setPosition(position);
         this.direction = direction;
     }
     
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
-        g.drawString("Bullet position: " + Math.floor(x) + "," + Math.floor(y), 100, 200);
     }
     
     public void update(GameContainer gc, int delta) {
         super.update(gc, delta);
-        x += direction.x * speed * delta;
-        y += direction.y * speed * delta;
+        addPosition(new Vector2f(direction.x * speed * delta, direction.y * speed * delta));
     }
 }

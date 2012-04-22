@@ -4,27 +4,19 @@ import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 
 public abstract class Entity implements Serializable {
 
     //Rectangle for collision
-    protected Rectangle r;
-    
-    //Position
-    protected float x;
-    protected float y;
-    
-    //Size
-    protected float w;
-    protected float h;
-    
+    protected Rectangle r;    
     //Name
     protected String name;
     //Group
     protected String group;
     
     public Entity() {
-        r = new Rectangle(x, y, w, h);
+        r = new Rectangle(0,0,0,0);
     }
     
     //Getter, return the rectangle for testing collisions
@@ -34,46 +26,45 @@ public abstract class Entity implements Serializable {
 
     public void render(GameContainer gc, Graphics g) {
         // Draw bounding box
-        g.drawRect(x, y, w, h);
+        g.drawRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
     public void update(GameContainer gc, int delta) {
-        //Updating the Rectangle
-        r.setLocation(x,y);
+        
     }
    
     //Getters and Setters for the Position Variables
-    public float getX() {
-        return x;
+    protected float getX() {
+        return r.getX();
     }
 
-    public void setX(float x) {
-        this.x = x;
+    protected void setX(float x) {
+        r.setX(x);
     }
 
-    public float getY() {
-        return y;
+    protected float getY() {
+        return r.getY();
     }
 
-    public void setY(float y) {
-        this.y = y;
+    protected void setY(float y) {
+        r.setX(y);
     }
     
     //Getters and Setters for the Size Variables
-    public float getW() {
-        return w;
+    protected float getWidth() {
+        return r.getWidth();
     }
 
-    public void setW(float w) {
-        this.w = w;
+    protected void setWidth(float w) {
+        r.setWidth(w);
     }
 
-    public float getH() {
-        return h;
+    protected float getHeight() {
+        return r.getHeight();
     }
 
-    public void setH(float h) {
-        this.h = h;
+    protected void setHeight(float h) {
+        r.setHeight(h);
     }
     
     public String getGroup() {
@@ -91,5 +82,23 @@ public abstract class Entity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    protected void setPosition(Vector2f position) {
+        r.setX(position.x);
+        r.setY(position.y);
+    }
     
+    protected void addPosition(Vector2f position) {
+        r.setX(r.getX() + position.x);
+        r.setY(r.getY() + position.y);
+    }
+    
+    protected void setSize(Vector2f size) {
+        r.setWidth(size.x);
+        r.setHeight(size.y);
+    }
+    
+    protected Vector2f getCenter() {
+        return new Vector2f(r.getX() + r.getWidth() / 2, r.getY() + r.getHeight() / 2);
+    }
 }
