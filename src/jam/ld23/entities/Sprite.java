@@ -18,7 +18,7 @@ public class Sprite extends Entity implements Serializable {
         this.setTexture(name);
     }
     
-    public void setTexture(String name) {
+    public final void setTexture(String name) {
         this.image = TextureManager.getInstance().getTexture(name);
         image = TextureManager.getInstance().getTexture(name);
         // Grab image size

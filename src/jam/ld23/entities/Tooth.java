@@ -34,6 +34,7 @@ public class Tooth extends Sprite {
         this.decayed = decayed;
     }
     
+    @Override
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
         if(decayed) {
@@ -41,6 +42,7 @@ public class Tooth extends Sprite {
         }
     }
 
+    @Override
     public void update(GameContainer gc, int delta) {
         super.update(gc, delta);
         EntityManager em = EntityManager.getInstance();

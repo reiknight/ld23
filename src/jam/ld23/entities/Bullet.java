@@ -4,7 +4,6 @@ import jam.ld23.game.C;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Bullet extends Sprite {
@@ -21,10 +20,12 @@ public class Bullet extends Sprite {
         this.direction = direction;
     }
     
+    @Override
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
     }
     
+    @Override
     public void update(GameContainer gc, int delta) {
         super.update(gc, delta);
         addPosition(new Vector2f(direction.x * speed * delta, direction.y * speed * delta));
