@@ -14,9 +14,9 @@ public class EntityManager {
     private HashMap<String,Entity> entitiesToRemove;
     
     private EntityManager() {
-        entities = new HashMap<String,Entity>();
-        entitiesToAdd = new HashMap<String,Entity>();
-        entitiesToRemove = new HashMap<String,Entity>();
+        entities = new HashMap<>();
+        entitiesToAdd = new HashMap<>();
+        entitiesToRemove = new HashMap<>();
     }
     
     //Getter of the instance
@@ -105,7 +105,7 @@ public class EntityManager {
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
             Entity entity = (Entity) itr.next();
-            if(entity.getGroup() == name) {
+            if(entity.getGroup().equals(name)) {
                 result.add(entity);
             }
         }

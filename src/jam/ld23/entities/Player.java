@@ -11,7 +11,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Player extends Sprite implements Serializable {
@@ -23,7 +22,7 @@ public class Player extends Sprite implements Serializable {
     private int continues;
     
     //Player speed
-    private float speed = (float) 0.5;
+    private float speed = (float) C.Logic.PLAYER_SPEED.data;
     
     private int rotation = 0;
     private Image originalImage;

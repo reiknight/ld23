@@ -15,7 +15,7 @@ public class Tooth extends Sprite {
     private boolean decayed;
     
     //Handle reload time
-    private int reload_time = 500;
+    private int reload_time = (int) C.Logic.TOOTH_RELOAD_TIME.data;
     private int reload_timer = 0;
     
     //Tooth decay image

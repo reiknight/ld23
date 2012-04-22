@@ -154,11 +154,15 @@ public class C {
     }
     
     public static enum Logic {
-        ENEMY_BULLET_DAMAGE(1);
+        PLAYER_SPEED(0.5),
+        PLAYER_RELOAD_TIME(500),
+        BULLET_SPEED(0.5),
+        ENEMY_BULLET_DAMAGE(1),
+        TOOTH_RELOAD_TIME(500);
         
         public Object data;
         
-        private Logic(int data) {
+        private Logic(Object data) {
             this.data = data;
         }
     }

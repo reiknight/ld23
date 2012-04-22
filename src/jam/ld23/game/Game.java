@@ -24,7 +24,7 @@ public class Game extends BasicGame {
     
     public Game()
     {
-        super("LD23");
+        super("Mothly's World - v0.1");
         em = EntityManager.getInstance();
         pm = PhysicsManager.getInstance();        
         evm = EventManager.getInstance();
@@ -45,8 +45,10 @@ public class Game extends BasicGame {
         evm.addEvent(C.Events.MOVE_UP.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
         evm.addEvent(C.Events.MOVE_DOWN.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         //Player actions
-        evm.addEvent(C.Events.FIRE.name, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON, 500));
-        evm.addEvent(C.Events.CROSSHAIR_MOVED.name, new InputEvent(InputEvent.MOUSE_MOVE, new Rectangle(0, 0, 800, 600)));
+        evm.addEvent(C.Events.FIRE.name, new InputEvent(InputEvent.MOUSE_CLICK, 
+                Input.MOUSE_LEFT_BUTTON, (int) C.Logic.PLAYER_RELOAD_TIME.data));
+        evm.addEvent(C.Events.CROSSHAIR_MOVED.name, new InputEvent(InputEvent.MOUSE_MOVE, 
+                new Rectangle(0, 0, C.SCREEN_WIDTH, C.SCREEN_HEIGHT)));
         evm.addEvent(C.Events.SAVE_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
         evm.addEvent(C.Events.LOAD_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
         
