@@ -55,6 +55,7 @@ public class Player extends Sprite implements Serializable {
         setY(pc.getY());
     }
     
+    @Override
     public void render(GameContainer gc, Graphics g) {
         g.pushTransform();
         image.setRotation(rotation); 
