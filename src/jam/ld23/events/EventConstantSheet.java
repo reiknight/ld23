@@ -8,5 +8,5 @@ public interface EventConstantSheet {
         String MOVE_RIGHT = "move_right";
         String MOVE_UP = "move_up";
         String MOVE_DOWN = "move_down";
-        
+        String FIRE = "fire";
 }

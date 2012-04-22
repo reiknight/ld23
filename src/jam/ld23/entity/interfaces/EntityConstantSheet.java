@@ -16,4 +16,7 @@ public interface EntityConstantSheet {
     
     String FOOD_BIG = "food" + Size.BIG;
     String FOOD_BIG_RESOURCE = "resources/food" + Size.BIG + ".png";
+    
+    String MOUTHWASH = "mouthwash";
+    String MOUTHWASH_RESOURCE = "resources/mouthwash.png";
 }

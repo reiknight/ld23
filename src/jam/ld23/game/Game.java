@@ -40,7 +40,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         evm.addEvent(MOVE_UP, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
         evm.addEvent(MOVE_DOWN, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         //Player actions
-        evm.addEvent("fire", new InputEvent(InputEvent.MOUSE, Input.MOUSE_LEFT_BUTTON));
+        evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE, Input.MOUSE_LEFT_BUTTON));
         
         //Add textures
         tm.addTexture(PLAYER, PLAYER_RESOURCE);
@@ -48,6 +48,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
 //        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
 //        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
 //        tm.addTexture(FOOD_BIG, FOOD_BIG_RESOURCE);
+//        tm.addTexture(MOUTHWASH,MOUTHWASH_RESOURCE);
         
         //Add music and sounds
         sm.addMusic("main_theme", "resources/music.ogg");
