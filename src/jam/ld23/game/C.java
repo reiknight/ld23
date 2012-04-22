@@ -30,7 +30,7 @@ public class C {
         PLAYER("player", "resources/player.png"),
         FOOD_SMALL("food_small", "resources/food" + Size.SMALL + ".png"),
         FOOD_NORMAL("food_normal", "resources/food" + Size.NORMAL + ".png"),
-        FOOD_BIG ("food_big", "resources/food" + Size.BIG + ".png"),
+        FOOD_BIG("food_big", "resources/food" + Size.BIG + ".png"),
         MOUTHWASH("mouthwash", "resources/mouthwash.png"),
         CROSSHAIR("crosshair", "resources/crosshair.png"),
         BULLET("bullet", "resources/bullet.png"),

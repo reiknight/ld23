@@ -26,24 +26,25 @@ public class Food extends Sprite {
     }
     
     public Food() {
-        super(C.Textures.FOOD_NORMAL.name);
+        String texture = C.Textures.FOOD_NORMAL.name + rand.nextInt(2);
         size = Size.NORMAL;
         name = C.Entities.FOOD_SMALL.name + idNormal++;
+        this.setTexture(texture);
     }
     
     public Food(Size size) {
         String texture = null;
         switch(size) {
             case SMALL:
-                texture = C.Textures.FOOD_SMALL.name;
+                texture = C.Textures.FOOD_SMALL.name + rand.nextInt(2);
                 name = C.Entities.FOOD_SMALL.name + idSmall++;
                 break;
             case NORMAL:
-                texture = C.Textures.FOOD_NORMAL.name;
+                texture = C.Textures.FOOD_NORMAL.name + rand.nextInt(2);
                 name = C.Entities.FOOD_NORMAL.name + idNormal++;
                 break;
             case BIG:
-                texture = C.Textures.FOOD_BIG.name;
+                texture = C.Textures.FOOD_BIG.name + rand.nextInt(2);
                 name = C.Entities.FOOD_BIG.name + idBig++;
                 break;
         }
