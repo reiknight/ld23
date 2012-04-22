@@ -1,7 +1,7 @@
 package jam.ld23.entity;
 
 import jam.ld23.entity.interfaces.EntityConstantSheet;
-import jam.ld23.entity.interfaces.GameMode;
+import jam.ld23.game.GameMode;
 import jam.ld23.managers.EventManager;
 import jam.ld23.managers.SoundManager;
 import org.newdawn.slick.GameContainer;
