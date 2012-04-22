@@ -3,10 +3,13 @@ package jam.ld23.entities;
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.game.GameMode;
+import jam.ld23.physics.PhysicsManager;
 import jam.ld23.sounds.SoundManager;
 import java.io.Serializable;
+import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
@@ -14,6 +17,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class Player extends Sprite implements Serializable {
 
     //Characteristics
+    private GameMode gm;
     private int life;
     private int bombs;
     private int continues;
@@ -22,15 +26,21 @@ public class Player extends Sprite implements Serializable {
     private float speed = (float) 0.5;
     
     private int rotation = 0;
+    private Image originalImage;
+    private Vector2f originalSize;
     
     //Constructor with a Game Mode
-    public Player(GameMode g) throws SlickException {
+    public Player(GameMode gm) throws SlickException {
         super(C.Textures.PLAYER.name);
         
+        originalImage = image.copy();
+        originalSize = new Vector2f(getWidth(), getHeight());
+        
         //Characteristics taken from the game mode
-        this.life = g.getLife();
-        this.bombs = g.getBombs();
-        this.continues = g.getContinues();
+        this.gm = gm;
+        this.life = gm.getLife();
+        this.bombs = gm.getBombs();
+        this.continues = gm.getContinues();
     }
     
     //Default constructor with Normal Mode
@@ -48,7 +58,7 @@ public class Player extends Sprite implements Serializable {
     
     public void render(GameContainer gc, Graphics g) {
         g.pushTransform();
-        image.setRotation(rotation);    
+        image.setRotation(rotation); 
         super.render(gc, g);
         g.popTransform();
     }
@@ -60,8 +70,25 @@ public class Player extends Sprite implements Serializable {
         EntityManager em = EntityManager.getInstance();
         EventManager evm = EventManager.getInstance();
         SoundManager sm = SoundManager.getInstance();
+        PhysicsManager pm = PhysicsManager.getInstance();
         float x = getX();
         float y = getY();
+        
+        //Check if we received a bullet
+        ArrayList<Entity> bullets = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
+        for(int i = 0; i < bullets.size(); i++) {
+            Bullet bullet = (Bullet) bullets.get(i);
+            if(pm.testCollisionsEntity(this, bullet)) {
+                life -= (int) C.Logic.ENEMY_BULLET_DAMAGE.data;
+                if(life == 0){
+                    gc.exit();
+                }
+                float scale = (float)life / (float)gm.getLife();
+                image = originalImage.getScaledCopy(scale);
+                setSize(originalSize.scale(scale));
+                em.removeEntity(bullet.getName());
+            }
+        }
         
         //Player movement
         if(evm.isHappening(C.Events.MOVE_LEFT.name, gc)) {

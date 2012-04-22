@@ -152,4 +152,14 @@ public class C {
             this.dimension = dimension;
         }
     }
+    
+    public static enum Logic {
+        ENEMY_BULLET_DAMAGE(1);
+        
+        public Object data;
+        
+        private Logic(int data) {
+            this.data = data;
+        }
+    }
 }
