@@ -6,7 +6,6 @@ import jam.ld23.physics.PhysicsManager;
 import jam.ld23.sounds.SoundManager;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
 
