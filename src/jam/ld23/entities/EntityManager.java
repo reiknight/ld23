@@ -105,7 +105,7 @@ public class EntityManager {
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
             Entity entity = (Entity) itr.next();
-            if(entity.getGroup().equals(name)) {
+            if(entity.getGroup() == name) {
                 result.add(entity);
             }
         }

@@ -154,9 +154,9 @@ public class C {
     }
     
     public static enum Logic {
-        PLAYER_SPEED(0.5),
+        PLAYER_SPEED((float)0.5),
         PLAYER_RELOAD_TIME(500),
-        BULLET_SPEED(0.5),
+        BULLET_SPEED((float)0.5),
         ENEMY_BULLET_DAMAGE(1),
         TOOTH_RELOAD_TIME(500);
         
