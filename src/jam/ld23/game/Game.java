@@ -6,6 +6,7 @@ import jam.ld23.events.InputEvent;
 import jam.ld23.physics.PhysicsManager;
 import jam.ld23.sounds.SoundManager;
 import jam.ld23.textures.TextureManager;
+import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
@@ -120,6 +121,14 @@ public class Game extends BasicGame {
         mouth.draw(0, 0);
         em.render(gc, g);
         teeth.draw(0, 0);
+        //Draw tooth decays after teeth
+        ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
+        for(int i = 0; i < teeth.size(); i++) {
+            Tooth tooth = (Tooth)teeth.get(i);
+            if(tooth.isDecayed()) {
+                tooth.render(gc, g);
+            }
+        }
     }
  
     public static void main(String[] args) throws SlickException 

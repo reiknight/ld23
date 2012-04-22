@@ -14,6 +14,10 @@ public class Tooth extends Sprite {
     //A boolean which said if the tooth is decayed or not (has enemy tourret)
     private boolean decayed;
     
+    //Handle reload time
+    private int reload_time = 500;
+    private int reload_timer = 0;
+    
     //Tooth decay image
     private Image toothDecay;
     
@@ -61,10 +65,12 @@ public class Tooth extends Sprite {
         Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
         
         //If tooth is decayed it should shoot bullets to player
-        if(decayed) {
+        reload_timer += delta;
+        if(decayed && reload_timer > reload_time) {
             Bullet bullet = new Bullet(getCenter(), player.getCenter().sub(getCenter()).normalise());
             bullet.setGroup(C.Groups.ENEMY_BULLETS.name);
             em.addFutureEntity(bullet.name, bullet);
+            reload_timer = 0;
         }
     }
 }
