@@ -13,6 +13,10 @@ public abstract class Entity {
     protected float x;
     protected float y;
     
+    //Size
+    protected float w;
+    protected float h;
+    
     //Group
     protected String group;
     
@@ -21,7 +25,10 @@ public abstract class Entity {
         return r;
     }
 
-    public abstract void render(GameContainer gc, Graphics g);
+    public void render(GameContainer gc, Graphics g) {
+        // Draw bounding box
+        g.drawRect(x, y, w, h);
+    }
 
     public void update(GameContainer gc, int delta) {
         //Updating the Rectangle
@@ -43,6 +50,23 @@ public abstract class Entity {
 
     public void setY(float y) {
         this.y = y;
+    }
+    
+    //Getters and Setters for the Size Variables
+    public float getW() {
+        return w;
+    }
+
+    public void setW(float w) {
+        this.w = w;
+    }
+
+    public float getH() {
+        return h;
+    }
+
+    public void setH(float h) {
+        this.h = h;
     }
     
     public String getGroup() {

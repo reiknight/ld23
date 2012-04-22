@@ -6,12 +6,17 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class Sprite extends Entity {
-    private Image image;
+    protected Image image;
     
-    public Sprite() { }
+    public Sprite() { 
+    }
     
     public Sprite(String name) {
         image = TextureManager.getInstance().getTexture(name);
+        
+        // Grab image size
+        w = image.getWidth();
+        h = image.getHeight();
     }
     
     @Override
@@ -21,6 +26,7 @@ public class Sprite extends Entity {
     
     @Override
     public void render(GameContainer gc, Graphics g) {
+        super.render(gc, g);
         image.draw(x, y);
     }
     

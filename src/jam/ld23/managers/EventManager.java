@@ -3,6 +3,7 @@ package jam.ld23.managers;
 import jam.ld23.events.Event;
 import java.util.HashMap;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 
 public class EventManager {
     
@@ -33,6 +34,10 @@ public class EventManager {
     
     public void addEvent(String name, Event event) {
         events.put(name, event);
+    }
+    
+    public Event getEvent(String name) {
+        return events.get(name);
     }
 
     public boolean removeEvent(String name) {

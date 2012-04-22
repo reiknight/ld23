@@ -2,13 +2,14 @@ package jam.ld23.entity;
 
 import jam.ld23.entity.interfaces.EntityConstantSheet;
 import jam.ld23.game.GameMode;
+import jam.ld23.events.EventConstantSheet;
 import jam.ld23.managers.EventManager;
 import jam.ld23.managers.SoundManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Player extends Sprite {
+public class Player extends Sprite implements EntityConstantSheet,EventConstantSheet {
 
     //Characteristics
     private int life;
@@ -16,7 +17,7 @@ public class Player extends Sprite {
     private int continues;
     
     //Player speed
-    private float speed = 1;
+    private float speed = (float) 0.5;
     
     //Constructor with a Game Mode
     public Player(GameMode g) throws SlickException {
@@ -42,22 +43,23 @@ public class Player extends Sprite {
         SoundManager sm = SoundManager.getInstance();
         
         //Player movement
-        if(em.isHappening("move_left", gc)) {
+        if(em.isHappening(MOVE_LEFT, gc)) {
             x -= speed * delta;
         }
-        if(em.isHappening("move_right", gc)) {
+        if(em.isHappening(MOVE_RIGHT, gc)) {
             x += speed * delta;
         }
-        if(em.isHappening("move_up", gc)) {
+        if(em.isHappening(MOVE_UP, gc)) {
             y -= speed * delta;
         }
-        if(em.isHappening("move_down", gc)) {
+        if(em.isHappening(MOVE_DOWN, gc)) {
             y += speed * delta;
         }
         
         //Player actions
-        if(em.isHappening("fire", gc)) {
-            sm.playSound("fire");
+        if(em.isHappening(FIRE, gc)) {
+            //sm.playSound("fire");
+            //TODO: Create bullet
         }
             
         super.update(gc, delta);

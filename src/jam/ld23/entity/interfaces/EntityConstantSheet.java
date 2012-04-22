@@ -19,4 +19,7 @@ public interface EntityConstantSheet {
     
     String MOUTHWASH = "mouthwash";
     String MOUTHWASH_RESOURCE = "resources/mouthwash.png";
+
+    String CROSSHAIR = "crosshair";
+    String CROSSHAIR_RESOURCE = "resources/crosshair.png";
 }

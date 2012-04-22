@@ -1,23 +1,21 @@
 package jam.ld23.game;
  
+import jam.ld23.entity.CrossHair;
 import jam.ld23.entity.Player;
 import jam.ld23.entity.interfaces.EntityConstantSheet;
 import jam.ld23.events.EventConstantSheet;
 import jam.ld23.events.InputEvent;
 import jam.ld23.managers.*;
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
  
 public class Game extends BasicGame implements EntityConstantSheet,EventConstantSheet {
-    
-    private float x = 400;
-    private float y = 300;
-    private float scale = 1.0f;
     private EntityManager em;
     private PhysicsManager pm;
     private EventManager evm;
     private TextureManager tm;
     private SoundManager sm;
-    private Player player;
+    private Image mouth;
     
     public Game()
     {
@@ -40,10 +38,13 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         evm.addEvent(MOVE_UP, new InputEvent(InputEvent.KEYBOARD, Input.KEY_W));
         evm.addEvent(MOVE_DOWN, new InputEvent(InputEvent.KEYBOARD, Input.KEY_S));
         //Player actions
-        evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE, Input.MOUSE_LEFT_BUTTON));
+        evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON));
+        evm.addEvent(CROSSHAIR_MOVED, new InputEvent(InputEvent.MOUSE_MOVE, new Rectangle(0, 0, 800, 600)));
         
         //Add textures
         tm.addTexture(PLAYER, PLAYER_RESOURCE);
+        tm.addTexture("mouth", "resources/mouth.jpg");
+        tm.addTexture("crosshair", "resources/crosshair.png");
 //        tm.addTexture(ENEMY, ENEMY_RESOURCE);
 //        tm.addTexture(FOOD_SMALL, FOOD_SMALL_RESOURCE);
 //        tm.addTexture(FOOD_NORMAL, FOOD_NORMAL_RESOURCE);
@@ -56,9 +57,12 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         //Play main theme by default
         //sm.playMusic("main_theme");
         
+        //Add background
+        mouth = tm.getTexture("mouth");
+        
         //Add entities
-        player = new Player();
-        em.addEntity("player", player);
+        em.addEntity("player", new Player());
+        em.addEntity("crosshair", new CrossHair());
     }
  
     @Override
@@ -73,6 +77,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
     @Override
     public void render(GameContainer gc, Graphics g) 
     {
+        mouth.draw(0, 0);
         em.render(gc, g);
     }
  
@@ -80,6 +85,7 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
     {
          AppGameContainer app = new AppGameContainer(new Game());
          app.setDisplayMode(800, 600, false);
+         app.setMouseGrabbed(true);
          app.start();
     }
 }
