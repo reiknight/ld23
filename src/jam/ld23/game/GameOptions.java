@@ -15,6 +15,13 @@ public class GameOptions implements Serializable {
     private GameOptions() {
         gameMode = GameMode.NORMAL_MODE;
     }
+    
+    public static GameOptions getInstance() {
+        if(gameOptions == null) {
+            gameOptions = new GameOptions();
+        } 
+        return gameOptions;
+    }
 
     public float getEffectVolume() {
         return effectVolume;

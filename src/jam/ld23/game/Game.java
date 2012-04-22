@@ -15,6 +15,8 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
     private EventManager evm;
     private TextureManager tm;
     private SoundManager sm;
+    private SaveManager svm;
+    private GameOptions go;
     private Image mouth;
     
     public Game()
@@ -25,6 +27,8 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         evm = EventManager.getInstance();
         tm = TextureManager.getInstance();
         sm = SoundManager.getInstance();
+        svm = SaveManager.getInstance();
+        go = GameOptions.getInstance();
     }
  
     @Override
@@ -40,6 +44,8 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
         //Player actions
         evm.addEvent(FIRE, new InputEvent(InputEvent.MOUSE_CLICK, Input.MOUSE_LEFT_BUTTON));
         evm.addEvent(CROSSHAIR_MOVED, new InputEvent(InputEvent.MOUSE_MOVE, new Rectangle(0, 0, 800, 600)));
+        evm.addEvent(SAVE_GAME, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
+        evm.addEvent(LOAD_GAME, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
         
         //Add textures
         tm.addTexture(PLAYER, PLAYER_RESOURCE);
@@ -70,6 +76,12 @@ public class Game extends BasicGame implements EntityConstantSheet,EventConstant
     {
         if(evm.isHappening(("close_window"), gc)) {
             gc.exit();
+        }
+        if(evm.isHappening(SAVE_GAME, gc)) {
+            svm.saveGame(go,(Player)em.getEntity(PLAYER));
+        }
+        if(evm.isHappening(LOAD_GAME,gc)) {
+            svm.loadGame(go,(Player)em.getEntity(PLAYER));
         }
         em.update(gc, delta);
     }

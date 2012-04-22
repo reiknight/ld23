@@ -16,7 +16,7 @@ public class SaveManager {
     }
     
     //Getter of the instance
-    public SaveManager getInstance() {
+    public static SaveManager getInstance() {
         if(saveManager == null) {
             saveManager = new SaveManager();
         }
@@ -39,6 +39,9 @@ public class SaveManager {
             
             oos.writeObject(gm);
             oos.writeObject(pc);
+            
+            System.out.println(pc.getX());
+            System.out.println(pc.getY());
             
         } catch(FileNotFoundException fnfe) {
             System.out.println(fnfe.getMessage());
@@ -70,8 +73,10 @@ public class SaveManager {
             ois = new ObjectInputStream(fis);
             
             
-            gm.setGameMode((GameMode)ois.readObject());
-            pc = (Player) ois.readObject();
+            gm.setGameMode(((GameOptions)ois.readObject()).getGameMode());
+            Player playerLoaded = (Player) ois.readObject();
+            pc.setState(playerLoaded);
+            
             
         } catch(ClassNotFoundException cnfe) {
             System.out.println("Class Error: " + cnfe.getMessage());

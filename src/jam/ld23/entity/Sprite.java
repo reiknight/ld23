@@ -1,12 +1,13 @@
 package jam.ld23.entity;
 
 import jam.ld23.managers.TextureManager;
+import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Sprite extends Entity {
-    protected Image image;
+public class Sprite extends Entity implements Serializable {
+    protected transient Image image;
     
     public Sprite() { 
     }

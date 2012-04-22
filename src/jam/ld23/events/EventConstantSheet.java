@@ -9,4 +9,6 @@ public interface EventConstantSheet {
         String MOVE_DOWN = "move_down";
         String FIRE = "fire";
         String CROSSHAIR_MOVED = "crosshair_moved";
+        String SAVE_GAME = "save_game";
+        String LOAD_GAME = "load_game";
 }

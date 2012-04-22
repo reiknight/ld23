@@ -1,10 +1,11 @@
 package jam.ld23.entity;
 
+import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 
-public abstract class Entity {
+public abstract class Entity implements Serializable {
 
     //Rectangle for collision
     protected Rectangle r;

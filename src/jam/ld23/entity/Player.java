@@ -5,11 +5,12 @@ import jam.ld23.game.GameMode;
 import jam.ld23.events.EventConstantSheet;
 import jam.ld23.managers.EventManager;
 import jam.ld23.managers.SoundManager;
+import java.io.Serializable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Player extends Sprite implements EntityConstantSheet,EventConstantSheet {
+public class Player extends Sprite implements Serializable, EntityConstantSheet,EventConstantSheet {
 
     //Characteristics
     private int life;
@@ -35,6 +36,14 @@ public class Player extends Sprite implements EntityConstantSheet,EventConstantS
     //Default constructor with Normal Mode
     public Player() throws SlickException {
         this(GameMode.NORMAL_MODE);
+    }
+    
+    public void setState(Player pc) {
+        this.bombs = pc.bombs;
+        this.continues = pc.continues;
+        this.life = pc.life;
+        this.x = pc.x;
+        this.y = pc.y;
     }
     
     @Override
