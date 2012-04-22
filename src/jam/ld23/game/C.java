@@ -35,7 +35,8 @@ public class C {
         CROSSHAIR("crosshair", "resources/crosshair.png"),
         BULLET("bullet", "resources/bullet.png"),
         MOUTH("mouth", "resources/mouth.jpg"),
-        TEETH("teeth", "resources/teeth.png");
+        TEETH("teeth", "resources/teeth.png"),
+        TOOTH_DECAY("tooth_decay", "resources/tooth_decay.png");
 
         public String name;
         public String path;
@@ -55,8 +56,18 @@ public class C {
         MOUTHWASH("mouthwash"),              
         CROSSHAIR("crosshair"),
         BULLET("bullet"),
-        TEETH("teeth");
-        
+        TEETH("teeth"),
+        TOOTH_BOTTOM_0("tooth_bottom_0"),
+        TOOTH_BOTTOM_1("tooth_bottom_1"),
+        TOOTH_BOTTOM_2("tooth_bottom_2"),
+        TOOTH_BOTTOM_3("tooth_bottom_3"),
+        TOOTH_BOTTOM_4("tooth_bottom_4"),
+        TOOTH_TOP_0("tooth_top_0"),
+        TOOTH_TOP_1("tooth_top_1"),
+        TOOTH_TOP_2("tooth_top_2"),
+        TOOTH_TOP_3("tooth_top_3"),
+        TOOTH_TOP_4("tooth_top_4");
+
         public String name;
 
         private Entities(String name) {
@@ -66,7 +77,8 @@ public class C {
     
     public static enum Groups {
         BULLETS("bullets"),
-        FOOD("food");
+        FOOD("food"),
+        TEETH("teeth");
         
         public String name;
 

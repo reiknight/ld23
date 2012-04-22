@@ -2,6 +2,7 @@ package jam.ld23.entities;
 
 import jam.ld23.game.C;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Bullet extends Sprite {
@@ -19,8 +20,14 @@ public class Bullet extends Sprite {
         this.direction = direction;
     }
     
+    public void render(GameContainer gc, Graphics g) {
+        super.render(gc, g);
+        g.drawString("Bullet position: " + Math.floor(x) + "," + Math.floor(y), 100, 200);
+    }
+    
     public void update(GameContainer gc, int delta) {
-        x += direction.x * delta;
-        y += direction.y * delta;
+        super.update(gc, delta);
+        x += direction.x * speed * delta;
+        y += direction.y * speed * delta;
     }
 }

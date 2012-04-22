@@ -9,7 +9,9 @@ import org.newdawn.slick.Image;
 public class Sprite extends Entity implements Serializable {
     protected transient Image image;
     
-    public Sprite() { 
+    public Sprite() {
+        super();
+        image = null;
     }
     
     public Sprite(String name) {
@@ -18,7 +20,7 @@ public class Sprite extends Entity implements Serializable {
     
     public void setTexture(String name) {
         this.image = TextureManager.getInstance().getTexture(name);
-        
+        image = TextureManager.getInstance().getTexture(name);
         // Grab image size
         w = image.getWidth();
         h = image.getHeight();

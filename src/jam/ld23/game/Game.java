@@ -8,6 +8,7 @@ import jam.ld23.sounds.SoundManager;
 import jam.ld23.textures.TextureManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
  
 public class Game extends BasicGame {
     private EntityManager em;
@@ -59,6 +60,7 @@ public class Game extends BasicGame {
         tm.addTexture(C.Textures.FOOD_BIG.name, C.Textures.FOOD_BIG.path);
         tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
         tm.addTexture(C.Textures.TEETH.name, C.Textures.TEETH.path);
+        tm.addTexture(C.Textures.TOOTH_DECAY.name, C.Textures.TOOTH_DECAY.path);
         
         //Add music and sounds
         sm.addMusic(C.Sounds.MUSIC.name, C.Sounds.MUSIC.path);
@@ -73,15 +75,19 @@ public class Game extends BasicGame {
         teeth = tm.getTexture(C.Textures.TEETH.name);
         
         //Add entities
+        //Add player
         em.addEntity(C.Entities.PLAYER.name, new Player());
+        //Add Crosshair
         em.addEntity(C.Entities.CROSSHAIR.name, new CrossHair());
+        //Add demo food
         Food f1,f2,f3,f4;
         em.addEntity((f1 = new Food(Size.BIG)).getName(), f1);
         em.addEntity((f2 = new Food(Size.SMALL)).getName(), f2);
         em.addEntity((f3 = new Food(Size.NORMAL)).getName(), f3);
         em.addEntity((f4 = new Food(Size.SMALL)).getName(), f4);
-        
-    }
+        //Add bottom teeth
+        //em.addEntity(C.Entities.TOOTH_BOTTOM_0.name, new Tooth(new Vector2f(2, 490), new Vector2f(108, 88)));
+        em.addEntity(C.Entities.TOOTH_BOTTOM_2.name, new Tooth(new Vector2f(318, 493), new Vector2f(123, 100)));    }
  
     @Override
     public void update(GameContainer gc, int delta)

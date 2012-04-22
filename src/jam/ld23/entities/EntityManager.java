@@ -34,6 +34,12 @@ public class EntityManager {
     }
     
     public void addEntity(String name, Entity entity) {
+        entity.setName(name);
+        entities.put(name, entity);
+    }
+    
+    public void addFutureEntity(String name, Entity entity) {
+        entity.setName(name);
         entitiesToAdd.put(name, entity);
     }
 

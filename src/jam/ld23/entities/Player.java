@@ -75,7 +75,7 @@ public class Player extends Sprite implements Serializable {
             Bullet bullet = new Bullet(new Vector2f(x + w/2, y + h/2),
                     new Vector2f((crosshair.x  + (crosshair.w / 2)) - (x + (w / 2)), 
                     (crosshair.y + (crosshair.h / 2)) - (y + (h / 2))).normalise());
-            em.addEntity(bullet.name, bullet);
+            em.addFutureEntity(bullet.name, bullet);
         }
             
         super.update(gc, delta);

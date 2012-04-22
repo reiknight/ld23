@@ -2,6 +2,7 @@ package jam.ld23.tests;
 
 import jam.ld23.entities.Entity;
 import jam.ld23.entities.EntityManager;
+import java.util.ArrayList;
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -50,17 +51,17 @@ public class EntityManagerTest extends TestCase  {
     }
     
     public void testGetEntities() {
-        assertEquals(em.getEntities().size(), 0);
+        assertEquals(0, em.getEntities().size());
     }
    
     public void testAddEntity() { 
         em.addEntity("dummy", dummyEntity);
-        assertEquals(em.getEntities().size(), 1);
+        assertEquals(1, em.getEntities().size());
     }
     
     public void testGetEntity() {
         em.addEntity("dummy", dummyEntity);
-        assertSame(em.getEntity("dummy"), dummyEntity);
+        assertSame(dummyEntity, em.getEntity("dummy"));
     }
     
     public void testGetEntityGroup() {
@@ -75,14 +76,17 @@ public class EntityManagerTest extends TestCase  {
         em.addEntity("item_1", e2);
         em.addEntity("item_2", e3);
         
-        assertEquals(em.getEntityGroup("items").size(), 2);
-        assertEquals(em.getEntityGroup("enemies").size(), 1);
+        ArrayList<Entity> items = em.getEntityGroup("items");
+        assertEquals("items", items.get(0).getGroup());
+        assertEquals("items", items.get(1).getGroup());
+        ArrayList<Entity> enemies = em.getEntityGroup("enemies");
+        assertEquals("enemies", enemies.get(0).getGroup());
     }
     
     public void testRemoveEntityWithExistingEntity() {
         em.addEntity("dummy", dummyEntity);
         em.removeEntity("dummy");
-        assertEquals(em.getEntities().size(), 0);
+        assertEquals(0, em.getEntities().size());
     }
     
     public void testRemoveEntityWithNonExistingKey() {
