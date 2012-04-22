@@ -10,6 +10,7 @@ public class Bullet extends Sprite {
     private static int id = 0;
     private Vector2f direction;
     private float speed = (float) 0.5;
+    private int rotation = 45;
     
     public Bullet(Vector2f position, Vector2f direction) {
         super(C.Textures.BULLET.name);
@@ -18,11 +19,19 @@ public class Bullet extends Sprite {
         
         setPosition(position);
         this.direction = direction;
+        
+        rotation = (int) Math.toDegrees(Math.acos(new Vector2f(1, 0).dot(direction)));
+        if(direction.y < 0)  {
+            rotation = -rotation;
+        }
     }
     
     @Override
     public void render(GameContainer gc, Graphics g) {
+        g.pushTransform();
+        image.setRotation(rotation);
         super.render(gc, g);
+        g.popTransform();
     }
     
     @Override
