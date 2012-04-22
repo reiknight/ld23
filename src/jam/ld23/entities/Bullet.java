@@ -3,6 +3,8 @@ package jam.ld23.entities;
 import jam.ld23.game.C;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Bullet extends Sprite {
@@ -26,5 +28,9 @@ public class Bullet extends Sprite {
     public void update(GameContainer gc, int delta) {
         super.update(gc, delta);
         addPosition(new Vector2f(direction.x * speed * delta, direction.y * speed * delta));
+
+        if(outOfBounds(new Rectangle(0, 0, gc.getWidth(), gc.getHeight()))) {
+          EntityManager.getInstance().removeEntity(name);        
+        }
     }
 }

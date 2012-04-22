@@ -16,6 +16,7 @@ public class EntityManager {
     private EntityManager() {
         entities = new HashMap<String,Entity>();
         entitiesToAdd = new HashMap<String,Entity>();
+        entitiesToRemove = new HashMap<String,Entity>();
     }
     
     //Getter of the instance
@@ -32,6 +33,8 @@ public class EntityManager {
 
     public void clear() {
         entities.clear();
+        entitiesToAdd.clear();
+        entitiesToRemove.clear();
     }
     
     public void addEntity(String name, Entity entity) {
@@ -50,7 +53,8 @@ public class EntityManager {
 
     public boolean removeEntity(String name) {
         if(entities.containsKey(name)) {
-            entities.remove(name);
+            Entity entity = entities.get(name);
+            entitiesToRemove.put(name, entity);
             return true;
         }
         return false;
@@ -65,9 +69,12 @@ public class EntityManager {
     }
 
     public void update(GameContainer gc, int delta) {
+        Collection c;
+        Iterator itr;
+        
         // Call update for each method
-        Collection c = entities.values();
-        Iterator itr = c.iterator();
+        c = entities.values();
+        itr = c.iterator();
         while(itr.hasNext()) {
             ((Entity) itr.next()).update(gc, delta);
         }
@@ -75,6 +82,14 @@ public class EntityManager {
         // Add new entities
         entities.putAll(entitiesToAdd);
         entitiesToAdd.clear();
+        
+         // Remove entitites marked as removed
+        c = entitiesToRemove.values();
+        itr = c.iterator();
+        while(itr.hasNext()) {
+            entities.remove(((Entity)itr.next()).getName());
+        }
+        entitiesToRemove.clear();
     }
 
     public ArrayList<Entity> getEntityGroup(String name) {

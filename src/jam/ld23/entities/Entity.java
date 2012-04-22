@@ -101,4 +101,9 @@ public abstract class Entity implements Serializable {
     protected Vector2f getCenter() {
         return new Vector2f(r.getX() + r.getWidth() / 2, r.getY() + r.getHeight() / 2);
     }
+    
+    //return true if entity is out of bounds
+    protected boolean outOfBounds(Rectangle r) {
+        return !getR().intersects(r);
+    }
 }

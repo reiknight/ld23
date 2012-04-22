@@ -77,6 +77,7 @@ public class C {
     
     public static enum Groups {
         BULLETS("bullets"),
+        ENEMY_BULLETS("enemy_bullets"),
         FOOD("food"),
         TEETH("teeth");
         
