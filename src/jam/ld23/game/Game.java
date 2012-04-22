@@ -55,9 +55,15 @@ public class Game extends BasicGame {
         tm.addTexture(C.Textures.CROSSHAIR.name, C.Textures.CROSSHAIR.path);
         tm.addTexture(C.Textures.BULLET.name, C.Textures.BULLET.path);
         tm.addTexture(C.Textures.ENEMY.name, C.Textures.ENEMY.path);
-        tm.addTexture(C.Textures.FOOD_SMALL.name, C.Textures.FOOD_SMALL.path);
-        tm.addTexture(C.Textures.FOOD_NORMAL.name, C.Textures.FOOD_NORMAL.path);
-        tm.addTexture(C.Textures.FOOD_BIG.name, C.Textures.FOOD_BIG.path);
+        tm.addTexture(C.Textures.FOOD_SMALL_0.name, C.Textures.FOOD_SMALL_0.path);
+        tm.addTexture(C.Textures.FOOD_NORMAL_0.name, C.Textures.FOOD_NORMAL_0.path);
+        tm.addTexture(C.Textures.FOOD_BIG_0.name, C.Textures.FOOD_BIG_0.path);
+        tm.addTexture(C.Textures.FOOD_SMALL_1.name, C.Textures.FOOD_SMALL_1.path);
+        tm.addTexture(C.Textures.FOOD_NORMAL_1.name, C.Textures.FOOD_NORMAL_1.path);
+        tm.addTexture(C.Textures.FOOD_BIG_1.name, C.Textures.FOOD_BIG_1.path);
+        tm.addTexture(C.Textures.FOOD_SMALL_2.name, C.Textures.FOOD_SMALL_2.path);
+        tm.addTexture(C.Textures.FOOD_NORMAL_2.name, C.Textures.FOOD_NORMAL_2.path);
+        tm.addTexture(C.Textures.FOOD_BIG_2.name, C.Textures.FOOD_BIG_2.path);
         tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
         tm.addTexture(C.Textures.TEETH.name, C.Textures.TEETH.path);
         tm.addTexture(C.Textures.TOOTH_DECAY.name, C.Textures.TOOTH_DECAY.path);
