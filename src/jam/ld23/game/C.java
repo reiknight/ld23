@@ -118,6 +118,7 @@ public class C {
         PLAYER(new Vector2f(0, 300)),
         PLAYER_LIMIT_TOP(new Vector2f(0, 100)),
         PLAYER_LIMIT_BOTTOM(new Vector2f(0, 480)),
+        PLAYER_LIMIT_RIGHT(new Vector2f(700, 0)),
         TOOTH_BOTTOM_0(new Vector2f(2, 490)),
         TOOTH_BOTTOM_1(new Vector2f(140, 490)),
         TOOTH_BOTTOM_2(new Vector2f(318, 493)),

@@ -116,6 +116,10 @@ public class Player extends Sprite implements Serializable {
             //Restore y position
             y = oldY;
         }
+        if(x + getWidth() > C.Positions.PLAYER_LIMIT_RIGHT.position.x) {
+            //Restore y position
+            x = oldX;
+        }
 
         setPosition(new Vector2f(x, y));
         
