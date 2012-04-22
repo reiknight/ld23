@@ -28,6 +28,9 @@ public class Tooth extends Sprite {
         toothDecay = TextureManager.getInstance().getTexture(C.Textures.TOOTH_DECAY.name);
         
         group = C.Groups.TEETH.name;
+        
+        //EntityManager will not render automatically
+        autoRender = false;
     }
 
     public boolean isDecayed() {
@@ -42,7 +45,8 @@ public class Tooth extends Sprite {
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
         if(decayed) {
-            toothDecay.draw(getX(), getY());
+            toothDecay.draw(getCenter().x - toothDecay.getWidth() / 2, 
+                    getCenter().y - toothDecay.getHeight() / 2);
         }
     }
 

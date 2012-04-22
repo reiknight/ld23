@@ -1,6 +1,7 @@
 package jam.ld23.entities;
 
 import java.io.Serializable;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
@@ -15,6 +16,11 @@ public abstract class Entity implements Serializable {
     //Group
     protected String group;
     
+    //Entity manager will not update this entity if false
+    protected boolean autoUpdate = true;
+    //Entity manager will not render this entity if false
+    protected boolean autoRender = true;
+    
     public Entity() {
         r = new Rectangle(0,0,0,0);
     }
@@ -26,6 +32,7 @@ public abstract class Entity implements Serializable {
 
     public void render(GameContainer gc, Graphics g) {
         // Draw bounding box
+        g.setColor(Color.black);
         g.drawRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
     }
 
@@ -83,12 +90,12 @@ public abstract class Entity implements Serializable {
         this.name = name;
     }
 
-    protected void setPosition(Vector2f position) {
+    public void setPosition(Vector2f position) {
         r.setX(position.x);
         r.setY(position.y);
     }
     
-    protected void addPosition(Vector2f position) {
+    public void addPosition(Vector2f position) {
         r.setX(r.getX() + position.x);
         r.setY(r.getY() + position.y);
     }

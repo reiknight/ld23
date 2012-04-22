@@ -64,7 +64,10 @@ public class EntityManager {
         Collection c = entities.values();
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
-            ((Entity) itr.next()).render(gc, g);
+            Entity entity = (Entity) itr.next();
+            if(entity.autoRender) {
+                entity.render(gc, g);
+            }
         }
     }
 
@@ -76,7 +79,10 @@ public class EntityManager {
         c = entities.values();
         itr = c.iterator();
         while(itr.hasNext()) {
-            ((Entity) itr.next()).update(gc, delta);
+            Entity entity = (Entity) itr.next();
+            if(entity.autoUpdate) {
+                entity.update(gc, delta);
+            }
         }
         
         // Add new entities

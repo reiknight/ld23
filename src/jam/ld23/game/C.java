@@ -1,6 +1,7 @@
 package jam.ld23.game;
 
 import jam.ld23.entities.Size;
+import org.newdawn.slick.geom.Vector2f;
 
 public class C {
     
@@ -113,4 +114,42 @@ public class C {
         }
     }
 
+    public static enum Positions {
+        PLAYER(new Vector2f(0, 300)),
+        TOOTH_BOTTOM_0(new Vector2f(2, 490)),
+        TOOTH_BOTTOM_1(new Vector2f(140, 490)),
+        TOOTH_BOTTOM_2(new Vector2f(318, 493)),
+        TOOTH_BOTTOM_3(new Vector2f(448, 493)),
+        TOOTH_BOTTOM_4(new Vector2f(560, 470)),
+        TOOTH_TOP_0(new Vector2f(2, 30)),
+        TOOTH_TOP_1(new Vector2f(100, 50)),
+        TOOTH_TOP_2(new Vector2f(265, 55)),
+        TOOTH_TOP_3(new Vector2f(400, 60)),
+        TOOTH_TOP_4(new Vector2f(530, 50));
+        
+        public Vector2f position;
+        
+        private Positions(Vector2f position) {
+            this.position = position;
+        }
+    }
+    
+    public static enum Dimensions {
+        TOOTH_BOTTOM_0(new Vector2f(108, 88)),
+        TOOTH_BOTTOM_1(new Vector2f(158, 100)),
+        TOOTH_BOTTOM_2(new Vector2f(123, 100)),
+        TOOTH_BOTTOM_3(new Vector2f(110, 100)),
+        TOOTH_BOTTOM_4(new Vector2f(110, 110)),
+        TOOTH_TOP_0(new Vector2f(90, 110)),
+        TOOTH_TOP_1(new Vector2f(158, 100)),
+        TOOTH_TOP_2(new Vector2f(123, 100)),
+        TOOTH_TOP_3(new Vector2f(110, 100)),
+        TOOTH_TOP_4(new Vector2f(110, 110));
+        
+        public Vector2f dimension;
+        
+        private Dimensions(Vector2f dimension) {
+            this.dimension = dimension;
+        }
+    }
 }

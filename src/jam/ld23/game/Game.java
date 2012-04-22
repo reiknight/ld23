@@ -83,7 +83,9 @@ public class Game extends BasicGame {
         
         //Add entities
         //Add player
-        em.addEntity(C.Entities.PLAYER.name, new Player());
+        Player player = new Player();
+        player.setPosition(C.Positions.PLAYER.position);
+        em.addEntity(C.Entities.PLAYER.name, player);
         //Add Crosshair
         em.addEntity(C.Entities.CROSSHAIR.name, new CrossHair());
         //Add demo food
@@ -93,8 +95,28 @@ public class Game extends BasicGame {
         em.addEntity((f3 = new Food(Size.NORMAL)).getName(), f3);
         em.addEntity((f4 = new Food(Size.SMALL)).getName(), f4);
         //Add bottom teeth
-        //em.addEntity(C.Entities.TOOTH_BOTTOM_0.name, new Tooth(new Vector2f(2, 490), new Vector2f(108, 88)));
-        em.addEntity(C.Entities.TOOTH_BOTTOM_2.name, new Tooth(new Vector2f(318, 493), new Vector2f(123, 100)));    }
+        em.addEntity(C.Entities.TOOTH_BOTTOM_0.name, 
+                new Tooth(C.Positions.TOOTH_BOTTOM_0.position, C.Dimensions.TOOTH_BOTTOM_0.dimension));
+        em.addEntity(C.Entities.TOOTH_BOTTOM_1.name, 
+                new Tooth(C.Positions.TOOTH_BOTTOM_1.position, C.Dimensions.TOOTH_BOTTOM_1.dimension));
+        em.addEntity(C.Entities.TOOTH_BOTTOM_2.name, 
+                new Tooth(C.Positions.TOOTH_BOTTOM_2.position, C.Dimensions.TOOTH_BOTTOM_2.dimension));    
+        em.addEntity(C.Entities.TOOTH_BOTTOM_3.name, 
+                new Tooth(C.Positions.TOOTH_BOTTOM_3.position, C.Dimensions.TOOTH_BOTTOM_3.dimension));    
+        em.addEntity(C.Entities.TOOTH_BOTTOM_4.name, 
+                new Tooth(C.Positions.TOOTH_BOTTOM_4.position, C.Dimensions.TOOTH_BOTTOM_4.dimension));    
+        //Add top teeth
+        em.addEntity(C.Entities.TOOTH_TOP_0.name, 
+                new Tooth(C.Positions.TOOTH_TOP_0.position, C.Dimensions.TOOTH_TOP_0.dimension));
+        em.addEntity(C.Entities.TOOTH_TOP_1.name, 
+                new Tooth(C.Positions.TOOTH_TOP_1.position, C.Dimensions.TOOTH_TOP_1.dimension));
+        em.addEntity(C.Entities.TOOTH_TOP_2.name, 
+                new Tooth(C.Positions.TOOTH_TOP_2.position, C.Dimensions.TOOTH_TOP_2.dimension));    
+        em.addEntity(C.Entities.TOOTH_TOP_3.name, 
+                new Tooth(C.Positions.TOOTH_TOP_3.position, C.Dimensions.TOOTH_TOP_3.dimension));    
+        em.addEntity(C.Entities.TOOTH_TOP_4.name, 
+                new Tooth(C.Positions.TOOTH_TOP_4.position, C.Dimensions.TOOTH_TOP_4.dimension));    
+    }
  
     @Override
     public void update(GameContainer gc, int delta)
@@ -125,9 +147,7 @@ public class Game extends BasicGame {
         ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
         for(int i = 0; i < teeth.size(); i++) {
             Tooth tooth = (Tooth)teeth.get(i);
-            if(tooth.isDecayed()) {
-                tooth.render(gc, g);
-            }
+            tooth.render(gc, g);
         }
     }
  
