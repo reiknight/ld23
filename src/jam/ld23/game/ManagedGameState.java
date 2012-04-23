@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jam.ld23.game;
 
 import jam.ld23.entities.EntityManager;
@@ -16,13 +12,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
 
-/**
- *
- * @author david
- */
 public abstract class ManagedGameState extends BasicGameState {
     private int stateID = -1;
     protected EntityManager em = EntityManager.getInstance();
@@ -57,6 +47,7 @@ public abstract class ManagedGameState extends BasicGameState {
         
     }
     
+    @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         if(evm.isHappening(C.Events.CLOSE_WINDOW.name, gc)) {
             gc.exit();

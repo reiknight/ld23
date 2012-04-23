@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.state.transition.VerticalSplitTransition;
  
 public class MainState extends ManagedGameState {
     private Image mouth;
