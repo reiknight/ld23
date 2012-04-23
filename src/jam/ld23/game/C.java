@@ -58,6 +58,7 @@ public class C {
         FOOD_SMALL_2("foodSmall2", "resources/food" + Size.SMALL + "2.png"),
         FOOD_NORMAL_2("foodNormal2", "resources/food" + Size.NORMAL + "2.png"),
         FOOD_BIG_2("foodBig2", "resources/food" + Size.BIG + "2.png"),
+        PLOP("plop", "resources/plop.png"),
         MOUTHWASH("mouthwash", "resources/mouthwash.png"),
         CROSSHAIR("crosshair", "resources/crosshair.png"),
         BULLET("bullet", "resources/bullet.png"),
@@ -188,7 +189,9 @@ public class C {
         ENEMY_DAMAGE(2),
         TOOTH_RELOAD_TIME(2500),
         FOOD_RELOAD_TIME(2000),
-        SELECT_OPTION_DELAY(500);
+        SELECT_OPTION_DELAY(500),
+        FOOD_DIE_TIME(1000),
+        ENEMY_DIE_TIME(1000);
         
         public Object data;
         

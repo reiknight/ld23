@@ -71,6 +71,7 @@ public class Player extends Sprite implements Serializable {
                     life -= (Integer) C.Logic.ENEMY_BULLET_DAMAGE.data;
                 } else if(entityToCollide instanceof Enemy  && !C.GOD_MODE) {
                     life -= (Integer) C.Logic.ENEMY_DAMAGE.data;
+                    ((Enemy)entityToCollide).die();
                 }
                 if(life == 0){
                     dead = true;
