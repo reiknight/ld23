@@ -18,7 +18,8 @@ public class C {
         CROSSHAIR_MOVED("crosshair_moved"),
         SAVE_GAME("save_game"),
         LOAD_GAME("load_game"),
-        NEXT_STATE("next_state");
+        NEXT_STATE("next_state"),
+        PAUSE_GAME("pause_game");
         
         public String name;
 
@@ -160,7 +161,8 @@ public class C {
         ENEMY_BULLET_DAMAGE(1),
         ENEMY_DAMAGE(2),
         TOOTH_RELOAD_TIME(1000),
-        FOOD_RELOAD_TIME(2000);
+        FOOD_RELOAD_TIME(2000),
+        SELECT_OPTION_DELAY(500);
         
         public Object data;
         

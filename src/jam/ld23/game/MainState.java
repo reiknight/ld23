@@ -14,6 +14,7 @@ import org.newdawn.slick.state.transition.VerticalSplitTransition;
 public class MainState extends ManagedGameState {
     private Image mouth;
     private Image teeth;
+    private boolean paused = false;
     
     public MainState(int stateID)
     {
@@ -36,6 +37,8 @@ public class MainState extends ManagedGameState {
                 new Rectangle(0, 0, C.SCREEN_WIDTH, C.SCREEN_HEIGHT)));
         evm.addEvent(C.Events.SAVE_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
         evm.addEvent(C.Events.LOAD_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
+        evm.addEvent(C.Events.PAUSE_GAME.name, 
+                new InputEvent(InputEvent.KEYBOARD, Input.KEY_P, (int) C.Logic.SELECT_OPTION_DELAY.data));
         
         //Add textures
         tm.addTexture(C.Textures.PLAYER.name, C.Textures.PLAYER.path);
@@ -145,27 +148,39 @@ public class MainState extends ManagedGameState {
         //Draw crosshair over all entities
         Entity crosshair = em.getEntity(C.Entities.CROSSHAIR.name);
         crosshair.render(gc, g);
+        if(paused) {
+            g.setColor(Color.black);
+            g.drawString("- PAUSED - ", 350, 300);
+        }
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         super.update(gc, game, delta);
-        if(evm.isHappening(C.Events.SAVE_GAME.name, gc)) {
-            svm.saveGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
-        }
-        if(evm.isHappening(C.Events.LOAD_GAME.name,gc)) {
-            svm.loadGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
-        }
-        
-        //Updates all entities
-        em.update(gc, delta);
         //Updates all events
         evm.update(gc, delta);
         
-        //If player dies change state to game over
-        Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
-        if(player.isDead()) {
-            game.enterState(C.States.GAME_OVER_STATE.value, new FadeOutTransition(), new FadeInTransition());
+        if(evm.isHappening(C.Events.PAUSE_GAME.name, gc)) {
+            paused = !paused;
         }
+        
+        //Check if game is paused
+        if(!paused) {
+            if(evm.isHappening(C.Events.SAVE_GAME.name, gc)) {
+                svm.saveGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
+            }
+            if(evm.isHappening(C.Events.LOAD_GAME.name,gc)) {
+                svm.loadGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
+            }
+
+            //Updates all entities
+            em.update(gc, delta);
+
+            //If player dies change state to game over
+            Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
+            if(player.isDead()) {
+                game.enterState(C.States.GAME_OVER_STATE.value, new FadeOutTransition(), new FadeInTransition());
+            }
+        } 
     }
 }

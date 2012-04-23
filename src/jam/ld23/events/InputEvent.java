@@ -39,7 +39,10 @@ public class InputEvent extends Event {
         
         switch(type) {
             case KEYBOARD:
-                return input.isKeyDown((Integer) data) && timed;
+                if(input.isKeyDown((Integer) data) && timed) {
+                    this.timer = 0;
+                    return true;
+                }
             case MOUSE_CLICK:
                 if(input.isMouseButtonDown((Integer) data) && timed) {
                     this.timer = 0;
