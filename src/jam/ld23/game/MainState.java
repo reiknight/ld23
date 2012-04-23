@@ -34,8 +34,6 @@ public class MainState extends ManagedGameState {
         //Player actions
         evm.addEvent(C.Events.FIRE.name, new InputEvent(InputEvent.MOUSE_CLICK, 
                 Input.MOUSE_LEFT_BUTTON, (Integer) C.Logic.PLAYER_RELOAD_TIME.data));
-        evm.addEvent(C.Events.CROSSHAIR_MOVED.name, new InputEvent(InputEvent.MOUSE_MOVE, 
-                new Rectangle(0, 0, C.SCREEN_WIDTH, C.SCREEN_HEIGHT)));
         evm.addEvent(C.Events.SAVE_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
         evm.addEvent(C.Events.LOAD_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
         evm.addEvent(C.Events.PAUSE_GAME.name, 
@@ -44,7 +42,6 @@ public class MainState extends ManagedGameState {
         //Add textures
         tm.addTexture(C.Textures.PLAYER.name, C.Textures.PLAYER.path);
         tm.addTexture(C.Textures.MOUTH.name, C.Textures.MOUTH.path);
-        tm.addTexture(C.Textures.CROSSHAIR.name, C.Textures.CROSSHAIR.path);
         tm.addTexture(C.Textures.BULLET.name, C.Textures.BULLET.path);
         tm.addTexture(C.Textures.ENEMY_BULLET.name, C.Textures.ENEMY_BULLET.path);
         tm.addTexture(C.Textures.ENEMY.name, C.Textures.ENEMY.path);

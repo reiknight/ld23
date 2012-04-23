@@ -11,6 +11,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -27,11 +28,6 @@ public abstract class ManagedGameState extends BasicGameState {
 
     public ManagedGameState(int stateID) {
         this.stateID = stateID;
-        em.setGameState(C.States.BASE_STATE.name);
-        //Close window
-        evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
-        //Next game state
-        evm.addEvent(C.Events.NEXT_STATE.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ENTER));
     }
     
     @Override
@@ -41,7 +37,14 @@ public abstract class ManagedGameState extends BasicGameState {
     
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        
+        tm.addTexture(C.Textures.CROSSHAIR.name, C.Textures.CROSSHAIR.path);
+        //Close window
+        evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
+        //Next game state
+        evm.addEvent(C.Events.NEXT_STATE.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ENTER));
+        //Crosshair movement
+        evm.addEvent(C.Events.CROSSHAIR_MOVED.name, new InputEvent(InputEvent.MOUSE_MOVE, 
+                new Rectangle(0, 0, C.SCREEN_WIDTH, C.SCREEN_HEIGHT)));
     }
     
     public void restart() {
