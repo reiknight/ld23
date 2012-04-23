@@ -25,6 +25,10 @@ public class LogicManager {
         score += i;
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public C.GameModes getGameMode() {
         return gameMode;
     }

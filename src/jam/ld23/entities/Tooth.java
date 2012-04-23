@@ -1,6 +1,7 @@
 package jam.ld23.entities;
 
 import jam.ld23.game.C;
+import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import jam.ld23.textures.TextureManager;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class Tooth extends Sprite {
         super.update(gc, delta);
         EntityManager em = EntityManager.getInstance();
         PhysicsManager pm = PhysicsManager.getInstance();
+        LogicManager lm = LogicManager.getInstance();
 
         ArrayList<Entity> bullets = em.getEntityGroup(C.Groups.BULLETS.name);
         for(int i = 0; i < bullets.size(); i++) {
@@ -69,6 +71,7 @@ public class Tooth extends Sprite {
                 //TODO: esto solo es para hacer pruebas
                 if(decayed) {
                     decayed = !decayed;
+                    lm.addScore(C.Scores.ENEMY_TOOTH.score);
                 }
                 em.removeEntity(bullet.getName());
             }

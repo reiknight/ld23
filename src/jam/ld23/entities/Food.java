@@ -2,6 +2,7 @@ package jam.ld23.entities;
 
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
+import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,6 +17,7 @@ public class Food extends Sprite {
     private static int id = 0;
     private static Random rand;
     private float rotatingSpeed;
+    private int score;
     private int type;
     private Vector2f direction;
     //Handle reload time
@@ -29,12 +31,15 @@ public class Food extends Sprite {
         switch (size) {
             case SMALL:
                 name = C.Entities.FOOD_SMALL.name + id++;
+                score = C.Scores.FOOD_SMALL.score;
                 break;
             case NORMAL:
                 name = C.Entities.FOOD_NORMAL.name + id++;
+                score = C.Scores.FOOD_NORMAL.score;
                 break;
             case BIG:
                 name = C.Entities.FOOD_BIG.name + id++;
+                score = C.Scores.FOOD_BIG.score;
                 break;
         }
         this.group = C.Groups.FOOD.name;
@@ -48,6 +53,7 @@ public class Food extends Sprite {
         EntityManager em = EntityManager.getInstance();
         EventManager evm = EventManager.getInstance();
         PhysicsManager pm = PhysicsManager.getInstance();
+        LogicManager lm = LogicManager.getInstance();
 
         //Food movement
         float x = this.getX();
@@ -61,6 +67,7 @@ public class Food extends Sprite {
         for (int i = 0; i < bullets.size(); i++) {
             Bullet bullet = (Bullet) bullets.get(i);
             if (pm.testCollisionsEntity(this, bullet)) {
+                lm.addScore(score);
                 em.removeEntity(bullet.getName());
                 em.removeEntity(this.getName());
                 spawnEntities();

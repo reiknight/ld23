@@ -30,7 +30,11 @@ public class C {
     }
     
     public static enum Scores {
-        ENEMY(1);
+        ENEMY(8),
+        ENEMY_TOOTH(15),
+        FOOD_SMALL(3),
+        FOOD_NORMAL(2),
+        FOOD_BIG(1);
         
         public int score;
         

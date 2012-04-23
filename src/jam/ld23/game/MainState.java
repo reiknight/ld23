@@ -2,6 +2,7 @@ package jam.ld23.game;
  
 import jam.ld23.entities.*;
 import jam.ld23.events.InputEvent;
+import jam.ld23.logic.LogicManager;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -131,6 +132,7 @@ public class MainState extends ManagedGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
         super.render(gc, game, g);
+        LogicManager lm = LogicManager.getInstance();
         em.setGameState(C.States.MAIN_STATE.name);
         mouth.draw(0, 0);
         em.render(gc, g);
@@ -148,6 +150,7 @@ public class MainState extends ManagedGameState {
             g.setColor(Color.black);
             g.drawString("- PAUSED - ", 350, 300);
         }
+        g.drawString("Score: " + lm.getScore(),gc.getWidth()/2 - 50,10);
     }
 
     @Override
