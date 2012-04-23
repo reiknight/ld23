@@ -38,7 +38,9 @@ public class Enemy extends Sprite {
         for(int i = 0; i < teeth.size(); i++) {
             Tooth tooth = (Tooth) teeth.get(i);
             if(pm.testCollisionsEntity(this, tooth)) {
-                tooth.setDecayed(true);
+                if(Math.random() < lm.getGameMode().getBaseDecaySpawnProbability()) {
+                    tooth.setDecayed(true);
+                }
                 em.removeEntity(this.getName());
             }
         }

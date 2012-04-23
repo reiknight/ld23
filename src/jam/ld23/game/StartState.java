@@ -52,11 +52,15 @@ public class StartState extends ManagedGameState {
         em.addEntity(C.Entities.CROSSHAIR.name, new CrossHair());
         //Add background
         background = tm.getTexture(C.Textures.START_BACKGROUND.name);
+        //Add sound
+        sm.addSound(C.Sounds.OPENING.name, C.Sounds.OPENING.path);
+        sm.playSound(C.Sounds.OPENING.name);
     }
 
     @Override
     public void restart() {
         super.restart();
+        sm.playSound(C.Sounds.OPENING.name);
     }
     
     @Override

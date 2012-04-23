@@ -125,7 +125,9 @@ public class C {
     
     public static enum Sounds {
         MUSIC("music", "resources/music.ogg"),
-        FIRE("fire", "resources/fire.wav");
+        FIRE("fire", "resources/fire.wav"),
+        OPENING("opening","resources/moothlyOpening.wav"),
+        GAME_OVER("gameover","resources/gameOver.wav");
         
         public String name;
         public String path;
@@ -184,7 +186,7 @@ public class C {
         BULLET_SPEED((float)0.5),
         ENEMY_BULLET_DAMAGE(1),
         ENEMY_DAMAGE(2),
-        TOOTH_RELOAD_TIME(1000),
+        TOOTH_RELOAD_TIME(2500),
         FOOD_RELOAD_TIME(2000),
         SELECT_OPTION_DELAY(500);
         
@@ -213,20 +215,22 @@ public class C {
     }
     
     public static enum GameModes {
-        EASY_MODE(10,3,2,1500),
-        NORMAL_MODE(8,2,1,1000),
-        HARD_MODE(5,2,0,500);
+        EASY_MODE(10,3,2,1500,.33F),
+        NORMAL_MODE(8,2,1,1000,.66F),
+        HARD_MODE(5,2,0,500,1);
 
         private int life;
         private int bombs;
         private int continues;
         private int baseFoodSpawnTime; //in ms
+        private float baseDecaySpawnProbability;
 
-        GameModes(int life, int bombs, int continues, int baseFoodSpawnTime) {
+        GameModes(int life, int bombs, int continues, int baseFoodSpawnTime, float baseDecaySpawnProbability) {
             this.life = life;
             this.bombs = bombs;
             this.continues = continues;
             this.baseFoodSpawnTime = baseFoodSpawnTime;
+            this.baseDecaySpawnProbability = baseDecaySpawnProbability;
         }
 
         public int getBombs() {
@@ -244,6 +248,11 @@ public class C {
         public int getBaseFoodSpawnTime() {
             return baseFoodSpawnTime;
         }
+
+        public float getBaseDecaySpawnProbability() {
+            return baseDecaySpawnProbability;
+        }
+        
     }
     
     public static enum Buttons {

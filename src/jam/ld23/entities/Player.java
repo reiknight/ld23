@@ -118,7 +118,7 @@ public class Player extends Sprite implements Serializable {
         CrossHair crosshair = (CrossHair)em.getEntity(C.Entities.CROSSHAIR.name);
         if(evm.isHappening(C.Events.FIRE.name, gc)) {
             //TODO: Play sound
-            //sm.playSound(C.Sounds.FIRE.name);
+            sm.playSound(C.Sounds.FIRE.name);
             //Shot a bullet from player center to croosshair direction
             Bullet bullet = new Bullet(getCenter(), crosshair.getCenter().sub(getCenter()).normalise());
             em.addFutureEntity(bullet.name, bullet);

@@ -16,12 +16,15 @@ public class GameOverState extends ManagedGameState {
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         super.init(gc, game);
         em.setGameState(C.States.GAME_OVER_STATE.name);
+        //Add music and sounds
+        sm.addSound(C.Sounds.GAME_OVER.name, C.Sounds.GAME_OVER.path);
     }
 
     @Override
     public void restart() {
         super.restart();
         em.setGameState(C.States.GAME_OVER_STATE.name);
+        sm.playSound(C.Sounds.GAME_OVER.name);
     }
         
     @Override

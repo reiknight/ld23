@@ -5,7 +5,6 @@ import jam.ld23.events.InputEvent;
 import jam.ld23.logic.LogicManager;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
@@ -60,9 +59,8 @@ public class MainState extends ManagedGameState {
         
         //Add music and sounds
         sm.addMusic(C.Sounds.MUSIC.name, C.Sounds.MUSIC.path);
-        sm.addMusic(C.Sounds.FIRE.name, C.Sounds.FIRE.path);
-        //Play main theme by default
-        //sm.playMusic("main_theme");
+        sm.addSound(C.Sounds.FIRE.name, C.Sounds.FIRE.path);
+
         
         //Add background
         mouth = tm.getTexture(C.Textures.MOUTH.name);
@@ -117,6 +115,9 @@ public class MainState extends ManagedGameState {
         em.removeEntityGroup(C.Groups.FOOD.name);
         //Force entity removal
         em.forceRemoval();
+        
+       //Play main theme by default
+        sm.playMusic(C.Sounds.MUSIC.name);
         
         //Remove tooth decays
         ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
