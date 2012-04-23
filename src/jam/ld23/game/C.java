@@ -4,7 +4,7 @@ import jam.ld23.entities.Size;
 import org.newdawn.slick.geom.Vector2f;
 
 public class C {
-    
+    public static final boolean DEBUG_MODE = true;
     public static final int SCREEN_HEIGHT = 600;
     public static final int SCREEN_WIDTH = 800;
     

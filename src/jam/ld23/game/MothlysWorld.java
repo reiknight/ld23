@@ -28,6 +28,7 @@ public class MothlysWorld extends StateBasedGame {
     {
          AppGameContainer app = new AppGameContainer(new MothlysWorld());
          app.setDisplayMode(C.SCREEN_WIDTH, C.SCREEN_HEIGHT, false);
+         app.setShowFPS(C.DEBUG_MODE);
          app.setMouseGrabbed(true);
          app.start();
     }

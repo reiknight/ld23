@@ -1,5 +1,6 @@
 package jam.ld23.entities;
 
+import jam.ld23.game.C;
 import java.io.Serializable;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -32,8 +33,10 @@ public abstract class Entity implements Serializable {
 
     public void render(GameContainer gc, Graphics g) {
         // Draw bounding box
-        g.setColor(Color.black);
-        g.drawRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+        if(C.DEBUG_MODE) {
+            g.setColor(Color.black);
+            g.drawRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+        }
     }
 
     public void update(GameContainer gc, int delta) {
