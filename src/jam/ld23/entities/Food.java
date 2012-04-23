@@ -2,11 +2,11 @@ package jam.ld23.entities;
 
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
-import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import java.util.Random;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Food extends Sprite {
@@ -18,7 +18,6 @@ public class Food extends Sprite {
     private float rotatingSpeed;
     private int type;
     private Vector2f direction;
-
     //Handle reload time
     private int reload_time = (Integer) C.Logic.FOOD_RELOAD_TIME.data;
     private int reload_timer = 0;
@@ -38,9 +37,8 @@ public class Food extends Sprite {
                 name = C.Entities.FOOD_BIG.name + id++;
                 break;
         }
-        this.name = name;
         this.group = C.Groups.FOOD.name;
-        this.direction = new Vector2f(-1,0);
+        this.direction = new Vector2f(-1, 0);
         this.setTexture(C.Textures.valueOf("FOOD_" + size + "_" + type).name);
     }
 
@@ -54,7 +52,7 @@ public class Food extends Sprite {
         //Food movement
         float x = this.getX();
         float y = this.getY();
-        addPosition(direction.normalise().scale(speed*delta));
+        addPosition(direction.normalise().scale(speed * delta));
 
         image.rotate(rotatingSpeed);
 
@@ -68,66 +66,81 @@ public class Food extends Sprite {
                 spawnEntities();
             }
         }
-        
+
         //Testing Collisions with Teeth
         ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
         for (int i = 0; i < teeth.size(); i++) {
             Entity tooth = teeth.get(i);
             if (pm.testCollisionsEntity(this, tooth)) {
-                direction = new Vector2f(direction.x,-direction.y);
+                direction = new Vector2f(direction.x, -direction.y);
             }
         }
 
         //Collision with the player
         Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
         if (pm.testCollisionsEntity(this, player)) {
-            player.setPosition(new Vector2f(x - player.getWidth(), player.getY()));
+            if (player.getX() + player.getWidth() >= x) {
+                if (player.getX()+player.getWidth()*(1F-1F/32F) < x) {
+                    player.setPosition(new Vector2f(x - player.getWidth(), player.getY()));
+                } else {
+                    if (player.getY() < y) {
+                        player.setPosition(new Vector2f(player.getX(), y - player.getHeight()));
+                    } else if (player.getY() <= y + getHeight()) {
+                        player.setPosition(new Vector2f(player.getX(), y + getHeight()));
+                    }
+                }
+            }
+        }
+        
+        //Remove if enemy is out of the screen
+        if(outOfBounds(new Rectangle(0, 0, gc.getWidth(), gc.getHeight()))) {
+            EntityManager.getInstance().removeEntity(name);
         }
 
         //Spawning enemies
         reload_timer += delta;
-        if(reload_timer > reload_time) {
+        if (reload_timer > reload_time) {
             Enemy enemy = new Enemy();
-            enemy.setPosition(new Vector2f(x,y));
+            enemy.setPosition(new Vector2f(x, y));
             em.addFutureEntity(enemy.name, enemy);
             reload_timer = 0;
         }
 
     }
-    
+
     public void setRotatingSpeed(float rotatingSpeed) {
         this.rotatingSpeed = rotatingSpeed;
     }
 
     private void spawnEntities() {
         EntityManager em = EntityManager.getInstance();
-        Food f1,f2;
-        switch(size) {
+        Food f1, f2;
+        switch (size) {
             case BIG:
                 f1 = new Food(type, Size.NORMAL);
-                f1.setPosition(new Vector2f(getX()+25,getY()-25));
-                f1.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f1.setPosition(new Vector2f(getX() + 25, getY() - 25));
+                f1.direction = new Vector2f(-(float) Math.random(), (float) Math.random());
                 f1.direction.normalise();
-                em.addFutureEntity(f1.getName(),f1);
+                em.addFutureEntity(f1.getName(), f1);
                 f2 = new Food(type, Size.NORMAL);
-                f2.setPosition(new Vector2f(getX()+25,getY()+25));
-                f2.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f2.setPosition(new Vector2f(getX() + 25, getY() + 25));
+                f2.direction = new Vector2f(-(float) Math.random(), (float) Math.random());
                 f2.direction.normalise();
-                em.addFutureEntity(f2.getName(),f2);
+                em.addFutureEntity(f2.getName(), f2);
                 break;
             case NORMAL:
                 f1 = new Food(type, Size.SMALL);
-                f1.setPosition(new Vector2f(getX()+25,getY()-25));
-                f1.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f1.setPosition(new Vector2f(getX() + 25, getY() - 25));
+                f1.direction = new Vector2f(-(float) Math.random(), (float) Math.random());
                 f1.direction.normalise();
-                em.addFutureEntity(f1.getName(),f1);
+                em.addFutureEntity(f1.getName(), f1);
                 f2 = new Food(type, Size.SMALL);
-                f2.setPosition(new Vector2f(getX()+25,getY()+25));
-                f2.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f2.setPosition(new Vector2f(getX() + 25, getY() + 25));
+                f2.direction = new Vector2f(-(float) Math.random(), (float) Math.random());
                 f2.direction.normalise();
-                em.addFutureEntity(f2.getName(),f2);
+                em.addFutureEntity(f2.getName(), f2);
                 break;
         }
-        
+
     }
 }
