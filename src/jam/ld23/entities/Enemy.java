@@ -12,7 +12,7 @@ public class Enemy extends Sprite {
     
     private static int id = 0;
     private Vector2f direction;
-
+    
     public Enemy() {
         super(C.Textures.ENEMY.name);
         name =  C.Entities.ENEMY.name + id++;
