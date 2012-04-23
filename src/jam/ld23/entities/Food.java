@@ -104,8 +104,6 @@ public class Food extends Sprite {
         if(reload_timer > reload_time) {
             Enemy enemy = new Enemy();
             enemy.setPosition(new Vector2f(x,y));
-            enemy.setGroup(C.Groups.ENEMY.name);
-            enemy.setTexture(C.Textures.ENEMY.name);
             em.addFutureEntity(enemy.name, enemy);
             reload_timer = 0;
         }

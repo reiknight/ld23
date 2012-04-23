@@ -16,6 +16,7 @@ public class Enemy extends Sprite {
     public Enemy() {
         super(C.Textures.ENEMY.name);
         name =  C.Entities.ENEMY.name + id++;
+        group = C.Groups.ENEMIES.name;
         direction = new Vector2f((float)Math.random()*-.5F,(float)Math.random()*-.5F);
     }
 

@@ -26,6 +26,7 @@ public class Player extends Sprite implements Serializable {
     
     private int rotation = 0;
     private transient Image originalImage;
+    private boolean dead = false;
     
     //Constructor with a Game Mode
     public Player(GameMode gm) throws SlickException {
@@ -35,9 +36,6 @@ public class Player extends Sprite implements Serializable {
         
         //Characteristics taken from the game mode
         this.gm = gm;
-        this.life = gm.getLife();
-        this.bombs = gm.getBombs();
-        this.continues = gm.getContinues();
     }
     
     //Default constructor with Normal Mode
@@ -76,7 +74,7 @@ public class Player extends Sprite implements Serializable {
         
         //Check if we received a bullet
         ArrayList<Entity> entitiesToCollide = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
-        entitiesToCollide.addAll(em.getEntityGroup(C.Groups.ENEMY.name));
+        entitiesToCollide.addAll(em.getEntityGroup(C.Groups.ENEMIES.name));
         for(int i = 0; i < entitiesToCollide.size(); i++) {
             Entity entityToCollide = entitiesToCollide.get(i);
             if(pm.testCollisionsEntity(this, entityToCollide)) {
@@ -86,7 +84,7 @@ public class Player extends Sprite implements Serializable {
                     life -= (Integer) C.Logic.ENEMY_DAMAGE.data;
                 }
                 if(life == 0){
-                    gc.exit();
+                    dead = true;
                 }
                 float scale = (float)life / (float)gm.getLife();
                 image = originalImage.getScaledCopy(scale);
@@ -112,7 +110,7 @@ public class Player extends Sprite implements Serializable {
         
         //Check if player is swallowed
         if(x < -getWidth()){
-            gc.exit();
+            dead = true;
         }
         
         //Check if player is inside bounds
@@ -142,5 +140,19 @@ public class Player extends Sprite implements Serializable {
         if(direction.y < 0)  {
             rotation = -rotation;
         }
+    }
+    
+    public boolean isDead() {
+        return dead;
+    }
+    
+    public void revive() {
+        this.life = gm.getLife();
+        this.bombs = gm.getBombs();
+        this.continues = gm.getContinues();
+        this.dead = false;
+        image = originalImage;
+        setWidth(image.getWidth());
+        setHeight(image.getHeight());
     }
 }

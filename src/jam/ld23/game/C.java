@@ -17,7 +17,8 @@ public class C {
         FIRE("fire"),
         CROSSHAIR_MOVED("crosshair_moved"),
         SAVE_GAME("save_game"),
-        LOAD_GAME("load_game");
+        LOAD_GAME("load_game"),
+        NEXT_STATE("next_state");
         
         public String name;
 
@@ -88,7 +89,7 @@ public class C {
         ENEMY_BULLETS("enemy_bullets"),
         FOOD("food"),
         TEETH("teeth"),
-        ENEMY("enemies");
+        ENEMIES("enemies");
         
         public String name;
 

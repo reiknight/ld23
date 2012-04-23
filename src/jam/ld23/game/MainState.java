@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.VerticalSplitTransition;
  
 public class MainState extends ManagedGameState {
     private Image mouth;
@@ -17,10 +21,9 @@ public class MainState extends ManagedGameState {
     }
 
     @Override
-    public void init(GameContainer container, StateBasedGame game) throws SlickException {
+    public void init(GameContainer gc, StateBasedGame game) throws SlickException {
+        super.init(gc, game);
         //Register input events
-        //Close window
-        evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
         //Player movement
         evm.addEvent(C.Events.MOVE_LEFT.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
         evm.addEvent(C.Events.MOVE_RIGHT.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_D));
@@ -68,17 +71,9 @@ public class MainState extends ManagedGameState {
         
         //Add entities
         //Add player
-        Player player = new Player();
-        player.setPosition(C.Positions.PLAYER.position);
-        em.addEntity(C.Entities.PLAYER.name, player);
+        em.addEntity(C.Entities.PLAYER.name, new Player());
         //Add Crosshair
         em.addEntity(C.Entities.CROSSHAIR.name, new CrossHair());
-        //Add demo food
-        Food f1,f2,f3,f4;
-        em.addEntity((f1 = new Food(Size.BIG)).getName(), f1);
-        em.addEntity((f2 = new Food(Size.SMALL)).getName(), f2);
-        em.addEntity((f3 = new Food(Size.NORMAL)).getName(), f3);
-        em.addEntity((f4 = new Food(Size.SMALL)).getName(), f4);
         //Add bottom teeth
         em.addEntity(C.Entities.TOOTH_BOTTOM_0.name, 
                 new Tooth(C.Positions.TOOTH_BOTTOM_0.position, C.Dimensions.TOOTH_BOTTOM_0.dimension));
@@ -101,10 +96,43 @@ public class MainState extends ManagedGameState {
                 new Tooth(C.Positions.TOOTH_TOP_3.position, C.Dimensions.TOOTH_TOP_3.dimension));    
         em.addEntity(C.Entities.TOOTH_TOP_4.name, 
                 new Tooth(C.Positions.TOOTH_TOP_4.position, C.Dimensions.TOOTH_TOP_4.dimension));   
+        
+        this.restart();
     }
-
+    
+    @Override
+    public void restart() {
+        //Set player's position and life
+        Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
+        player.revive();
+        player.setPosition(C.Positions.PLAYER.position);
+        
+        //Remove enemies and bullets
+        em.removeEntityGroup(C.Groups.ENEMIES.name);
+        em.removeEntityGroup(C.Groups.BULLETS.name);
+        em.removeEntityGroup(C.Groups.ENEMY_BULLETS.name);
+        em.removeEntityGroup(C.Groups.FOOD.name);
+        //Force entity removal
+        em.forceRemoval();
+        
+        //Remove tooth decays
+        ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
+        for(int i = 0; i < teeth.size(); i++) {
+            Tooth tooth = (Tooth)teeth.get(i);
+            tooth.setDecayed(false);
+        }
+        
+        //Add demo food
+        Food f1,f2,f3,f4;
+        em.addEntity((f1 = new Food(Size.BIG)).getName(), f1);
+        em.addEntity((f2 = new Food(Size.SMALL)).getName(), f2);
+        em.addEntity((f3 = new Food(Size.NORMAL)).getName(), f3);
+        em.addEntity((f4 = new Food(Size.SMALL)).getName(), f4);
+    }
+    
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+        super.render(gc, game, g);
         mouth.draw(0, 0);
         em.render(gc, g);
         teeth.draw(0, 0);
@@ -121,9 +149,7 @@ public class MainState extends ManagedGameState {
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
-        if(evm.isHappening(C.Events.CLOSE_WINDOW.name, gc)) {
-            gc.exit();
-        }
+        super.update(gc, game, delta);
         if(evm.isHappening(C.Events.SAVE_GAME.name, gc)) {
             svm.saveGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
         }
@@ -135,5 +161,11 @@ public class MainState extends ManagedGameState {
         em.update(gc, delta);
         //Updates all events
         evm.update(gc, delta);
+        
+        //If player dies change state to game over
+        Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
+        if(player.isDead()) {
+            game.enterState(C.States.GAME_OVER_STATE.value, new FadeOutTransition(), new FadeInTransition());
+        }
     }
 }

@@ -88,14 +88,8 @@ public class EntityManager {
         // Add new entities
         entities.putAll(entitiesToAdd);
         entitiesToAdd.clear();
-        
-         // Remove entitites marked as removed
-        c = entitiesToRemove.values();
-        itr = c.iterator();
-        while(itr.hasNext()) {
-            entities.remove(((Entity)itr.next()).getName());
-        }
-        entitiesToRemove.clear();
+        // Remove entitites marked as removed
+        this.forceRemoval();
     }
 
     public ArrayList<Entity> getEntityGroup(String name) {
@@ -111,5 +105,25 @@ public class EntityManager {
         }
         
         return result;
+    }
+
+    public void removeEntityGroup(String name) {
+        Collection c = entities.values();
+        Iterator itr = c.iterator();
+        while(itr.hasNext()) {
+            Entity entity = (Entity) itr.next();
+            if(entity.getGroup() == name) {
+                this.removeEntity(entity.name);
+            }
+        }
+    }
+
+    public void forceRemoval() {
+        Collection c = entitiesToRemove.values();
+        Iterator itr = c.iterator();
+        while(itr.hasNext()) {
+            entities.remove(((Entity)itr.next()).getName());
+        }
+        entitiesToRemove.clear();    
     }
 }
