@@ -195,4 +195,38 @@ public class C {
             this.value = value;
         }
     }
+    
+    public static enum GameModes {
+        EASY_MODE(10,3,2,1500),
+        NORMAL_MODE(8,2,1,1000),
+        HARD_MODE(5,2,0,500);
+
+        private int life;
+        private int bombs;
+        private int continues;
+        private int baseFoodSpawnTime; //in ms
+
+        GameModes(int life, int bombs, int continues, int baseFoodSpawnTime) {
+            this.life = life;
+            this.bombs = bombs;
+            this.continues = continues;
+            this.baseFoodSpawnTime = baseFoodSpawnTime;
+        }
+
+        public int getBombs() {
+            return bombs;
+        }
+
+        public int getContinues() {
+            return continues;
+        }
+
+        public int getLife() {
+            return life;
+        }
+        
+        public int getBaseFoodSpawnTime() {
+            return baseFoodSpawnTime;
+        }
+    }
 }

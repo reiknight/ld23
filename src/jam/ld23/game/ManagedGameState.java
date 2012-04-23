@@ -3,6 +3,7 @@ package jam.ld23.game;
 import jam.ld23.entities.EntityManager;
 import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
+import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import jam.ld23.sounds.SoundManager;
 import jam.ld23.textures.TextureManager;
@@ -22,6 +23,7 @@ public abstract class ManagedGameState extends BasicGameState {
     protected SoundManager sm = SoundManager.getInstance();
     protected SaveManager svm = SaveManager.getInstance();
     protected GameOptions go = GameOptions.getInstance();
+    protected LogicManager lm = LogicManager.getInstance();
 
     public ManagedGameState(int stateID) {
         this.stateID = stateID;

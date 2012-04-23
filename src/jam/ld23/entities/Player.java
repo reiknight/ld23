@@ -2,7 +2,7 @@ package jam.ld23.entities;
 
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
-import jam.ld23.game.GameMode;
+import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import jam.ld23.sounds.SoundManager;
 import java.io.Serializable;
@@ -10,13 +10,11 @@ import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Player extends Sprite implements Serializable {
 
     //Characteristics
-    private GameMode gm;
     private int life;
     private int bombs;
     private int continues;
@@ -28,19 +26,9 @@ public class Player extends Sprite implements Serializable {
     private transient Image originalImage;
     private boolean dead = false;
     
-    //Constructor with a Game Mode
-    public Player(GameMode gm) throws SlickException {
-        super(C.Textures.PLAYER.name);
-        
+    public Player() {
+        super(C.Textures.PLAYER.name);        
         originalImage = image.copy();
-        
-        //Characteristics taken from the game mode
-        this.gm = gm;
-    }
-    
-    //Default constructor with Normal Mode
-    public Player() throws SlickException {
-        this(GameMode.NORMAL_MODE);
     }
     
     public void setState(Player pc) {
@@ -67,6 +55,7 @@ public class Player extends Sprite implements Serializable {
         EventManager evm = EventManager.getInstance();
         SoundManager sm = SoundManager.getInstance();
         PhysicsManager pm = PhysicsManager.getInstance();
+        LogicManager lm = LogicManager.getInstance();
         float x = getX();
         float y = getY();
         float oldX = x;
@@ -86,7 +75,7 @@ public class Player extends Sprite implements Serializable {
                 if(life == 0){
                     dead = true;
                 }
-                float scale = (float)life / (float)gm.getLife();
+                float scale = (float)life / (float)lm.getGameMode().getLife();
                 image = originalImage.getScaledCopy(scale);
                 setWidth(image.getWidth());
                 setHeight(image.getHeight());
@@ -147,9 +136,10 @@ public class Player extends Sprite implements Serializable {
     }
     
     public void revive() {
-        this.life = gm.getLife();
-        this.bombs = gm.getBombs();
-        this.continues = gm.getContinues();
+        LogicManager lm = LogicManager.getInstance();
+        this.life = lm.getGameMode().getLife();
+        this.bombs = lm.getGameMode().getBombs();
+        this.continues = lm.getGameMode().getContinues();
         this.dead = false;
         image = originalImage;
         setWidth(image.getWidth());

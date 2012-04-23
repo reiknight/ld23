@@ -1,6 +1,7 @@
 package jam.ld23.entities;
 
 import jam.ld23.game.C;
+import jam.ld23.logic.LogicManager;
 import java.util.Random;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
@@ -18,7 +19,7 @@ public class FoodFactory extends Entity {
     public void update(GameContainer gc, int delta) {
         super.update(gc, delta);
         timer += delta;
-        if(timer > 500) {
+        if(timer > LogicManager.getInstance().getFoodSpawnTime()) {
             timer = 0;
             this.spawnFood();
         }

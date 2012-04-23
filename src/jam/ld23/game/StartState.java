@@ -1,8 +1,8 @@
 package jam.ld23.game;
 
 import jam.ld23.events.InputEvent;
+import jam.ld23.game.C.GameModes;
 import org.newdawn.slick.*;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
@@ -46,6 +46,9 @@ public class StartState extends ManagedGameState {
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         super.update(gc, game, delta);
         if(evm.isHappening(C.Events.NEXT_STATE.name, gc)) {
+            //TODO: select game mode using GUI
+            lm.setGameMode(GameModes.EASY_MODE);
+            ((ManagedGameState)game.getState(C.States.MAIN_STATE.value)).restart();
             game.enterState(C.States.MAIN_STATE.value, new FadeOutTransition(), new BlobbyTransition());
         }
     }   

@@ -1,13 +1,14 @@
 package jam.ld23.logic;
 
-import jam.ld23.game.GameMode;
+import jam.ld23.game.C;
 
 public class LogicManager {
     
     private static LogicManager lm;
     
-    private int score;
-    private GameMode gameMode;
+    private int score = 0;
+    private C.GameModes gameMode;
+    private int foodSpawnTime;
     
     private LogicManager() {
         
@@ -24,12 +25,20 @@ public class LogicManager {
         score += i;
     }
 
-    public GameMode getGameMode() {
+    public C.GameModes getGameMode() {
         return gameMode;
     }
 
-    public void setGameMode(GameMode gameMode) {
+    public void setGameMode(C.GameModes gameMode) {
         this.gameMode = gameMode;
+        this.foodSpawnTime = gameMode.getBaseFoodSpawnTime();
     }
-    
+
+    public int getFoodSpawnTime() {
+        return foodSpawnTime;
+    }
+
+    public void setFoodSpawnTime(int foodSpawnTime) {
+        this.foodSpawnTime = foodSpawnTime;
+    }
 }

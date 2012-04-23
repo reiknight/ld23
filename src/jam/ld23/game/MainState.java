@@ -100,8 +100,6 @@ public class MainState extends ManagedGameState {
         
         //Add food factory entity
         em.addEntity(C.Entities.FOOD_FACTORY.name, new FoodFactory());
-        
-        this.restart();
     }
     
     @Override
