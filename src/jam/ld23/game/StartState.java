@@ -17,7 +17,6 @@ public class StartState extends ManagedGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         super.init(gc, game);
-        evm.addEvent(C.Events.NEXT_STATE.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ENTER));
         tm.addTexture(C.Textures.START_BACKGROUND.name, C.Textures.START_BACKGROUND.path);
         background = tm.getTexture(C.Textures.START_BACKGROUND.name);
     }
@@ -33,13 +32,6 @@ public class StartState extends ManagedGameState {
         background.draw(0, 0);
         g.setColor(Color.black);
         g.drawString("press <ENTER> to continue", 300, 300);
-        g.drawString("programmed by", 600, 350);
-        g.drawString("@ReikVal", 600, 370);
-        g.drawString("@ultrayoshi", 600, 390);
-        g.drawString("designed by", 600, 430);
-        g.drawString("@_Dreisa_", 600, 450);
-        g.drawString("special thanks", 600, 490);
-        g.drawString("@hmudarra_", 600, 510);
     }
 
     @Override

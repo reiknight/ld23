@@ -29,6 +29,8 @@ public abstract class ManagedGameState extends BasicGameState {
         this.stateID = stateID;
         //Close window
         evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
+        //Next game state
+        evm.addEvent(C.Events.NEXT_STATE.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ENTER));
     }
     
     @Override
