@@ -64,8 +64,6 @@ public class StartState extends ManagedGameState {
         super.render(gc, game, g);
         em.setGameState(C.States.START_STATE.name);
         background.draw(0, 0);
-        g.setColor(Color.black);
-        g.drawString("press <ENTER> to continue", 300, 300);
         em.render(gc, g);
         CrossHair crosshair = (CrossHair) em.getEntity(C.Entities.CROSSHAIR.name);
         crosshair.render(gc, g);

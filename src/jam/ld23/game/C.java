@@ -247,9 +247,9 @@ public class C {
     }
     
     public static enum Buttons {
-        START_GAME(Textures.BUTTON_0.name, "Start", new Vector2f(600, 100), new Vector2f(45, 25)),
-        INSTRUCTIONS(Textures.BUTTON_1.name, "Instructions", new Vector2f(600, 175), new Vector2f(15, 25)),
-        CREDITS(Textures.BUTTON_2.name, "Credits", new Vector2f(600, 250), new Vector2f(40, 25));
+        START_GAME(Textures.BUTTON_0.name, "Start", new Vector2f(600, 175), new Vector2f(45, 25)),
+        INSTRUCTIONS(Textures.BUTTON_1.name, "Instructions", new Vector2f(600, 250), new Vector2f(15, 25)),
+        CREDITS(Textures.BUTTON_2.name, "Credits", new Vector2f(600, 325), new Vector2f(40, 25));
         
         public String textureName;
         public String label;
