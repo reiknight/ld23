@@ -17,7 +17,7 @@ public class Player extends Sprite implements Serializable {
     //Characteristics
     private int life;
     private int bombs;
-    private int continues = -1;
+    private int continues;
     
     //Player speed
     private float speed = (Float) C.Logic.PLAYER_SPEED.data;
@@ -140,8 +140,13 @@ public class Player extends Sprite implements Serializable {
         LogicManager lm = LogicManager.getInstance();
         this.life = lm.getGameMode().getLife();
         this.bombs = lm.getGameMode().getBombs();
-        if(this.continues < 0) {
+        if(lm.isGameOver()) {
+            lm.setGameOver(false);
             this.continues = lm.getGameMode().getContinues();
+            if(lm.getScore() > lm.getHighScore()) {
+                lm.setHighScore(lm.getScore());
+            }
+            lm.setScore(0);
         }
         this.dead = false;
         image = originalImage;

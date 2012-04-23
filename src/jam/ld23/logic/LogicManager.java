@@ -7,8 +7,10 @@ public class LogicManager {
     private static LogicManager lm;
     
     private int score = 0;
+    private int highscore = 0;
     private C.GameModes gameMode;
     private int foodSpawnTime;
+    private boolean gameover = true;
     
     private LogicManager() {
         
@@ -28,6 +30,18 @@ public class LogicManager {
     public int getScore() {
         return score;
     }
+    
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+    public int getHighScore() {
+        return highscore;
+    }
+    
+    public void setHighScore(int highscore) {
+        this.highscore = highscore;
+    }
 
     public C.GameModes getGameMode() {
         return gameMode;
@@ -44,5 +58,13 @@ public class LogicManager {
 
     public void setFoodSpawnTime(int foodSpawnTime) {
         this.foodSpawnTime = foodSpawnTime;
+    }
+    
+    public boolean isGameOver() {
+        return gameover;
+    }
+    
+    public void setGameOver(boolean gameover) {
+        this.gameover = gameover;
     }
 }

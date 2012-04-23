@@ -180,6 +180,9 @@ public class MainState extends ManagedGameState {
             if(player.isDead()) {
                 ((ManagedGameState)game.getState(C.States.GAME_OVER_STATE.value)).restart();
                 player.addContinue(-1);
+                if(player.getContinues() < 0) {
+                    lm.setGameOver(true);
+                }
                 game.enterState(C.States.GAME_OVER_STATE.value, new FadeOutTransition(), new FadeInTransition());
             }
         } 

@@ -18,6 +18,8 @@ public class GameOverState extends ManagedGameState {
         em.setGameState(C.States.GAME_OVER_STATE.name);
         //Add music and sounds
         sm.addSound(C.Sounds.GAME_OVER.name, C.Sounds.GAME_OVER.path);
+        //Add background
+        tm.addTexture(C.Textures.GAME_OVER_BACKGROUND.name, C.Textures.GAME_OVER_BACKGROUND.path);
     }
 
     @Override
@@ -31,8 +33,17 @@ public class GameOverState extends ManagedGameState {
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
         super.render(gc, game, g);
         em.setGameState(C.States.GAME_OVER_STATE.name);
+        
+        if(lm.isGameOver()) {
+            tm.getTexture(C.Textures.GAME_OVER_BACKGROUND.name).draw(0, 0);
+        }
+        else {
+            tm.getTexture(C.Textures.GAME_OVER_BACKGROUND.name).draw(0, 0);
+        }
         g.setColor(Color.white);
-        g.drawString("press <ENTER> to continue", 300, 300);
+        g.drawString("Highscore: " + lm.getHighScore(), 280, 100);
+        g.drawString("Score: " + lm.getScore(), 280, 120);
+        g.drawString("press <ENTER> to continue", 280, 500);
     }
 
     @Override
