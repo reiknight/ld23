@@ -8,12 +8,12 @@ public class GameOptions implements Serializable {
     private static GameOptions gameOptions;
     
     //Game options:
-    private GameMode gameMode;
+    private C.GameModes gameMode;
     private float musicVolume;
     private float effectVolume;
 
     private GameOptions() {
-        gameMode = GameMode.NORMAL_MODE;
+        gameMode = C.GameModes.NORMAL_MODE;
     }
     
     public static GameOptions getInstance() {
@@ -31,11 +31,11 @@ public class GameOptions implements Serializable {
         this.effectVolume = effectVolume;
     }
 
-    public GameMode getGameMode() {
+    public C.GameModes getGameMode() {
         return gameMode;
     }
 
-    public void setGameMode(GameMode gameMode) {
+    public void setGameMode(C.GameModes gameMode) {
         this.gameMode = gameMode;
     }
 
