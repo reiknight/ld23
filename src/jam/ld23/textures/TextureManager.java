@@ -14,7 +14,7 @@ public class TextureManager {
     
     //Private constructor
     private TextureManager() {
-        textures = new HashMap<>();
+        textures = new HashMap();
     }
     
     //Getter

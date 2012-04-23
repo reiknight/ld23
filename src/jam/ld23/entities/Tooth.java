@@ -15,7 +15,7 @@ public class Tooth extends Sprite {
     private boolean decayed;
     
     //Handle reload time
-    private int reload_time = (int) C.Logic.TOOTH_RELOAD_TIME.data;
+    private int reload_time = (Integer) C.Logic.TOOTH_RELOAD_TIME.data;
     private int reload_timer = 0;
     
     //Tooth decay image
@@ -61,7 +61,9 @@ public class Tooth extends Sprite {
             Bullet bullet = (Bullet) bullets.get(i);
             if(pm.testCollisionsEntity(this, bullet)) {
                 //TODO: esto solo es para hacer pruebas
-                decayed = !decayed;
+                if(decayed) {
+                    decayed = !decayed;
+                }
                 em.removeEntity(bullet.getName());
             }
         }

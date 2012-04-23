@@ -61,12 +61,6 @@ public class C {
         FOOD_SMALL("food" + Size.SMALL),
         FOOD_NORMAL("food" + Size.NORMAL),
         FOOD_BIG("food" + Size.BIG),
-//        FOOD_SMALL_1("food" + Size.SMALL+"1"),
-//        FOOD_NORMAL_1("food" + Size.NORMAL+"1"),
-//        FOOD_BIG_1("food" + Size.BIG+"1"),
-//        FOOD_SMALL_2("food" + Size.SMALL+"2"),
-//        FOOD_NORMAL_2("food" + Size.NORMAL+"2"),
-//        FOOD_BIG_2("food" + Size.BIG+"2"),
         MOUTHWASH("mouthwash"),              
         CROSSHAIR("crosshair"),
         BULLET("bullet"),
@@ -93,7 +87,8 @@ public class C {
         BULLETS("bullets"),
         ENEMY_BULLETS("enemy_bullets"),
         FOOD("food"),
-        TEETH("teeth");
+        TEETH("teeth"),
+        ENEMY("enemies");
         
         public String name;
 
@@ -159,10 +154,12 @@ public class C {
     
     public static enum Logic {
         PLAYER_SPEED((float)0.5),
-        PLAYER_RELOAD_TIME(500),
+        PLAYER_RELOAD_TIME(200),
         BULLET_SPEED((float)0.5),
         ENEMY_BULLET_DAMAGE(1),
-        TOOTH_RELOAD_TIME(500);
+        ENEMY_DAMAGE(2),
+        TOOTH_RELOAD_TIME(1000),
+        FOOD_RELOAD_TIME(2000);
         
         public Object data;
         

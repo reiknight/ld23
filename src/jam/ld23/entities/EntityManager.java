@@ -14,9 +14,9 @@ public class EntityManager {
     private HashMap<String,Entity> entitiesToRemove;
     
     private EntityManager() {
-        entities = new HashMap<>();
-        entitiesToAdd = new HashMap<>();
-        entitiesToRemove = new HashMap<>();
+        entities = new HashMap();
+        entitiesToAdd = new HashMap();
+        entitiesToRemove = new HashMap();
     }
     
     //Getter of the instance
@@ -99,7 +99,7 @@ public class EntityManager {
     }
 
     public ArrayList<Entity> getEntityGroup(String name) {
-        ArrayList<Entity> result = new ArrayList<>();
+        ArrayList<Entity> result = new ArrayList<Entity>();
         
         Collection c = entities.values();
         Iterator itr = c.iterator();

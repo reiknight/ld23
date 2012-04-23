@@ -13,6 +13,7 @@ public class CrossHair extends Sprite {
         autoRender = false;
     }
     
+    @Override
     public void update(GameContainer gc, int delta) {
         EventManager em = EventManager.getInstance();
         if(em.isHappening(C.Events.CROSSHAIR_MOVED.name, gc)) {

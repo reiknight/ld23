@@ -14,8 +14,8 @@ public class SoundManager {
     
     //Private constructor
     private SoundManager() {
-        sounds = new HashMap<>();
-        musics = new HashMap<>();
+        sounds = new HashMap();
+        musics = new HashMap();
     }
     
     //Getter

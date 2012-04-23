@@ -22,7 +22,7 @@ public class Player extends Sprite implements Serializable {
     private int continues;
     
     //Player speed
-    private float speed = (float) C.Logic.PLAYER_SPEED.data;
+    private float speed = (Float) C.Logic.PLAYER_SPEED.data;
     
     private int rotation = 0;
     private transient Image originalImage;
@@ -75,11 +75,16 @@ public class Player extends Sprite implements Serializable {
         float oldY = y;
         
         //Check if we received a bullet
-        ArrayList<Entity> bullets = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
-        for(int i = 0; i < bullets.size(); i++) {
-            Bullet bullet = (Bullet) bullets.get(i);
-            if(pm.testCollisionsEntity(this, bullet)) {
-                life -= (int) C.Logic.ENEMY_BULLET_DAMAGE.data;
+        ArrayList<Entity> entitiesToCollide = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
+        entitiesToCollide.addAll(em.getEntityGroup(C.Groups.ENEMY.name));
+        for(int i = 0; i < entitiesToCollide.size(); i++) {
+            Entity entityToCollide = entitiesToCollide.get(i);
+            if(pm.testCollisionsEntity(this, entityToCollide)) {
+                if(entityToCollide instanceof Bullet) {
+                    life -= (Integer) C.Logic.ENEMY_BULLET_DAMAGE.data;
+                } else if(entityToCollide instanceof Enemy) {
+                    life -= (Integer) C.Logic.ENEMY_DAMAGE.data;
+                }
                 if(life == 0){
                     gc.exit();
                 }
@@ -87,7 +92,7 @@ public class Player extends Sprite implements Serializable {
                 image = originalImage.getScaledCopy(scale);
                 setWidth(image.getWidth());
                 setHeight(image.getHeight());
-                em.removeEntity(bullet.getName());
+                em.removeEntity(entityToCollide.getName());
             }
         }
         

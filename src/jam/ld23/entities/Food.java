@@ -3,7 +3,6 @@ package jam.ld23.entities;
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.physics.PhysicsManager;
-import jam.ld23.sounds.SoundManager;
 import java.util.ArrayList;
 import java.util.Random;
 import org.newdawn.slick.GameContainer;
@@ -12,14 +11,17 @@ import org.newdawn.slick.geom.Vector2f;
 public class Food extends Sprite {
 
     private Size size;
-    private float speed = (float) 0.1;
+    private float speed = 0.1F;
     private static int idBig = 0;
     private static int idNormal = 0;
     private static int idSmall = 0;
     private static Random rand;
     private float rotatingSpeed;
-    private Vector2f direction;
     private int type;
+
+    //Handle reload time
+    private int reload_time = (Integer) C.Logic.FOOD_RELOAD_TIME.data;
+    private int reload_timer = 0;
 
     //Initialize block for the two constructors
     static {
@@ -28,7 +30,7 @@ public class Food extends Sprite {
     
     {
         rotatingSpeed = (rand.nextInt(20) - 10) * .01F;
-        setPosition(new Vector2f(C.SCREEN_WIDTH, rand.nextFloat() * C.SCREEN_HEIGHT));
+        setPosition(new Vector2f(C.SCREEN_WIDTH,C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y)));
         group = C.Groups.FOOD.name;
     }
 
@@ -69,7 +71,6 @@ public class Food extends Sprite {
         super.update(gc, delta);
         EntityManager em = EntityManager.getInstance();
         EventManager evm = EventManager.getInstance();
-        SoundManager sm = SoundManager.getInstance();
         PhysicsManager pm = PhysicsManager.getInstance();
 
         //Food movement
@@ -98,6 +99,17 @@ public class Food extends Sprite {
             player.setPosition(new Vector2f(x - player.getWidth(), player.getY()));
         }
 
+        //Spawning enemies
+        reload_timer += delta;
+        if(reload_timer > reload_time) {
+            Enemy enemy = new Enemy();
+            enemy.setPosition(new Vector2f(x,y));
+            enemy.setGroup(C.Groups.ENEMY.name);
+            enemy.setTexture(C.Textures.ENEMY.name);
+            em.addFutureEntity(enemy.name, enemy);
+            reload_timer = 0;
+        }
+
     }
 
     private void spawnEntities() {
@@ -106,18 +118,18 @@ public class Food extends Sprite {
         switch(size) {
             case BIG:
                 f1 = new Food(Size.NORMAL,type);
-                f1.setPosition(new Vector2f(getX(),getY()-10));
+                f1.setPosition(new Vector2f(getX()+25,getY()-25));
                 em.addFutureEntity(f1.getName(),f1);
                 f2 = new Food(Size.NORMAL,type);
-                f2.setPosition(new Vector2f(getX(),getY()+10));
+                f2.setPosition(new Vector2f(getX()+25,getY()+25));
                 em.addFutureEntity(f2.getName(),f2);
                 break;
             case NORMAL:
                 f1 = new Food(Size.SMALL,type);
-                f1.setPosition(new Vector2f(getX(),getY()-10));
+                f1.setPosition(new Vector2f(getX()+25,getY()-25));
                 em.addFutureEntity(f1.getName(),f1);
                 f2 = new Food(Size.SMALL,type);
-                f2.setPosition(new Vector2f(getX(),getY()+10));
+                f2.setPosition(new Vector2f(getX()+25,getY()+25));
                 em.addFutureEntity(f2.getName(),f2);
                 break;
         }
