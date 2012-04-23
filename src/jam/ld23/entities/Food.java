@@ -13,9 +13,7 @@ public class Food extends Sprite {
 
     private Size size;
     private float speed = 0.1F;
-    private static int idBig = 0;
-    private static int idNormal = 0;
-    private static int idSmall = 0;
+    private static int id = 0;
     private static Random rand;
     private float rotatingSpeed;
     private int type;
@@ -25,49 +23,26 @@ public class Food extends Sprite {
     private int reload_time = (Integer) C.Logic.FOOD_RELOAD_TIME.data;
     private int reload_timer = 0;
 
-    //Initialize block for the two constructors
-    static {
-        rand = new Random();
-    }
-    
-    {
-        rotatingSpeed = (rand.nextInt(20) - 10) * .01F;
-        setPosition(new Vector2f(C.SCREEN_WIDTH,C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y + this.getWidth())));
-        group = C.Groups.FOOD.name;
-        direction = new Vector2f(-1,0);
-    }
-
-    public Food() {
-        type = rand.nextInt(3);
-        String texture = C.Textures.valueOf(C.Entities.FOOD_NORMAL.name + type).name;
-        size = Size.NORMAL;
-        name = C.Entities.FOOD_NORMAL.name + idNormal++;
-        this.setTexture(texture);
-    }
-
-    public Food(Size size) {
-        this(size,rand.nextInt(3));
-    }
-    
-    public Food(Size size, int type) {
+    public Food(int type, Size size) {
+        this.rand = new Random();
         this.type = type;
-        String texture = C.Textures.valueOf("FOOD_" + size + "_" + type).name;
+        this.size = size;
         switch (size) {
             case SMALL:
-                name = C.Entities.FOOD_SMALL.name + idSmall++;
+                name = C.Entities.FOOD_SMALL.name + id++;
                 break;
             case NORMAL:
-                name = C.Entities.FOOD_NORMAL.name + idNormal++;
+                name = C.Entities.FOOD_NORMAL.name + id++;
                 break;
             case BIG:
-                name = C.Entities.FOOD_BIG.name + idBig++;
+                name = C.Entities.FOOD_BIG.name + id++;
                 break;
         }
-        this.size = size;
-        this.setTexture(texture);
+        this.name = name;
+        this.group = C.Groups.FOOD.name;
+        this.direction = new Vector2f(-1,0);
+        this.setTexture(C.Textures.valueOf("FOOD_" + size + "_" + type).name);
     }
-    
-    
 
     @Override
     public void update(GameContainer gc, int delta) {
@@ -119,30 +94,34 @@ public class Food extends Sprite {
         }
 
     }
+    
+    public void setRotatingSpeed(float rotatingSpeed) {
+        this.rotatingSpeed = rotatingSpeed;
+    }
 
     private void spawnEntities() {
         EntityManager em = EntityManager.getInstance();
         Food f1,f2;
         switch(size) {
             case BIG:
-                f1 = new Food(Size.NORMAL,type);
+                f1 = new Food(type, Size.NORMAL);
                 f1.setPosition(new Vector2f(getX()+25,getY()-25));
                 f1.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
                 f1.direction.normalise();
                 em.addFutureEntity(f1.getName(),f1);
-                f2 = new Food(Size.NORMAL,type);
+                f2 = new Food(type, Size.NORMAL);
                 f2.setPosition(new Vector2f(getX()+25,getY()+25));
                 f2.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
                 f2.direction.normalise();
                 em.addFutureEntity(f2.getName(),f2);
                 break;
             case NORMAL:
-                f1 = new Food(Size.SMALL,type);
+                f1 = new Food(type, Size.SMALL);
                 f1.setPosition(new Vector2f(getX()+25,getY()-25));
                 f1.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
                 f1.direction.normalise();
                 em.addFutureEntity(f1.getName(),f1);
-                f2 = new Food(Size.SMALL,type);
+                f2 = new Food(type, Size.SMALL);
                 f2.setPosition(new Vector2f(getX()+25,getY()+25));
                 f2.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
                 f2.direction.normalise();

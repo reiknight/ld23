@@ -5,6 +5,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class C {
     public static final boolean DEBUG_MODE = true;
+    public static final boolean GOD_MODE = true;
     public static final int SCREEN_HEIGHT = 600;
     public static final int SCREEN_WIDTH = 800;
     
@@ -87,7 +88,8 @@ public class C {
         TOOTH_TOP_1("tooth_top_1"),
         TOOTH_TOP_2("tooth_top_2"),
         TOOTH_TOP_3("tooth_top_3"),
-        TOOTH_TOP_4("tooth_top_4");
+        TOOTH_TOP_4("tooth_top_4"),
+        FOOD_FACTORY("food_factory");
 
         public String name;
 

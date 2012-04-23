@@ -98,6 +98,9 @@ public class MainState extends ManagedGameState {
         em.addEntity(C.Entities.TOOTH_TOP_4.name, 
                 new Tooth(C.Positions.TOOTH_TOP_4.position, C.Dimensions.TOOTH_TOP_4.dimension));   
         
+        //Add food factory entity
+        em.addEntity(C.Entities.FOOD_FACTORY.name, new FoodFactory());
+        
         this.restart();
     }
     
@@ -122,13 +125,6 @@ public class MainState extends ManagedGameState {
             Tooth tooth = (Tooth)teeth.get(i);
             tooth.setDecayed(false);
         }
-        
-        //Add demo food
-        Food f1,f2,f3,f4;
-        em.addEntity((f1 = new Food(Size.BIG)).getName(), f1);
-        em.addEntity((f2 = new Food(Size.SMALL)).getName(), f2);
-        em.addEntity((f3 = new Food(Size.NORMAL)).getName(), f3);
-        em.addEntity((f4 = new Food(Size.SMALL)).getName(), f4);
     }
     
     @Override

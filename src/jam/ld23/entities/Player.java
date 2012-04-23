@@ -78,9 +78,9 @@ public class Player extends Sprite implements Serializable {
         for(int i = 0; i < entitiesToCollide.size(); i++) {
             Entity entityToCollide = entitiesToCollide.get(i);
             if(pm.testCollisionsEntity(this, entityToCollide)) {
-                if(entityToCollide instanceof Bullet) {
+                if(entityToCollide instanceof Bullet && !C.GOD_MODE) {
                     life -= (Integer) C.Logic.ENEMY_BULLET_DAMAGE.data;
-                } else if(entityToCollide instanceof Enemy) {
+                } else if(entityToCollide instanceof Enemy  && !C.GOD_MODE) {
                     life -= (Integer) C.Logic.ENEMY_DAMAGE.data;
                 }
                 if(life == 0){
