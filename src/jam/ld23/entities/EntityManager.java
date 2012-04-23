@@ -71,10 +71,6 @@ public class EntityManager {
         return false;
     }
     
-    public void removeEntities() {
-        entitiesToRemove = new HashMap<String,HashMap<String,Entity>>(entities);
-    }
-    
     public void render(GameContainer gc, Graphics g) {
         Collection c = entities.get(this.gameState).values();
         Iterator itr = c.iterator();
@@ -131,10 +127,6 @@ public class EntityManager {
                 this.removeEntity(entity.name);
             }
         }
-    }
-    
-    public void setEntities(HashMap entities) {
-        this.entities = entities;
     }
 
     public void forceRemoval() {

@@ -1,8 +1,7 @@
 package jam.ld23.game;
 
-import jam.ld23.entities.EntityManager;
+import jam.ld23.entities.Player;
 import java.io.*;
-import java.util.HashMap;
 
 public class SaveManager {
     
@@ -22,8 +21,7 @@ public class SaveManager {
         return saveManager;
     }
     
-    public void saveGame() {
-        EntityManager em = EntityManager.getInstance();
+    public void saveGame(GameOptions gm, Player pc) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
@@ -34,10 +32,11 @@ public class SaveManager {
                 f.delete();
             }
             
-            fos = new FileOutputStream(f,true);
+            fos = new FileOutputStream(f, true);
             oos = new ObjectOutputStream(fos);
             
-            oos.writeObject(em.getEntities());           
+            oos.writeObject(gm);
+            oos.writeObject(pc);            
         } catch(FileNotFoundException fnfe) {
             System.out.println(fnfe.getMessage());
         } catch(IOException ioe) {
@@ -58,8 +57,7 @@ public class SaveManager {
         
     }
     
-    public void loadGame() {
-        EntityManager em = EntityManager.getInstance();
+    public void loadGame(GameOptions gm, Player pc) {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
@@ -67,9 +65,11 @@ public class SaveManager {
             
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
-            em.removeEntities();
-            em.forceRemoval();
-            em.setEntities((HashMap<String,HashMap<String,Entity>>)ois.readObject());
+            
+            
+            gm.setGameMode(((GameOptions)ois.readObject()).getGameMode());
+            Player playerLoaded = (Player) ois.readObject();
+            pc.setState(playerLoaded);
             
             
         } catch(ClassNotFoundException cnfe) {
