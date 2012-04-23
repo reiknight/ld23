@@ -31,7 +31,7 @@ public class Food extends Sprite {
     
     {
         rotatingSpeed = (rand.nextInt(20) - 10) * .01F;
-        setPosition(new Vector2f(C.SCREEN_WIDTH,C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y - this.getWidth())));
+        setPosition(new Vector2f(C.SCREEN_WIDTH,C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y + this.getWidth())));
         group = C.Groups.FOOD.name;
         direction = new Vector2f(-1,0);
     }
