@@ -10,8 +10,6 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
  
 public class MainState extends ManagedGameState {
-    private Image mouth;
-    private Image teeth;
     private boolean paused = false;
     
     public MainState(int stateID)
@@ -57,17 +55,12 @@ public class MainState extends ManagedGameState {
         tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
         tm.addTexture(C.Textures.TEETH.name, C.Textures.TEETH.path);
         tm.addTexture(C.Textures.TOOTH_DECAY.name, C.Textures.TOOTH_DECAY.path);
+        tm.addTexture(C.Textures.SCORE.name, C.Textures.SCORE.path);
+        tm.addTexture(C.Textures.HEART.name, C.Textures.HEART.path);
         
         //Add music and sounds
         sm.addMusic(C.Sounds.MUSIC.name, C.Sounds.MUSIC.path);
         sm.addSound(C.Sounds.FIRE.name, C.Sounds.FIRE.path);
-
-        
-        //Add background
-        mouth = tm.getTexture(C.Textures.MOUTH.name);
-        
-        //Add deep effect
-        teeth = tm.getTexture(C.Textures.TEETH.name);
         
         //Add entities
         //Add player
@@ -133,9 +126,9 @@ public class MainState extends ManagedGameState {
         super.render(gc, game, g);
         LogicManager lm = LogicManager.getInstance();
         em.setGameState(C.States.MAIN_STATE.name);
-        mouth.draw(0, 0);
+        tm.getTexture(C.Textures.MOUTH.name).draw(0, 0);
         em.render(gc, g);
-        teeth.draw(0, 0);
+        tm.getTexture(C.Textures.TEETH.name).draw(0, 0);
         //Draw tooth decays after teeth
         ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
         for(int i = 0; i < teeth.size(); i++) {
@@ -149,7 +142,13 @@ public class MainState extends ManagedGameState {
             g.setColor(Color.black);
             g.drawString("- PAUSED - ", 350, 300);
         }
-        g.drawString("Score: " + lm.getScore(),gc.getWidth()/2 - 50,10);
+        tm.getTexture(C.Textures.SCORE.name).draw(320,0);
+        g.drawString("Score: " + lm.getScore(),gc.getWidth()/2 - 50,20);
+        
+        Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
+        for(int i = 0; i < player.getContinues(); i++) {
+            tm.getTexture(C.Textures.HEART.name).draw(750 - i * 40, 5);
+        }
     }
 
     @Override
@@ -179,6 +178,7 @@ public class MainState extends ManagedGameState {
             Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
             if(player.isDead()) {
                 ((ManagedGameState)game.getState(C.States.GAME_OVER_STATE.value)).restart();
+                player.addContinue(-1);
                 game.enterState(C.States.GAME_OVER_STATE.value, new FadeOutTransition(), new FadeInTransition());
             }
         } 

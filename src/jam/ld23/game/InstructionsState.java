@@ -39,7 +39,8 @@ public class InstructionsState extends ManagedGameState {
         g.drawString("Mouse move: Move crosshair", 550, 370);
         g.drawString("Mouse left button: Fire", 550, 390);
         g.drawString("Use bomb: Space", 550, 410);
-        g.drawString("Exit game: Esc", 550, 430);
+        g.drawString("P: Pause game", 550, 430);
+        g.drawString("Exit game: Esc", 550, 450);
     }
 
     @Override

@@ -68,7 +68,9 @@ public class C {
         TOOTH_DECAY("tooth_decay", "resources/tooth_decay.png"),
         BUTTON_0("button_0", "resources/menu1.png"),
         BUTTON_1("button_1", "resources/menu2.png"),
-        BUTTON_2("button_2", "resources/menu3.png");
+        BUTTON_2("button_2", "resources/menu3.png"),
+        SCORE("score", "resources/score.png"),
+        HEART("heart", "resources/heart.png");
 
         public String name;
         public String path;
