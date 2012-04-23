@@ -167,4 +167,16 @@ public class C {
             this.data = data;
         }
     }
+    
+    public static enum States {
+        START_STATE(1),
+        MAIN_STATE(2),
+        GAME_OVER_STATE(2);
+        
+        public int value;
+        
+        private States(int value) {
+            this.value = value;
+        }
+    }
 }

@@ -1,41 +1,30 @@
 package jam.ld23.game;
  
 import jam.ld23.entities.*;
-import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
-import jam.ld23.physics.PhysicsManager;
-import jam.ld23.sounds.SoundManager;
-import jam.ld23.textures.TextureManager;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
  
-public class Game extends BasicGame {
-    private EntityManager em;
-    private PhysicsManager pm;
-    private EventManager evm;
-    private TextureManager tm;
-    private SoundManager sm;
-    private SaveManager svm;
-    private GameOptions go;
+public class MainState extends BasicGameState implements GameState {
+    private int stateID = -1;
     private Image mouth;
     private Image teeth;
     
-    public Game()
+    public MainState(int stateID)
     {
-        super("Mothly's World - v0.1");
-        em = EntityManager.getInstance();
-        pm = PhysicsManager.getInstance();        
-        evm = EventManager.getInstance();
-        tm = TextureManager.getInstance();
-        sm = SoundManager.getInstance();
-        svm = SaveManager.getInstance();
-        go = GameOptions.getInstance();
+        this.stateID = stateID;
     }
- 
+
     @Override
-    public void init(GameContainer gc) throws SlickException {
+    public int getID() {
+        return this.stateID;
+    }
+
+    @Override
+    public void init(GameContainer container, StateBasedGame game) throws SlickException {
         //Register input events
         //Close window
         evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
@@ -118,12 +107,27 @@ public class Game extends BasicGame {
         em.addEntity(C.Entities.TOOTH_TOP_3.name, 
                 new Tooth(C.Positions.TOOTH_TOP_3.position, C.Dimensions.TOOTH_TOP_3.dimension));    
         em.addEntity(C.Entities.TOOTH_TOP_4.name, 
-                new Tooth(C.Positions.TOOTH_TOP_4.position, C.Dimensions.TOOTH_TOP_4.dimension));    
+                new Tooth(C.Positions.TOOTH_TOP_4.position, C.Dimensions.TOOTH_TOP_4.dimension));   
     }
- 
+
     @Override
-    public void update(GameContainer gc, int delta)
-    {
+    public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
+        mouth.draw(0, 0);
+        em.render(gc, g);
+        teeth.draw(0, 0);
+        //Draw tooth decays after teeth
+        ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
+        for(int i = 0; i < teeth.size(); i++) {
+            Tooth tooth = (Tooth)teeth.get(i);
+            tooth.render(gc, g);
+        }
+        //Draw crosshair over all entities
+        Entity crosshair = em.getEntity(C.Entities.CROSSHAIR.name);
+        crosshair.render(gc, g);
+    }
+
+    @Override
+    public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         if(evm.isHappening(C.Events.CLOSE_WINDOW.name, gc)) {
             gc.exit();
         }
@@ -138,30 +142,5 @@ public class Game extends BasicGame {
         em.update(gc, delta);
         //Updates all events
         evm.update(gc, delta);
-    }
- 
-    @Override
-    public void render(GameContainer gc, Graphics g) 
-    {
-        mouth.draw(0, 0);
-        em.render(gc, g);
-        teeth.draw(0, 0);
-        //Draw tooth decays after teeth
-        ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
-        for(int i = 0; i < teeth.size(); i++) {
-            Tooth tooth = (Tooth)teeth.get(i);
-            tooth.render(gc, g);
-        }
-        //Draw crosshair over all entities
-        Entity crosshair = em.getEntity(C.Entities.CROSSHAIR.name);
-        crosshair.render(gc, g);
-    }
- 
-    public static void main(String[] args) throws SlickException 
-    {
-         AppGameContainer app = new AppGameContainer(new Game());
-         app.setDisplayMode(C.SCREEN_WIDTH, C.SCREEN_HEIGHT, false);
-         app.setMouseGrabbed(true);
-         app.start();
     }
 }
