@@ -9,14 +9,25 @@ public class EntityManager {
     //Static instance from EntityManager
     private static EntityManager em;
     
-    private HashMap<String,Entity> entities;
-    private HashMap<String,Entity> entitiesToAdd;
-    private HashMap<String,Entity> entitiesToRemove;
+    private HashMap<String,HashMap<String,Entity>> entities;
+    private HashMap<String,HashMap<String,Entity>> entitiesToAdd;
+    private HashMap<String,HashMap<String,Entity>> entitiesToRemove;
+    
+    private String gameState;
     
     private EntityManager() {
         entities = new HashMap();
         entitiesToAdd = new HashMap();
         entitiesToRemove = new HashMap();
+    }
+    
+    public void setGameState(String gameState) {
+        if(!entities.containsKey(gameState)) {
+            this.entities.put(gameState, new HashMap());
+            this.entitiesToAdd.put(gameState, new HashMap());
+            this.entitiesToRemove.put(gameState, new HashMap());
+        }
+        this.gameState = gameState;
     }
     
     //Getter of the instance
@@ -28,40 +39,40 @@ public class EntityManager {
     }
     
     public Map<String,Entity> getEntities() {
-        return entities;
+        return entities.get(this.gameState);
     }
 
     public void clear() {
-        entities.clear();
-        entitiesToAdd.clear();
-        entitiesToRemove.clear();
+        entities.get(this.gameState).clear();
+        entitiesToAdd.get(this.gameState).clear();
+        entitiesToRemove.get(this.gameState).clear();
     }
     
     public void addEntity(String name, Entity entity) {
         entity.setName(name);
-        entities.put(name, entity);
+        entities.get(this.gameState).put(name, entity);
     }
     
     public void addFutureEntity(String name, Entity entity) {
         entity.setName(name);
-        entitiesToAdd.put(name, entity);
+        entitiesToAdd.get(this.gameState).put(name, entity);
     }
 
     public Entity getEntity(String name) {
-        return entities.get(name);
+        return entities.get(this.gameState).get(name);
     }
 
     public boolean removeEntity(String name) {
-        if(entities.containsKey(name)) {
-            Entity entity = entities.get(name);
-            entitiesToRemove.put(name, entity);
+        if(entities.get(this.gameState).containsKey(name)) {
+            Entity entity = entities.get(this.gameState).get(name);
+            entitiesToRemove.get(this.gameState).put(name, entity);
             return true;
         }
         return false;
     }
     
     public void render(GameContainer gc, Graphics g) {
-        Collection c = entities.values();
+        Collection c = entities.get(this.gameState).values();
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
             Entity entity = (Entity) itr.next();
@@ -76,7 +87,7 @@ public class EntityManager {
         Iterator itr;
         
         // Call update for each method
-        c = entities.values();
+        c = entities.get(this.gameState).values();
         itr = c.iterator();
         while(itr.hasNext()) {
             Entity entity = (Entity) itr.next();
@@ -86,8 +97,8 @@ public class EntityManager {
         }
         
         // Add new entities
-        entities.putAll(entitiesToAdd);
-        entitiesToAdd.clear();
+        entities.get(this.gameState).putAll(entitiesToAdd.get(this.gameState));
+        entitiesToAdd.get(this.gameState).clear();
         // Remove entitites marked as removed
         this.forceRemoval();
     }
@@ -95,7 +106,7 @@ public class EntityManager {
     public ArrayList<Entity> getEntityGroup(String name) {
         ArrayList<Entity> result = new ArrayList<Entity>();
         
-        Collection c = entities.values();
+        Collection c = entities.get(this.gameState).values();
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
             Entity entity = (Entity) itr.next();
@@ -108,7 +119,7 @@ public class EntityManager {
     }
 
     public void removeEntityGroup(String name) {
-        Collection c = entities.values();
+        Collection c = entities.get(this.gameState).values();
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
             Entity entity = (Entity) itr.next();
@@ -119,11 +130,11 @@ public class EntityManager {
     }
 
     public void forceRemoval() {
-        Collection c = entitiesToRemove.values();
+        Collection c = entitiesToRemove.get(this.gameState).values();
         Iterator itr = c.iterator();
         while(itr.hasNext()) {
-            entities.remove(((Entity)itr.next()).getName());
+            entities.get(this.gameState).remove(((Entity)itr.next()).getName());
         }
-        entitiesToRemove.clear();    
+        entitiesToRemove.get(this.gameState).clear();    
     }
 }

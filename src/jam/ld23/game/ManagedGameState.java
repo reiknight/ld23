@@ -27,6 +27,7 @@ public abstract class ManagedGameState extends BasicGameState {
 
     public ManagedGameState(int stateID) {
         this.stateID = stateID;
+        em.setGameState(C.States.BASE_STATE.name);
         //Close window
         evm.addEvent(C.Events.CLOSE_WINDOW.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_ESCAPE));
         //Next game state
@@ -40,10 +41,10 @@ public abstract class ManagedGameState extends BasicGameState {
     
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        
     }
     
     public void restart() {
-        
     }
     
     @Override

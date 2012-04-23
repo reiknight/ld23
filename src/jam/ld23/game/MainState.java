@@ -17,11 +17,13 @@ public class MainState extends ManagedGameState {
     public MainState(int stateID)
     {
         super(stateID);
+        em.setGameState(C.States.MAIN_STATE.name);
     }
 
     @Override
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         super.init(gc, game);
+        em.setGameState(C.States.MAIN_STATE.name);
         //Register input events
         //Player movement
         evm.addEvent(C.Events.MOVE_LEFT.name, new InputEvent(InputEvent.KEYBOARD, Input.KEY_A));
@@ -104,6 +106,7 @@ public class MainState extends ManagedGameState {
     
     @Override
     public void restart() {
+        em.setGameState(C.States.MAIN_STATE.name);
         //Set player's position and life
         Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
         player.revive();
@@ -128,6 +131,7 @@ public class MainState extends ManagedGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
         super.render(gc, game, g);
+        em.setGameState(C.States.MAIN_STATE.name);
         mouth.draw(0, 0);
         em.render(gc, g);
         teeth.draw(0, 0);
@@ -149,6 +153,7 @@ public class MainState extends ManagedGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         super.update(gc, game, delta);
+        em.setGameState(C.States.MAIN_STATE.name);
         //Updates all events
         evm.update(gc, delta);
         
@@ -171,6 +176,7 @@ public class MainState extends ManagedGameState {
             //If player dies change state to game over
             Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
             if(player.isDead()) {
+                ((ManagedGameState)game.getState(C.States.GAME_OVER_STATE.value)).restart();
                 game.enterState(C.States.GAME_OVER_STATE.value, new FadeOutTransition(), new FadeInTransition());
             }
         } 

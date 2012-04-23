@@ -58,7 +58,10 @@ public class C {
         ENEMY_BULLET("enemy_bullet", "resources/enemy_bullet.png"),
         MOUTH("mouth", "resources/mouth.jpg"),
         TEETH("teeth", "resources/teeth.png"),
-        TOOTH_DECAY("tooth_decay", "resources/tooth_decay.png");
+        TOOTH_DECAY("tooth_decay", "resources/tooth_decay.png"),
+        BUTTON_0("button_0", "resources/menu1.png"),
+        BUTTON_1("button_1", "resources/menu2.png"),
+        BUTTON_2("button_2", "resources/menu3.png");
 
         public String name;
         public String path;
@@ -89,7 +92,8 @@ public class C {
         TOOTH_TOP_2("tooth_top_2"),
         TOOTH_TOP_3("tooth_top_3"),
         TOOTH_TOP_4("tooth_top_4"),
-        FOOD_FACTORY("food_factory");
+        FOOD_FACTORY("food_factory"),
+        BUTTON("button");
 
         public String name;
 
@@ -103,7 +107,8 @@ public class C {
         ENEMY_BULLETS("enemy_bullets"),
         FOOD("food"),
         TEETH("teeth"),
-        ENEMIES("enemies");
+        ENEMIES("enemies"),
+        BUTTONS("buttons");
         
         public String name;
 
@@ -185,15 +190,18 @@ public class C {
     }
     
     public static enum States {
-        START_STATE(0),
-        MAIN_STATE(1),
-        GAME_OVER_STATE(2),
-        CREDITS_STATE(3),
-        INSTRUCTIONS_STATE(4);
+        BASE_STATE("Base", -1),
+        START_STATE("Start", 0),
+        MAIN_STATE("Main", 1),
+        GAME_OVER_STATE("GameOver", 2),
+        CREDITS_STATE("Credits", 3),
+        INSTRUCTIONS_STATE("Instructions", 4);
         
+        public String name;
         public int value;
         
-        private States(int value) {
+        private States(String name, int value) {
+            this.name = name;
             this.value = value;
         }
     }
@@ -229,6 +237,20 @@ public class C {
         
         public int getBaseFoodSpawnTime() {
             return baseFoodSpawnTime;
+        }
+    }
+    
+    public static enum Buttons {
+        START_GAME(Textures.BUTTON_0.name, "Start", new Vector2f(100, 100));
+        
+        public String textureName;
+        public String label;
+        public Vector2f position;
+        
+        Buttons(String textureName, String label, Vector2f position) {
+            this.textureName = textureName;
+            this.label = label;
+            this.position = position;
         }
     }
 }

@@ -12,21 +12,25 @@ public class InstructionsState extends ManagedGameState {
 
     public InstructionsState(int stateID) {
         super(stateID);
+        em.setGameState(C.States.INSTRUCTIONS_STATE.name);
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         super.init(gc, game);
+        em.setGameState(C.States.INSTRUCTIONS_STATE.name);
     }
 
     @Override
     public void restart() {
         super.restart();
+        em.setGameState(C.States.INSTRUCTIONS_STATE.name);
     }
     
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
         super.render(gc, game, g);
+        em.setGameState(C.States.INSTRUCTIONS_STATE.name);
         g.setColor(Color.white);
         g.drawString("You are the last defense for your host!", 100, 100);
         g.drawString("Use your fluorine skills to destroy all bacteries but", 100, 120);
@@ -44,7 +48,9 @@ public class InstructionsState extends ManagedGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         super.update(gc, game, delta);
+        em.setGameState(C.States.INSTRUCTIONS_STATE.name);
         if(evm.isHappening(C.Events.NEXT_STATE.name, gc)) {
+            ((ManagedGameState)game.getState(C.States.START_STATE.value)).restart();
             game.enterState(C.States.START_STATE.value, new FadeOutTransition(), new FadeInTransition());
         }
     }   
