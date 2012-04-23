@@ -79,17 +79,20 @@ public class Food extends Sprite {
         //Collision with the player
         Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
         if (pm.testCollisionsEntity(this, player)) {
+            float xPlayer = player.getX();
+            float yPlayer = player.getY();
             if (player.getX() + player.getWidth() >= x) {
-                if (player.getX()+player.getWidth()*(1F-1F/32F) < x) {
-                    player.setPosition(new Vector2f(x - player.getWidth(), player.getY()));
+                if (player.getX()+player.getWidth()*(1-1/4F) < x) {
+                    xPlayer = x - player.getWidth();
                 } else {
                     if (player.getY() < y) {
-                        player.setPosition(new Vector2f(player.getX(), y - player.getHeight()));
+                        yPlayer = y-player.getHeight();
                     } else if (player.getY() <= y + getHeight()) {
-                        player.setPosition(new Vector2f(player.getX(), y + getHeight()));
+                        yPlayer = y + getHeight();
                     }
                 }
             }
+            player.setPosition(new Vector2f(xPlayer,yPlayer));
         }
         
         //Remove if enemy is out of the screen

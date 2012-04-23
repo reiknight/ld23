@@ -38,7 +38,7 @@ public class MainState extends ManagedGameState {
         evm.addEvent(C.Events.SAVE_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_R));
         evm.addEvent(C.Events.LOAD_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
         evm.addEvent(C.Events.PAUSE_GAME.name, 
-                new InputEvent(InputEvent.KEYBOARD, Input.KEY_P, (int) C.Logic.SELECT_OPTION_DELAY.data));
+                new InputEvent(InputEvent.KEYBOARD, Input.KEY_P, (Integer) C.Logic.SELECT_OPTION_DELAY.data));
         
         //Add textures
         tm.addTexture(C.Textures.PLAYER.name, C.Textures.PLAYER.path);
