@@ -2,6 +2,7 @@ package jam.ld23.entities;
 
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
+import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
@@ -26,6 +27,7 @@ public class Enemy extends Sprite {
         EntityManager em = EntityManager.getInstance();
         EventManager evm = EventManager.getInstance();
         PhysicsManager pm = PhysicsManager.getInstance();
+        LogicManager lm = LogicManager.getInstance();
 
         float x = this.getX();
         float y = this.getY();
@@ -48,6 +50,7 @@ public class Enemy extends Sprite {
             if (pm.testCollisionsEntity(this, bullet)) {
                 em.removeEntity(bullet.getName());
                 em.removeEntity(this.getName());
+                lm.addScore(C.Scores.ENEMY.score);
             }
         }
 

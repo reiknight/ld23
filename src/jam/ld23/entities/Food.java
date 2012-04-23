@@ -2,6 +2,7 @@ package jam.ld23.entities;
 
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
+import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import java.util.Random;

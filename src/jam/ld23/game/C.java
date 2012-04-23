@@ -28,6 +28,16 @@ public class C {
         }
     }
     
+    public static enum Scores {
+        ENEMY(1);
+        
+        public int score;
+        
+        private Scores(int score) {
+            this.score = score;
+        }
+    }
+    
     public static enum Textures {
         START_BACKGROUND("start_background", "resources/inicio.jpg"),
         ENEMY("enemy", "resources/enemy.png"),    
