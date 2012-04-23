@@ -45,8 +45,13 @@ public class Tooth extends Sprite {
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
         if(decayed) {
-            toothDecay.draw(getCenter().x - toothDecay.getWidth() / 2, 
-                    getCenter().y - toothDecay.getHeight() / 2);
+            if(getY() < C.SCREEN_HEIGHT/2) {
+                toothDecay.draw(getCenter().x - toothDecay.getWidth() / 2, getY());
+            }
+            else {
+                toothDecay.draw(getCenter().x - toothDecay.getWidth() / 2,
+                        getY() + getHeight() - toothDecay.getHeight());
+            }
         }
     }
 
