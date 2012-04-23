@@ -5,22 +5,15 @@ import jam.ld23.events.InputEvent;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
  
-public class MainState extends BasicGameState implements GameState {
-    private int stateID = -1;
+public class MainState extends ManagedGameState {
     private Image mouth;
     private Image teeth;
     
     public MainState(int stateID)
     {
-        this.stateID = stateID;
-    }
-
-    @Override
-    public int getID() {
-        return this.stateID;
+        super(stateID);
     }
 
     @Override

@@ -18,7 +18,9 @@ public class MothlysWorld extends StateBasedGame {
     
     public MothlysWorld() {
         super("Mothly's World - v0.1");
+        this.addState(new StartState(C.States.START_STATE.value));
         this.addState(new MainState(C.States.MAIN_STATE.value));
+        this.addState(new GameOverState(C.States.GAME_OVER_STATE.value));
         this.enterState(C.States.MAIN_STATE.value);
     }
     
@@ -32,6 +34,8 @@ public class MothlysWorld extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
+        this.getState(C.States.START_STATE.value).init(gc, this);
         this.getState(C.States.MAIN_STATE.value).init(gc, this);
+        this.getState(C.States.GAME_OVER_STATE.value).init(gc, this);
     }
 }

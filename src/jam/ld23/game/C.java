@@ -169,8 +169,8 @@ public class C {
     }
     
     public static enum States {
-        START_STATE(1),
-        MAIN_STATE(2),
+        START_STATE(0),
+        MAIN_STATE(1),
         GAME_OVER_STATE(2);
         
         public int value;
