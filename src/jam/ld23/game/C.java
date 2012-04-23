@@ -29,6 +29,7 @@ public class C {
     }
     
     public static enum Textures {
+        START_BACKGROUND("start_background", "resources/inicio.jpg"),
         ENEMY("enemy", "resources/enemy.png"),    
         PLAYER("player", "resources/player.png"),
         FOOD_SMALL_0("foodSmall0", "resources/food" + Size.SMALL + "0.png"),
