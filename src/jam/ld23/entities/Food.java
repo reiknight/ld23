@@ -18,6 +18,7 @@ public class Food extends Sprite {
     private static Random rand;
     private float rotatingSpeed;
     private int type;
+    private Vector2f direction;
 
     //Handle reload time
     private int reload_time = (Integer) C.Logic.FOOD_RELOAD_TIME.data;
@@ -30,8 +31,9 @@ public class Food extends Sprite {
     
     {
         rotatingSpeed = (rand.nextInt(20) - 10) * .01F;
-        setPosition(new Vector2f(C.SCREEN_WIDTH,C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y)));
+        setPosition(new Vector2f(C.SCREEN_WIDTH,C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y - this.getWidth())));
         group = C.Groups.FOOD.name;
+        direction = new Vector2f(-1,0);
     }
 
     public Food() {
@@ -74,11 +76,9 @@ public class Food extends Sprite {
         PhysicsManager pm = PhysicsManager.getInstance();
 
         //Food movement
-        float x = getX();
-        float y = getY();
-        x -= speed * delta;
-        Vector2f v;
-        setPosition(v = new Vector2f(x, y));
+        float x = this.getX();
+        float y = this.getY();
+        addPosition(direction.normalise().scale(speed*delta));
 
         image.rotate(rotatingSpeed);
 
@@ -90,6 +90,15 @@ public class Food extends Sprite {
                 em.removeEntity(bullet.getName());
                 em.removeEntity(this.getName());
                 spawnEntities();
+            }
+        }
+        
+        //Testing Collisions with Teeth
+        ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
+        for (int i = 0; i < teeth.size(); i++) {
+            Entity tooth = teeth.get(i);
+            if (pm.testCollisionsEntity(this, tooth)) {
+                direction = new Vector2f(direction.x,-direction.y);
             }
         }
 
@@ -117,17 +126,25 @@ public class Food extends Sprite {
             case BIG:
                 f1 = new Food(Size.NORMAL,type);
                 f1.setPosition(new Vector2f(getX()+25,getY()-25));
+                f1.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f1.direction.normalise();
                 em.addFutureEntity(f1.getName(),f1);
                 f2 = new Food(Size.NORMAL,type);
                 f2.setPosition(new Vector2f(getX()+25,getY()+25));
+                f2.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f2.direction.normalise();
                 em.addFutureEntity(f2.getName(),f2);
                 break;
             case NORMAL:
                 f1 = new Food(Size.SMALL,type);
                 f1.setPosition(new Vector2f(getX()+25,getY()-25));
+                f1.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f1.direction.normalise();
                 em.addFutureEntity(f1.getName(),f1);
                 f2 = new Food(Size.SMALL,type);
                 f2.setPosition(new Vector2f(getX()+25,getY()+25));
+                f2.direction = new Vector2f(-(float)Math.random(),(float)Math.random());
+                f2.direction.normalise();
                 em.addFutureEntity(f2.getName(),f2);
                 break;
         }

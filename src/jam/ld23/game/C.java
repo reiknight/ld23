@@ -115,7 +115,7 @@ public class C {
 
     public static enum Positions {
         PLAYER(new Vector2f(0, 300)),
-        PLAYER_LIMIT_TOP(new Vector2f(0, 100)),
+        PLAYER_LIMIT_TOP(new Vector2f(0, 150)),
         PLAYER_LIMIT_BOTTOM(new Vector2f(0, 480)),
         PLAYER_LIMIT_RIGHT(new Vector2f(700, 0)),
         TOOTH_BOTTOM_0(new Vector2f(2, 490)),
