@@ -28,7 +28,6 @@ public class MothlysWorld extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        this.getState(C.States.START_STATE.value).init(gc, this);
         this.getState(C.States.MAIN_STATE.value).init(gc, this);
         this.getState(C.States.GAME_OVER_STATE.value).init(gc, this);
         this.getState(C.States.CREDITS_STATE.value).init(gc, this);
