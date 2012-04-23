@@ -55,6 +55,7 @@ public class MainState extends ManagedGameState {
         tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
         tm.addTexture(C.Textures.TEETH.name, C.Textures.TEETH.path);
         tm.addTexture(C.Textures.TOOTH_DECAY.name, C.Textures.TOOTH_DECAY.path);
+        tm.addTexture(C.Textures.TOOTH_DECAY_DEAD.name, C.Textures.TOOTH_DECAY_DEAD.path);
         tm.addTexture(C.Textures.SCORE.name, C.Textures.SCORE.path);
         tm.addTexture(C.Textures.HEART.name, C.Textures.HEART.path);
         

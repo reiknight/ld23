@@ -66,6 +66,7 @@ public class C {
         MOUTH("mouth", "resources/mouth.jpg"),
         TEETH("teeth", "resources/teeth.png"),
         TOOTH_DECAY("tooth_decay", "resources/tooth_decay.png"),
+        TOOTH_DECAY_DEAD("tooth_decay_dead", "resources/bacteriadiente2.png"),
         BUTTON_0("button_0", "resources/menu1.png"),
         BUTTON_1("button_1", "resources/menu2.png"),
         BUTTON_2("button_2", "resources/menu3.png"),
@@ -193,7 +194,8 @@ public class C {
         FOOD_RELOAD_TIME(2000),
         SELECT_OPTION_DELAY(500),
         FOOD_DIE_TIME(1000),
-        ENEMY_DIE_TIME(1000);
+        ENEMY_DIE_TIME(1000),
+        TOOTH_DECAY_DIE_TIME(1000);
         
         public Object data;
         
