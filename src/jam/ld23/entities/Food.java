@@ -86,12 +86,9 @@ public class Food extends Sprite {
             for (int i = 0; i < bullets.size(); i++) {
                 Bullet bullet = (Bullet) bullets.get(i);
                 if (pm.testCollisionsEntity(this, bullet)) {
-                    lm.addScore(score);
                     em.removeEntity(bullet.getName());
                     if(size == Size.SMALL) {
-                        setTexture(C.Textures.PLOP.name);
-                        dying = true;
-                        die_timer = 0;
+                        this.die();
                     }
                     else {
                         em.removeEntity(this.getName());
@@ -184,5 +181,12 @@ public class Food extends Sprite {
                 break;
         }
 
+    }
+    
+    public void die() {
+        LogicManager.getInstance().addScore(score);
+        setTexture(C.Textures.PLOP.name);
+        dying = true;
+        die_timer = 0;
     }
 }

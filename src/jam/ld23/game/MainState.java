@@ -35,7 +35,8 @@ public class MainState extends ManagedGameState {
         evm.addEvent(C.Events.LOAD_GAME.name, new InputEvent(InputEvent.KEYBOARD,Input.KEY_T));
         evm.addEvent(C.Events.PAUSE_GAME.name, 
                 new InputEvent(InputEvent.KEYBOARD, Input.KEY_P, (Integer) C.Logic.SELECT_OPTION_DELAY.data));
-        
+        evm.addEvent(C.Events.BOMB.name, 
+                new InputEvent(InputEvent.KEYBOARD, Input.KEY_SPACE, (Integer) C.Logic.BOMB_DELAY.data));
         //Add textures
         tm.addTexture(C.Textures.PLAYER.name, C.Textures.PLAYER.path);
         tm.addTexture(C.Textures.MOUTH.name, C.Textures.MOUTH.path);
@@ -156,6 +157,7 @@ public class MainState extends ManagedGameState {
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
         super.update(gc, game, delta);
         em.setGameState(C.States.MAIN_STATE.name);
+        Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
         //Updates all events
         evm.update(gc, delta);
         
@@ -171,12 +173,35 @@ public class MainState extends ManagedGameState {
             if(evm.isHappening(C.Events.LOAD_GAME.name,gc)) {
                 svm.loadGame(go,(Player)em.getEntity(C.Entities.PLAYER.name));
             }
+            
+            if(evm.isHappening(C.Events.BOMB.name, gc) && player.getBombs() > 0) {
+                player.addBomb(-1);
+                ArrayList<Entity> entitiesDestroyed;
+                entitiesDestroyed = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
+                for(int i = 0; i < entitiesDestroyed.size(); i++) {
+                    ((Bullet)entitiesDestroyed.get(i)).die();
+                }
+                entitiesDestroyed = em.getEntityGroup(C.Groups.ENEMIES.name);
+                for(int i = 0; i < entitiesDestroyed.size(); i++) {
+                    ((Enemy)entitiesDestroyed.get(i)).die();
+                }
+                entitiesDestroyed = em.getEntityGroup(C.Groups.FOOD.name);
+                for(int i = 0; i < entitiesDestroyed.size(); i++) {
+                    ((Food)entitiesDestroyed.get(i)).die();
+                }
+                ArrayList<Entity> teeth = em.getEntityGroup(C.Groups.TEETH.name);
+                for(int i = 0; i < teeth.size(); i++) {
+                    Tooth tooth = (Tooth)teeth.get(i);
+                    if(tooth.isDecayed()) {
+                        tooth.die();
+                    }
+                }
+            }
 
             //Updates all entities
             em.update(gc, delta);
 
             //If player dies change state to game over
-            Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
             if(player.isDead()) {
                 ((ManagedGameState)game.getState(C.States.GAME_OVER_STATE.value)).restart();
                 player.addContinue(-1);

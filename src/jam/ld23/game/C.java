@@ -21,7 +21,8 @@ public class C {
         LOAD_GAME("load_game"),
         NEXT_STATE("next_state"),
         PAUSE_GAME("pause_game"),
-        CLICK_BUTTON("click_button");
+        CLICK_BUTTON("click_button"),
+        BOMB("bomb");
         
         public String name;
 
@@ -194,6 +195,7 @@ public class C {
         TOOTH_RELOAD_TIME(2500),
         FOOD_RELOAD_TIME(2000),
         SELECT_OPTION_DELAY(500),
+        BOMB_DELAY(1000),
         FOOD_DIE_TIME(1000),
         ENEMY_DIE_TIME(1000),
         TOOTH_DECAY_DIE_TIME(1000);

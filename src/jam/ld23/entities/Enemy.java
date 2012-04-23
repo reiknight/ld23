@@ -58,7 +58,7 @@ public class Enemy extends Sprite {
                 Tooth tooth = (Tooth) teeth.get(i);
                 if(pm.testCollisionsEntity(this, tooth)) {
                     tooth.setDecayed(true);
-                    this.die();
+                    this.explode();
                 }
             }
 
@@ -68,7 +68,6 @@ public class Enemy extends Sprite {
                 Bullet bullet = (Bullet) bullets.get(i);
                 if (pm.testCollisionsEntity(this, bullet)) {
                     em.removeEntity(bullet.getName());
-                    lm.addScore(C.Scores.ENEMY.score);
                     this.die();
                 }
             }
@@ -87,10 +86,15 @@ public class Enemy extends Sprite {
         
     }
     
-    public void die() {
+    public void explode() {
         setTexture(C.Textures.PLOP.name);
         dying = true;
         die_timer = 0;        
+    }
+    
+    public void die() {
+        LogicManager.getInstance().addScore(C.Scores.ENEMY.score);
+        this.explode();
     }
 
 

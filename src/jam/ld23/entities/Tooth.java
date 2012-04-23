@@ -93,7 +93,6 @@ public class Tooth extends Sprite {
                     //TODO: esto solo es para hacer pruebas
                     if(decayed) {
                         this.die();
-                        lm.addScore(C.Scores.ENEMY_TOOTH.score);
                     }
                     em.removeEntity(bullet.getName());
                 }
@@ -114,6 +113,7 @@ public class Tooth extends Sprite {
     }
     
     public void die() {
+        LogicManager.getInstance().addScore(C.Scores.ENEMY_TOOTH.score);
         dying = true;
         die_timer = 0;        
     }

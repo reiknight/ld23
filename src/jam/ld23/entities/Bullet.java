@@ -43,4 +43,8 @@ public class Bullet extends Sprite {
           EntityManager.getInstance().removeEntity(name);        
         }
     }
+    
+    public void die() {
+        EntityManager.getInstance().removeEntity(name);
+    }
 }

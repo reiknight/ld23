@@ -161,4 +161,12 @@ public class Player extends Sprite implements Serializable {
     public void addContinue(int c) {
         continues += c;                
     }
+    
+    public int getBombs() {
+        return bombs;
+    }
+    
+    public void addBomb(int b) {
+        bombs += b;
+    }
 }
