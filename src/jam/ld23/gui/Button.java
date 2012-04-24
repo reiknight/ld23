@@ -5,6 +5,7 @@ import jam.ld23.entities.Sprite;
 import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
 import jam.ld23.game.C;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
@@ -26,6 +27,11 @@ public class Button extends Sprite {
     @Override
     public void render(GameContainer gc, Graphics g) {
         super.render(gc, g);
+        g.setColor(Color.black);
         g.drawString(label, getX() + labelPosition.x, getY() + labelPosition.y);
+    }
+
+    public void setAutoRendered(boolean b) {
+        autoRender = b;
     }
 }

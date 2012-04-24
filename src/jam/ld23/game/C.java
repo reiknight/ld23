@@ -4,8 +4,8 @@ import jam.ld23.entities.Size;
 import org.newdawn.slick.geom.Vector2f;
 
 public class C {
-    public static final boolean DEBUG_MODE = true;
-    public static final boolean GOD_MODE = true;
+    public static final boolean DEBUG_MODE = false;
+    public static final boolean GOD_MODE = false;
     public static final int SCREEN_HEIGHT = 600;
     public static final int SCREEN_WIDTH = 800;
     
@@ -270,7 +270,10 @@ public class C {
     public static enum Buttons {
         START_GAME(Textures.BUTTON_0.name, "Start", new Vector2f(600, 175), new Vector2f(45, 25)),
         INSTRUCTIONS(Textures.BUTTON_1.name, "Instructions", new Vector2f(600, 275), new Vector2f(15, 25)),
-        CREDITS(Textures.BUTTON_2.name, "Credits", new Vector2f(600, 375), new Vector2f(40, 25));
+        CREDITS(Textures.BUTTON_2.name, "Credits", new Vector2f(600, 375), new Vector2f(40, 25)),
+        EASY(Textures.BUTTON_0.name, "Easy", new Vector2f(600, 175), new Vector2f(45, 25)),
+        NORMAL(Textures.BUTTON_1.name, "Normal", new Vector2f(600, 275), new Vector2f(40, 25)),
+        HARD(Textures.BUTTON_2.name, "Hard", new Vector2f(600, 375), new Vector2f(45, 25));
         
         public String textureName;
         public String label;
