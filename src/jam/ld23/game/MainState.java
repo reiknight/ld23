@@ -58,6 +58,7 @@ public class MainState extends ManagedGameState {
         tm.addTexture(C.Textures.TOOTH_DECAY_DEAD.name, C.Textures.TOOTH_DECAY_DEAD.path);
         tm.addTexture(C.Textures.SCORE.name, C.Textures.SCORE.path);
         tm.addTexture(C.Textures.HEART.name, C.Textures.HEART.path);
+        tm.addTexture(C.Textures.BOMBS.name, C.Textures.BOMBS.path);
         tm.addTexture(C.Textures.ITEM.name, C.Textures.ITEM.path);
         
         //Add music and sounds
@@ -151,6 +152,9 @@ public class MainState extends ManagedGameState {
         Player player = (Player) em.getEntity(C.Entities.PLAYER.name);
         for(int i = 0; i < player.getContinues(); i++) {
             tm.getTexture(C.Textures.HEART.name).draw(750 - i * 40, 5);
+        }
+        for(int i = 0; i < player.getBombs(); i++) {
+            tm.getTexture(C.Textures.BOMBS.name).draw(720 - i * 40, 520);
         }
     }
 

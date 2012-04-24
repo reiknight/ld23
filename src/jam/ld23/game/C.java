@@ -75,7 +75,8 @@ public class C {
         BUTTON_2("button_2", "resources/menu3.png"),
         SCORE("score", "resources/score.png"),
         HEART("heart", "resources/heart.png"),
-        ITEM("item", "resources/item.png");
+        ITEM("item", "resources/item.png"),
+        BOMBS("bombs", "resources/bombitas.png");
 
         public String name;
         public String path;

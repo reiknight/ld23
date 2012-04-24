@@ -8,7 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class MothlysWorld extends StateBasedGame {
     
     public MothlysWorld() {
-        super("Mothly's World - v0.1");
+        super("Mothly's World - v1.0");
         this.addState(new StartState(C.States.START_STATE.value));
         this.addState(new MainState(C.States.MAIN_STATE.value));
         this.addState(new GameOverState(C.States.GAME_OVER_STATE.value));
