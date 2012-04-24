@@ -20,13 +20,16 @@ public class GameOverState extends ManagedGameState {
         sm.addSound(C.Sounds.GAME_OVER.name, C.Sounds.GAME_OVER.path);
         //Add background
         tm.addTexture(C.Textures.GAME_OVER_BACKGROUND.name, C.Textures.GAME_OVER_BACKGROUND.path);
+        tm.addTexture(C.Textures.CONTINUE_BACKGROUND.name, C.Textures.CONTINUE_BACKGROUND.path);
     }
 
     @Override
     public void restart() {
         super.restart();
         em.setGameState(C.States.GAME_OVER_STATE.name);
-        sm.playSound(C.Sounds.GAME_OVER.name);
+        if(lm.isGameOver()) {
+            sm.playSound(C.Sounds.GAME_OVER.name);
+        }
     }
         
     @Override
@@ -38,12 +41,12 @@ public class GameOverState extends ManagedGameState {
             tm.getTexture(C.Textures.GAME_OVER_BACKGROUND.name).draw(0, 0);
         }
         else {
-            tm.getTexture(C.Textures.GAME_OVER_BACKGROUND.name).draw(0, 0);
+            tm.getTexture(C.Textures.CONTINUE_BACKGROUND.name).draw(0, 0);
         }
         g.setColor(Color.white);
-        g.drawString("Highscore: " + lm.getHighScore(), 280, 100);
-        g.drawString("Score: " + lm.getScore(), 280, 120);
-        g.drawString("press <ENTER> to continue", 280, 500);
+        g.drawString("Highscore: " + lm.getHighScore(), 600, 100);
+        g.drawString("Score: " + lm.getScore(), 600, 120);
+        g.drawString("press <ENTER> to continue", 280, 550);
     }
 
     @Override
