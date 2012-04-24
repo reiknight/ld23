@@ -62,7 +62,7 @@ public class C {
         FOOD_BIG_2("foodBig2", "resources/food" + Size.BIG + "2.png"),
         PLOP("plop", "resources/plop.png"),
         MOUTHWASH("mouthwash", "resources/mouthwash.png"),
-        CROSSHAIR("crosshair", "resources/crosshair.png"),
+        CROSSHAIR("crosshair", "resources/cross2.png"),
         BULLET("bullet", "resources/bullet.png"),
         ENEMY_BULLET("enemy_bullet", "resources/enemy_bullet.png"),
         MOUTH("mouth", "resources/mouth.jpg"),
