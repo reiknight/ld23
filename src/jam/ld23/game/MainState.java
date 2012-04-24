@@ -144,6 +144,7 @@ public class MainState extends ManagedGameState {
             g.setColor(Color.black);
             g.drawString("- PAUSED - ", 350, 300);
         }
+        
         tm.getTexture(C.Textures.SCORE.name).draw(320,0);
         g.drawString("Score: " + lm.getScore(),gc.getWidth()/2 - 50,20);
         
@@ -176,7 +177,6 @@ public class MainState extends ManagedGameState {
             
             if(evm.isHappening(C.Events.BOMB.name, gc) && player.getBombs() > 0) {
                 player.addBomb(-1);
-                em.addFutureEntity(C.Entities.ITEM.name,new Item());
                 ArrayList<Entity> entitiesDestroyed;
                 entitiesDestroyed = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
                 for(int i = 0; i < entitiesDestroyed.size(); i++) {
