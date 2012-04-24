@@ -73,7 +73,8 @@ public class C {
         BUTTON_1("button_1", "resources/menu2.png"),
         BUTTON_2("button_2", "resources/menu3.png"),
         SCORE("score", "resources/score.png"),
-        HEART("heart", "resources/heart.png");
+        HEART("heart", "resources/heart.png"),
+        ITEM("item", "resources/item.png");
 
         public String name;
         public String path;
@@ -105,7 +106,8 @@ public class C {
         TOOTH_TOP_3("tooth_top_3"),
         TOOTH_TOP_4("tooth_top_4"),
         FOOD_FACTORY("food_factory"),
-        BUTTON("button");
+        BUTTON("button"),
+        ITEM("item");
 
         public String name;
 

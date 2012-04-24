@@ -53,12 +53,12 @@ public class MainState extends ManagedGameState {
         tm.addTexture(C.Textures.FOOD_NORMAL_2.name, C.Textures.FOOD_NORMAL_2.path);
         tm.addTexture(C.Textures.FOOD_BIG_2.name, C.Textures.FOOD_BIG_2.path);
         tm.addTexture(C.Textures.PLOP.name, C.Textures.PLOP.path);
-        tm.addTexture(C.Textures.MOUTHWASH.name, C.Textures.MOUTHWASH.path);
         tm.addTexture(C.Textures.TEETH.name, C.Textures.TEETH.path);
         tm.addTexture(C.Textures.TOOTH_DECAY.name, C.Textures.TOOTH_DECAY.path);
         tm.addTexture(C.Textures.TOOTH_DECAY_DEAD.name, C.Textures.TOOTH_DECAY_DEAD.path);
         tm.addTexture(C.Textures.SCORE.name, C.Textures.SCORE.path);
         tm.addTexture(C.Textures.HEART.name, C.Textures.HEART.path);
+        tm.addTexture(C.Textures.ITEM.name, C.Textures.ITEM.path);
         
         //Add music and sounds
         sm.addMusic(C.Sounds.MUSIC.name, C.Sounds.MUSIC.path);
@@ -176,6 +176,7 @@ public class MainState extends ManagedGameState {
             
             if(evm.isHappening(C.Events.BOMB.name, gc) && player.getBombs() > 0) {
                 player.addBomb(-1);
+                em.addFutureEntity(C.Entities.ITEM.name,new Item());
                 ArrayList<Entity> entitiesDestroyed;
                 entitiesDestroyed = em.getEntityGroup(C.Groups.ENEMY_BULLETS.name);
                 for(int i = 0; i < entitiesDestroyed.size(); i++) {
