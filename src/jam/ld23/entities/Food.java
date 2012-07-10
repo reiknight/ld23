@@ -1,9 +1,12 @@
 package jam.ld23.entities;
 
+import infinitedog.infinity.entities.Entity;
+import infinitedog.infinity.entities.EntityManager;
+import infinitedog.infinity.entities.Sprite;
+import infinitedog.infinity.physics.PhysicsManager;
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
-import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import java.util.Random;
 import org.newdawn.slick.GameContainer;
@@ -130,7 +133,7 @@ public class Food extends Sprite {
             if (reload_timer > reload_time) {
                 Enemy enemy = new Enemy();
                 enemy.setPosition(new Vector2f(x, y));
-                em.addFutureEntity(enemy.name, enemy);
+                em.addFutureEntity(enemy.getName(), enemy);
                 reload_timer = 0;
             }
         }

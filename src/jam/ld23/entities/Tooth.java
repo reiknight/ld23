@@ -1,9 +1,12 @@
 package jam.ld23.entities;
 
+import infinitedog.infinity.entities.Entity;
+import infinitedog.infinity.entities.EntityManager;
+import infinitedog.infinity.entities.Sprite;
+import infinitedog.infinity.physics.PhysicsManager;
+import infinitedog.infinity.textures.TextureManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
-import jam.ld23.physics.PhysicsManager;
-import infinitedog.infinite.textures.TextureManager;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -106,7 +109,7 @@ public class Tooth extends Sprite {
                 Bullet bullet = new Bullet(getCenter(), player.getCenter().sub(getCenter()).normalise());
                 bullet.setGroup(C.Groups.ENEMY_BULLETS.name);
                 bullet.setTexture(C.Textures.ENEMY_BULLET.name);
-                em.addFutureEntity(bullet.name, bullet);
+                em.addFutureEntity(bullet.getName(), bullet);
                 reload_timer = 0;
             }
         }

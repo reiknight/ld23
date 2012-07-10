@@ -1,5 +1,7 @@
 package jam.ld23.entities;
 
+import infinitedog.infinity.entities.Entity;
+import infinitedog.infinity.entities.EntityManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
 import java.util.Random;
@@ -31,6 +33,6 @@ public class FoodFactory extends Entity {
         food.setRotatingSpeed((rand.nextInt(20) - 10) * .01F);
         food.setPosition(new Vector2f(C.SCREEN_WIDTH,
                 C.Positions.PLAYER_LIMIT_TOP.position.y + rand.nextFloat() * (C.Positions.PLAYER_LIMIT_BOTTOM.position.y - C.Positions.PLAYER_LIMIT_TOP.position.y + this.getWidth())));
-        em.addFutureEntity(food.name, food);
+        em.addFutureEntity(food.getName(), food);
     }    
 }

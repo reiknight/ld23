@@ -1,9 +1,12 @@
 package jam.ld23.entities;
 
+import infinitedog.infinity.entities.Entity;
+import infinitedog.infinity.entities.EntityManager;
+import infinitedog.infinity.entities.Sprite;
+import infinitedog.infinity.physics.PhysicsManager;
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
-import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

@@ -12,7 +12,6 @@ public class GameTestSuite {
 
     public static TestSuite suite() {
       TestSuite suite = new TestSuite("Test for com.chuidiang.ejemplos");
-      suite.addTestSuite(EntityManagerTest.class);
       suite.addTestSuite(EventManagerTest.class);
       return suite;
     }

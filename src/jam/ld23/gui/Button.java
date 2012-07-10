@@ -1,7 +1,6 @@
 package jam.ld23.gui;
 
-import jam.ld23.entities.Entity;
-import jam.ld23.entities.Sprite;
+import infinitedog.infinity.entities.Sprite;
 import jam.ld23.events.EventManager;
 import jam.ld23.events.InputEvent;
 import jam.ld23.game.C;

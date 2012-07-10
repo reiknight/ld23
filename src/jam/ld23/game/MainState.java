@@ -1,5 +1,6 @@
 package jam.ld23.game;
  
+import infinitedog.infinity.entities.Entity;
 import jam.ld23.entities.*;
 import jam.ld23.events.InputEvent;
 import jam.ld23.logic.LogicManager;

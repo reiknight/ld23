@@ -1,11 +1,9 @@
 package jam.ld23.game;
 
 import jam.ld23.entities.CrossHair;
-import jam.ld23.entities.Entity;
 import jam.ld23.events.InputEvent;
 import jam.ld23.game.C.GameModes;
 import jam.ld23.gui.Button;
-import jam.ld23.physics.PhysicsManager;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;

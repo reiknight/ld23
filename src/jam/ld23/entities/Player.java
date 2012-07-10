@@ -1,10 +1,13 @@
 package jam.ld23.entities;
 
+import infinitedog.infinity.entities.Entity;
+import infinitedog.infinity.entities.EntityManager;
+import infinitedog.infinity.entities.Sprite;
+import infinitedog.infinity.physics.PhysicsManager;
+import infinitedog.infinity.sounds.SoundManager;
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
-import jam.ld23.physics.PhysicsManager;
-import jam.ld23.sounds.SoundManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
@@ -122,7 +125,7 @@ public class Player extends Sprite implements Serializable {
             sm.playSound(C.Sounds.FIRE.name);
             //Shot a bullet from player center to croosshair direction
             Bullet bullet = new Bullet(getCenter(), crosshair.getCenter().sub(getCenter()).normalise());
-            em.addFutureEntity(bullet.name, bullet);
+            em.addFutureEntity(bullet.getName(), bullet);
         }
             
         Vector2f direction = crosshair.getCenter().sub(getCenter()).normalise();
