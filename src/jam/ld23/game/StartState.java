@@ -31,7 +31,7 @@ public class StartState extends ManagedGameState {
         em.setGameState(C.States.START_STATE.name);
         //Add events
         evm.addEvent(C.Events.CLICK_BUTTON.name, new InputEvent(InputEvent.MOUSE_CLICK, 
-                Input.MOUSE_LEFT_BUTTON, (int) C.Logic.SELECT_OPTION_DELAY.data));
+                Input.MOUSE_LEFT_BUTTON, (Integer) C.Logic.SELECT_OPTION_DELAY.data));
         //Load textures
         tm.addTexture(C.Textures.START_BACKGROUND.name, C.Textures.START_BACKGROUND.path);
         tm.addTexture(C.Textures.BUTTON_0.name, C.Textures.BUTTON_0.path);

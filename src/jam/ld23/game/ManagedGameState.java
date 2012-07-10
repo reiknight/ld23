@@ -6,7 +6,7 @@ import jam.ld23.events.InputEvent;
 import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
 import jam.ld23.sounds.SoundManager;
-import jam.ld23.textures.TextureManager;
+import infinitedog.infinite.textures.TextureManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;

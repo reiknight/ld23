@@ -3,7 +3,7 @@ package jam.ld23.entities;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
 import jam.ld23.physics.PhysicsManager;
-import jam.ld23.textures.TextureManager;
+import infinitedog.infinite.textures.TextureManager;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
