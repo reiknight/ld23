@@ -1,10 +1,10 @@
 package jam.ld23.entities;
 
-import infinitedog.infinity.entities.Entity;
-import infinitedog.infinity.entities.EntityManager;
-import infinitedog.infinity.entities.Sprite;
-import infinitedog.infinity.physics.PhysicsManager;
-import infinitedog.infinity.textures.TextureManager;
+import infinitedog.frisky.entities.Entity;
+import infinitedog.frisky.entities.EntityManager;
+import infinitedog.frisky.entities.Sprite;
+import infinitedog.frisky.physics.PhysicsManager;
+import infinitedog.frisky.textures.TextureManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
 import java.util.ArrayList;

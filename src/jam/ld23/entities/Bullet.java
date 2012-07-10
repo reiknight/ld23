@@ -1,7 +1,7 @@
 package jam.ld23.entities;
 
-import infinitedog.infinity.entities.EntityManager;
-import infinitedog.infinity.entities.Sprite;
+import infinitedog.frisky.entities.EntityManager;
+import infinitedog.frisky.entities.Sprite;
 import jam.ld23.game.C;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

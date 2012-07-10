@@ -1,10 +1,10 @@
 package jam.ld23.entities;
 
-import infinitedog.infinity.entities.Entity;
-import infinitedog.infinity.entities.EntityManager;
-import infinitedog.infinity.entities.Sprite;
-import infinitedog.infinity.physics.PhysicsManager;
-import infinitedog.infinity.sounds.SoundManager;
+import infinitedog.frisky.entities.Entity;
+import infinitedog.frisky.entities.EntityManager;
+import infinitedog.frisky.entities.Sprite;
+import infinitedog.frisky.physics.PhysicsManager;
+import infinitedog.frisky.sounds.SoundManager;
 import jam.ld23.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
