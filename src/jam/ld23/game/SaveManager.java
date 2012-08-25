@@ -1,6 +1,8 @@
 package jam.ld23.game;
 
+// TODO: fix this class
 import jam.ld23.entities.Player;
+import jam.ld23.game.GameOptions;
 import java.io.*;
 
 public class SaveManager {
@@ -91,6 +93,5 @@ public class SaveManager {
                 System.out.println("I/O error: " + ioe.getMessage());
             }
         }
-    }
-    
+    }  
 }

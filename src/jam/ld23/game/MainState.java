@@ -3,6 +3,7 @@ package jam.ld23.game;
 import infinitedog.frisky.entities.Entity;
 import jam.ld23.entities.*;
 import infinitedog.frisky.events.InputEvent;
+import infinitedog.frisky.game.ManagedGameState;
 import jam.ld23.logic.LogicManager;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
@@ -10,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
  
-public class MainState extends ManagedGameState {
+public class MainState extends MothlyState {
     private boolean paused = false;
     
     public MainState(int stateID)
@@ -209,7 +210,7 @@ public class MainState extends ManagedGameState {
 
             //If player dies change state to game over
             if(player.isDead()) {
-                ((ManagedGameState)game.getState(C.States.GAME_OVER_STATE.value)).restart();
+                ((MothlyState)game.getState(C.States.GAME_OVER_STATE.value)).restart();
                 player.addContinue(-1);
                 if(player.getContinues() < 0) {
                     lm.setGameOver(true);

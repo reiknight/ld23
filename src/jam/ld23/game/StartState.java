@@ -2,6 +2,7 @@ package jam.ld23.game;
 
 import jam.ld23.entities.CrossHair;
 import infinitedog.frisky.events.InputEvent;
+import infinitedog.frisky.game.ManagedGameState;
 import jam.ld23.game.C.GameModes;
 import infinitedog.frisky.gui.Button;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-public class StartState extends ManagedGameState {
+public class StartState extends MothlyState {
     private Image background;
     private Button button_start, button_instructions, button_credits,
             button_easy, button_normal, button_hard;
@@ -121,7 +122,7 @@ public class StartState extends ManagedGameState {
                 }
                 if(game_mode != null) {
                     lm.setGameMode(game_mode);
-                    ((ManagedGameState)game.getState(C.States.MAIN_STATE.value)).restart();
+                    ((MothlyState)game.getState(C.States.MAIN_STATE.value)).restart();
                     game.enterState(C.States.MAIN_STATE.value, new FadeOutTransition(), new BlobbyTransition());
                 }
             }
@@ -137,12 +138,12 @@ public class StartState extends ManagedGameState {
                 }
 
                 if(pm.testCollisionsEntity(crosshair, button_instructions)) {
-                    ((ManagedGameState)game.getState(C.States.INSTRUCTIONS_STATE.value)).restart();
+                    ((MothlyState)game.getState(C.States.INSTRUCTIONS_STATE.value)).restart();
                     game.enterState(C.States.INSTRUCTIONS_STATE.value, new FadeOutTransition(), new FadeInTransition());
                 }
 
                 if(pm.testCollisionsEntity(crosshair, button_credits)) {
-                    ((ManagedGameState)game.getState(C.States.CREDITS_STATE.value)).restart();
+                    ((MothlyState)game.getState(C.States.CREDITS_STATE.value)).restart();
                     game.enterState(C.States.CREDITS_STATE.value, new FadeOutTransition(), new FadeInTransition());
                 }
             }

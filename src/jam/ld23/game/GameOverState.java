@@ -1,11 +1,12 @@
 package jam.ld23.game;
 
+import infinitedog.frisky.game.ManagedGameState;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-public class GameOverState extends ManagedGameState {
+public class GameOverState extends MothlyState {
     public GameOverState(int stateID) {
         super(stateID);
         em.setGameState(C.States.GAME_OVER_STATE.name);
@@ -53,7 +54,7 @@ public class GameOverState extends ManagedGameState {
         super.update(gc, game, delta);
         em.setGameState(C.States.GAME_OVER_STATE.name);
         if(evm.isHappening(C.Events.NEXT_STATE.name, gc)) {
-            ((ManagedGameState)game.getState(C.States.MAIN_STATE.value)).restart();
+            ((MothlyState)game.getState(C.States.MAIN_STATE.value)).restart();
             game.enterState(C.States.MAIN_STATE.value, new FadeOutTransition(), new BlobbyTransition());
         }
     }
