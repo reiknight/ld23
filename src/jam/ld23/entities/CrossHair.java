@@ -1,8 +1,8 @@
 package jam.ld23.entities;
 
 import infinitedog.frisky.entities.Sprite;
-import jam.ld23.events.EventManager;
-import jam.ld23.events.InputEvent;
+import infinitedog.frisky.events.EventManager;
+import infinitedog.frisky.events.InputEvent;
 import jam.ld23.game.C;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;

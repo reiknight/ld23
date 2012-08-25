@@ -4,7 +4,7 @@ import infinitedog.frisky.entities.Entity;
 import infinitedog.frisky.entities.EntityManager;
 import infinitedog.frisky.entities.Sprite;
 import infinitedog.frisky.physics.PhysicsManager;
-import jam.ld23.events.EventManager;
+import infinitedog.frisky.events.EventManager;
 import jam.ld23.game.C;
 import jam.ld23.logic.LogicManager;
 import java.util.ArrayList;

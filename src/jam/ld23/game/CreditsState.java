@@ -1,10 +1,7 @@
 package jam.ld23.game;
 
-import jam.ld23.events.InputEvent;
-import jam.ld23.game.C.GameModes;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
